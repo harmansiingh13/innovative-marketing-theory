@@ -1,18 +1,31 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./ContactSection.module.css";
 
+type ContactFormData = {
+  fullName: string;
+  phoneNumber: string;
+  workEmail: string;
+  companyName: string;
+  designation: string;
+  businessOverview: string;
+  consultationDate: string;
+};
+
 export const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+  const [formData, setFormData] = useState<ContactFormData>({
+    fullName: "",
+    phoneNumber: "",
+    workEmail: "",
+    companyName: "",
+    designation: "",
+    businessOverview: "",
+    consultationDate: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
 
@@ -26,7 +39,7 @@ export const ContactSection = () => {
     e.preventDefault();
 
     // Connect your API or email service here.
-    console.log(formData);
+    console.log("Consultation request:", formData);
   };
 
   return (
@@ -36,12 +49,12 @@ export const ContactSection = () => {
       <div className={styles.container}>
         <div className={styles.headingLabel}>
           <span className={styles.headingLine} />
-          <span>LET'S CONNECT</span>
+          <span>LET&apos;S CONNECT</span>
         </div>
 
         <div className={styles.headingRow}>
           <h2 className={styles.title}>
-            Let's make
+            Let&apos;s make
             <br />
             <span>something</span>
             <br />
@@ -49,23 +62,18 @@ export const ContactSection = () => {
           </h2>
 
           <div className={styles.headingAside}>
-            {/* <span className={styles.headingNumber}>06 / 06</span> */}
-
             <p className={styles.description}>
-              Have a project in mind, or just want to explore what's possible?
-              We'd love to hear from you.
+              Tell us about your business, your goals, and where you want to
+              go next. Let&apos;s explore how we can help you grow.
             </p>
           </div>
         </div>
 
         <div className={styles.contactCard}>
-          {/* <div className={styles.cardTop}>
-            <span>START A CONVERSATION</span>
-            <span className={styles.cardArrow}>↗</span>
-          </div> */}
-
           <div className={styles.cardContent}>
             <div className={styles.cardHeading}>
+              <span className={styles.cardEyebrow}>START A CONVERSATION</span>
+
               <h3>
                 Ready when
                 <br />
@@ -73,81 +81,130 @@ export const ContactSection = () => {
               </h3>
 
               <p>
-                Tell us a little about your project. We'll get back to you and
-                explore what we can build together.
+                Share a few details about your business and preferred
+                consultation date. Our team will get back to you to discuss
+                your goals.
               </p>
             </div>
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label htmlFor="name">YOUR NAME</label>
+                  <label htmlFor="fullName">FULL NAME</label>
 
                   <input
-                    id="name"
-                    name="name"
+                    id="fullName"
+                    name="fullName"
                     type="text"
                     placeholder="John Doe"
-                    value={formData.name}
+                    value={formData.fullName}
                     onChange={handleChange}
+                    autoComplete="name"
                     required
                   />
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label htmlFor="email">YOUR EMAIL</label>
+                  <label htmlFor="phoneNumber">PHONE NUMBER</label>
 
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    value={formData.phoneNumber}
                     onChange={handleChange}
+                    autoComplete="tel"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="workEmail">WORK EMAIL</label>
+
+                  <input
+                    id="workEmail"
+                    name="workEmail"
+                    type="email"
+                    placeholder="john@company.com"
+                    value={formData.workEmail}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="companyName">COMPANY NAME</label>
+
+                  <input
+                    id="companyName"
+                    name="companyName"
+                    type="text"
+                    placeholder="Your company name"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    autoComplete="organization"
                     required
                   />
                 </div>
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="subject">SUBJECT</label>
+                <label htmlFor="designation">
+                  PROFESSION / DESIGNATION
+                </label>
 
                 <input
-                  id="subject"
-                  name="subject"
+                  id="designation"
+                  name="designation"
                   type="text"
-                  placeholder="How can we help?"
-                  value={formData.subject}
+                  placeholder="Founder, CEO, Marketing Manager..."
+                  value={formData.designation}
                   onChange={handleChange}
                   required
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="message">YOUR MESSAGE</label>
+                <label htmlFor="businessOverview">
+                  BUSINESS OVERVIEW &amp; CORE OBJECTIVE
+                </label>
 
                 <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your project..."
-                  value={formData.message}
+                  id="businessOverview"
+                  name="businessOverview"
+                  placeholder="Tell us about your business, current challenges, and what you want to achieve..."
+                  value={formData.businessOverview}
                   onChange={handleChange}
-                  rows={5}
+                  rows={6}
+                  required
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="consultationDate">
+                  PREFERRED CONSULTATION DATE
+                </label>
+
+                <input
+                  id="consultationDate"
+                  name="consultationDate"
+                  type="date"
+                  value={formData.consultationDate}
+                  onChange={handleChange}
                   required
                 />
               </div>
 
               <button type="submit" className={styles.submitButton}>
-                <span>SEND MESSAGE</span>
+                <span>Get in touch</span>
                 <span className={styles.submitArrow}>↗</span>
               </button>
             </form>
           </div>
-{/* 
-          <div className={styles.cardBottom}>
-            <span>STRATEGY / CREATIVE / EXECUTION</span>
-            <span>LET'S BUILD SOMETHING GREAT.</span>
-          </div> */}
         </div>
       </div>
     </section>

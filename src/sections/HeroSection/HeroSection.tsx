@@ -19,25 +19,18 @@ export const HeroSection = () => {
           <Link href="/#services">Services</Link>
           <Link href="/#contact">Contact</Link>
         </div>
-
-        {/* <Link href="/#contact" className={styles.navButton}>
-          Let's Talk <span>↗</span>
-        </Link> */}
       </nav>
 
       <main className={styles.content}>
         <div className={styles.topLabel}>
-          {/* <span className={styles.labelLine} /> */}
-          {/* <span>CREATIVE MARKETING AGENCY</span> */}
-          {/* <span className={styles.labelYear}>EST. 2026</span> */}
+          <span className={styles.labelLine} />
+          <span>YOUR GROWTH PARTNER</span>
         </div>
-
         <div className={styles.heroHeading}>
           <span className={styles.headingLine}>INNOVATIVE</span>
 
           <span className={styles.headingLine}>
             <span className={styles.headingAccent}>MARKETING</span>
-            {/* <span>BRAND</span> */}
           </span>
 
           <span className={styles.headingLine}>THEORY.</span>
@@ -45,8 +38,6 @@ export const HeroSection = () => {
 
         <div className={styles.bottomContent}>
           <div className={styles.descriptionBlock}>
-            {/* <span className={styles.descriptionLabel}>01 / INTRODUCING</span> */}
-
             <p className={styles.description}>
               We are a full-service digital marketing agency built on precision,
               creativity, and execution. We don't just run campaigns — we build

@@ -1,0 +1,23 @@
+node_modules
+.next
+out
+dist
+build
+coverage
+
+# Generated files
+*.min.js
+*.min.css
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Public assets
+public

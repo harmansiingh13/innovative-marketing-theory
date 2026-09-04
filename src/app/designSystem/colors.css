@@ -1,0 +1,70 @@
+/* ==================================================
+   Global color system
+   Single source of truth for the entire project
+   ================================================== */
+
+:root {
+  /* ---------------- Brand colors ---------------- */
+
+  --color-brand-primary: #e8a91a;
+  --color-brand-primary-light: #f4c44d;
+  --color-brand-primary-dark: #b87900;
+
+  /* ---------------- Core colors ---------------- */
+
+  --color-black: #080808;
+  --color-black-light: #111111;
+
+  --color-white: #f5f2eb;
+  --color-white-pure: #ffffff;
+
+  /* ---------------- Background colors ---------------- */
+
+  --color-background-primary: #080808;
+  --color-background-secondary: #111111;
+  --color-background-card: #141414;
+  --color-background-input: #1b1b1b;
+  --color-background-hover: #161616;
+  --color-background-active: #202020;
+  --color-background-image: #1a1a1a;
+
+  /* ---------------- Text colors ---------------- */
+
+  --color-text-primary: #f5f2eb;
+  --color-text-secondary: #9b9b96;
+  --color-text-soft: #b8b8b0;
+  --color-text-muted: #686862;
+  --color-text-disabled: #4a4a46;
+  --color-text-inverse: #080808;
+
+  /* ---------------- Border colors ---------------- */
+
+  --color-border-default: rgba(245, 242, 235, 0.12);
+  --color-border-subtle: rgba(255, 255, 255, 0.09);
+  --color-border-hover: rgba(245, 242, 235, 0.24);
+
+  --color-border-brand: rgba(232, 169, 26, 0.3);
+  --color-border-brand-strong: rgba(232, 169, 26, 0.45);
+
+  /* ---------------- Overlay colors ---------------- */
+
+  --color-overlay-grid: rgba(255, 255, 255, 0.025);
+  --color-overlay-image: rgba(0, 0, 0, 0.35);
+  --color-overlay-image-light: rgba(0, 0, 0, 0.05);
+  --color-overlay-dark: rgba(0, 0, 0, 0.65);
+
+  /* ---------------- Glow colors ---------------- */
+
+  --color-glow-brand: rgba(232, 169, 26, 0.045);
+  --color-glow-brand-soft: rgba(232, 169, 26, 0.035);
+
+  /* ---------------- Transparent text colors ---------------- */
+
+  --color-text-footer: rgba(155, 155, 150, 0.5);
+  --color-text-footer-strong: rgba(155, 155, 150, 0.65);
+
+  /* ---------------- Focus colors ---------------- */
+
+  --color-focus-brand: rgba(232, 169, 26, 0.08);
+  --color-focus-outline: #f4c44d;
+}

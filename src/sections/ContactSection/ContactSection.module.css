@@ -2,38 +2,46 @@
 
 .section {
   --black: #080808;
-  --black-light: #111111;
-  --card: #151515;
-  --input: #1c1c1c;
+  --card: #141414;
+  --input: #1b1b1b;
+
   --gold: #e8a91a;
   --gold-light: #f4c44d;
+
   --white: #f5f2eb;
   --text-muted: #999994;
-  --border: rgba(245, 242, 235, 0.14);
+  --text-soft: #b8b8b0;
+
+  --border: rgba(245, 242, 235, 0.12);
+  --gold-border: rgba(232, 169, 26, 0.3);
 
   position: relative;
   overflow: hidden;
 
+  padding: 120px 7vw 110px;
+
   background: var(--black);
   color: var(--white);
-
-  padding: 120px 7vw 100px;
 }
+
+/* ---------------- Background ---------------- */
 
 .backgroundGlow {
   position: absolute;
-  top: 10%;
-  left: -150px;
+  top: 8%;
+  left: -180px;
 
-  width: 450px;
-  height: 450px;
+  width: 480px;
+  height: 480px;
 
-  background: rgba(232, 169, 26, 0.04);
+  background: rgba(232, 169, 26, 0.035);
   border-radius: 50%;
-  filter: blur(130px);
 
+  filter: blur(140px);
   pointer-events: none;
 }
+
+/* ---------------- Container ---------------- */
 
 .container {
   position: relative;
@@ -41,6 +49,7 @@
 
   width: 100%;
   max-width: 1280px;
+
   margin: 0 auto;
 }
 
@@ -57,12 +66,15 @@
 
   font-size: 11px;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.2em;
 }
 
 .headingLine {
-  width: 28px;
+  width: 30px;
   height: 1px;
+  flex-shrink: 0;
+
   background: var(--gold);
 }
 
@@ -91,20 +103,8 @@
 }
 
 .headingAside {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-
-  max-width: 320px;
-  margin-bottom: 6px;
-}
-
-.headingNumber {
-  color: var(--gold);
-
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  max-width: 340px;
+  margin-bottom: 7px;
 }
 
 .description {
@@ -113,79 +113,45 @@
   color: var(--text-muted);
 
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 /* ---------------- Contact card ---------------- */
 
 .contactCard {
-  padding: 32px;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 42px;
 
   background: var(--card);
-  color: var(--white);
-
-  border: 1px solid rgba(245, 242, 235, 0.1);
-  border-radius: 8px;
-}
-
-/* ---------------- Card top ---------------- */
-
-.cardTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding-bottom: 28px;
-
-  border-bottom: 1px solid var(--border);
-
-  color: var(--gold);
-
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-}
-
-.cardArrow {
-  display: grid;
-  place-items: center;
-
-  width: 42px;
-  height: 42px;
-
-  border: 1px solid rgba(232, 169, 26, 0.35);
-  border-radius: 50%;
-
-  color: var(--gold);
-  font-size: 20px;
-
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.cardArrow:hover {
-  background: rgba(232, 169, 26, 0.08);
-  border-color: var(--gold);
-  transform: rotate(45deg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
 /* ---------------- Card content ---------------- */
 
 .cardContent {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
   align-items: start;
-  gap: 80px;
-
-  padding: 48px 0;
+  gap: 90px;
 }
 
 .cardHeading {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
+}
+
+.cardEyebrow {
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.18em;
 }
 
 .cardHeading h3 {
@@ -201,17 +167,17 @@
 
 .cardHeading h3 span {
   color: var(--gold);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .cardHeading p {
-  max-width: 280px;
+  max-width: 290px;
   margin: 0;
 
   color: var(--text-muted);
 
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 /* ---------------- Form ---------------- */
@@ -222,6 +188,7 @@
   gap: 24px;
 
   width: 100%;
+  min-width: 0;
 }
 
 .formRow {
@@ -234,13 +201,15 @@
   display: flex;
   flex-direction: column;
   gap: 9px;
+  min-width: 0;
 }
 
 .formGroup label {
-  color: #b8b8b0;
+  color: var(--text-soft);
 
   font-size: 10px;
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 0.14em;
 }
 
@@ -274,7 +243,7 @@
 }
 
 .formGroup textarea {
-  min-height: 130px;
+  min-height: 145px;
   resize: vertical;
 }
 
@@ -283,11 +252,20 @@
   color: #686862;
 }
 
+.formGroup input:hover,
+.formGroup textarea:hover {
+  border-color: rgba(245, 242, 235, 0.24);
+}
+
 .formGroup input:focus,
 .formGroup textarea:focus {
   background: #202020;
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(232, 169, 26, 0.08);
+}
+
+.formGroup input[type="date"] {
+  color-scheme: dark;
 }
 
 /* ---------------- Submit button ---------------- */
@@ -299,7 +277,8 @@
   gap: 20px;
 
   width: 100%;
-  min-height: 52px;
+  min-height: 54px;
+
   margin-top: 6px;
   padding: 14px 18px;
 
@@ -312,10 +291,11 @@
   font: inherit;
   font-size: 11px;
   font-weight: 800;
+  line-height: 1.2;
   letter-spacing: 0.14em;
+  text-align: left;
 
   cursor: pointer;
-  text-align: left;
 
   transition:
     background 0.25s ease,
@@ -329,6 +309,11 @@
   color: var(--gold);
 }
 
+.submitButton:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+}
+
 .submitArrow {
   font-size: 20px;
   line-height: 1;
@@ -340,26 +325,7 @@
   transform: translate(3px, -3px);
 }
 
-/* ---------------- Card bottom ---------------- */
-
-.cardBottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-
-  padding-top: 24px;
-
-  border-top: 1px solid var(--border);
-
-  color: #777770;
-
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-/* ---------------- Responsive ---------------- */
+/* ---------------- Tablet ---------------- */
 
 @media (max-width: 1000px) {
   .section {
@@ -376,13 +342,15 @@
   }
 
   .contactCard {
-    padding: 28px;
+    padding: 30px;
   }
 
   .cardContent {
-    gap: 40px;
+    gap: 45px;
   }
 }
+
+/* ---------------- Mobile ---------------- */
 
 @media (max-width: 700px) {
   .section {
@@ -399,7 +367,7 @@
     flex-direction: column;
     gap: 28px;
 
-    margin-bottom: 40px;
+    margin-bottom: 42px;
   }
 
   .title {
@@ -409,7 +377,7 @@
 
   .headingAside {
     max-width: 100%;
-    gap: 14px;
+    margin-bottom: 0;
   }
 
   .description {
@@ -417,30 +385,22 @@
   }
 
   .contactCard {
-    padding: 22px;
-  }
-
-  .cardTop {
-    padding-bottom: 22px;
-    font-size: 9px;
-  }
-
-  .cardArrow {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
+    padding: 24px 20px;
+    border-radius: 8px;
   }
 
   .cardContent {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 38px;
+  }
 
-    padding: 36px 0;
+  .cardHeading {
+    gap: 20px;
   }
 
   .cardHeading h3 {
-    font-size: 38px;
+    font-size: 40px;
   }
 
   .cardHeading p {
@@ -461,12 +421,29 @@
     font-size: 14px;
   }
 
-  .cardBottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
+  .submitButton {
+    min-height: 52px;
+  }
+}
 
-    font-size: 8px;
+/* ---------------- Small mobile ---------------- */
+
+@media (max-width: 400px) {
+  .contactCard {
+    padding: 22px 16px;
+  }
+
+  .cardHeading h3 {
+    font-size: 36px;
+  }
+
+  .formGroup label {
+    font-size: 9px;
+    letter-spacing: 0.11em;
+  }
+
+  .submitButton {
+    font-size: 10px;
     letter-spacing: 0.1em;
   }
 }
