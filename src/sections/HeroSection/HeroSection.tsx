@@ -39,9 +39,8 @@ export const HeroSection = () => {
         <div className={styles.bottomContent}>
           <div className={styles.descriptionBlock}>
             <p className={styles.description}>
-              We are a full-service digital marketing agency built on precision,
-              creativity, and execution. We don't just run campaigns — we build
-              brand authority.
+              We are a full-service digital marketing agency built on precision, creativity, and
+              execution. We don't just run campaigns — we build brand authority.
             </p>
           </div>
 

@@ -4,8 +4,7 @@ import styles from "./ServicesSection.module.css";
 const services = [
   {
     title: "Professional Video Shoots",
-    description:
-      "Cinematic visuals that give your brand a distinct look and a stronger presence.",
+    description: "Cinematic visuals that give your brand a distinct look and a stronger presence.",
     href: "/services/video-shoots",
     image:
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80",
@@ -49,8 +48,7 @@ const services = [
   },
   {
     title: "Event Organization",
-    description:
-      "Memorable experiences brought to life through thoughtful planning and execution.",
+    description: "Memorable experiences brought to life through thoughtful planning and execution.",
     href: "/services/event-organization",
     image:
       "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=80",
@@ -81,8 +79,8 @@ export const ServicesSection = () => {
 
             <div className={styles.headingAside}>
               <p className={styles.description}>
-                Strategy, creativity, and execution — all working together to
-                make your brand stand out.
+                Strategy, creativity, and execution — all working together to make your brand stand
+                out.
               </p>
             </div>
           </div>
@@ -90,11 +88,7 @@ export const ServicesSection = () => {
 
         <div className={styles.servicesGrid}>
           {services.map((service) => (
-            <Link
-              key={service.title}
-              href={service.href}
-              className={styles.serviceCard}
-            >
+            <Link key={service.title} href={service.href} className={styles.serviceCard}>
               <div className={styles.cardImage}>
                 <img src={service.image} alt={service.alt} />
               </div>
@@ -102,9 +96,7 @@ export const ServicesSection = () => {
               <div className={styles.cardContent}>
                 <h3 className={styles.serviceTitle}>{service.title}</h3>
 
-                <p className={styles.serviceDescription}>
-                  {service.description}
-                </p>
+                <p className={styles.serviceDescription}>{service.description}</p>
               </div>
 
               <div className={styles.cardBottom}>

@@ -24,9 +24,7 @@ export const ContactSection = () => {
     consultationDate: "",
   });
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setFormData((previous) => ({
@@ -63,8 +61,8 @@ export const ContactSection = () => {
 
           <div className={styles.headingAside}>
             <p className={styles.description}>
-              Tell us about your business, your goals, and where you want to
-              go next. Let&apos;s explore how we can help you grow.
+              Tell us about your business, your goals, and where you want to go next. Let&apos;s
+              explore how we can help you grow.
             </p>
           </div>
         </div>
@@ -81,9 +79,8 @@ export const ContactSection = () => {
               </h3>
 
               <p>
-                Share a few details about your business and preferred
-                consultation date. Our team will get back to you to discuss
-                your goals.
+                Share a few details about your business and preferred consultation date. Our team
+                will get back to you to discuss your goals.
               </p>
             </div>
 
@@ -153,9 +150,7 @@ export const ContactSection = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="designation">
-                  PROFESSION / DESIGNATION
-                </label>
+                <label htmlFor="designation">PROFESSION / DESIGNATION</label>
 
                 <input
                   id="designation"
@@ -169,9 +164,7 @@ export const ContactSection = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="businessOverview">
-                  BUSINESS OVERVIEW &amp; CORE OBJECTIVE
-                </label>
+                <label htmlFor="businessOverview">BUSINESS OVERVIEW &amp; CORE OBJECTIVE</label>
 
                 <textarea
                   id="businessOverview"
@@ -185,9 +178,7 @@ export const ContactSection = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="consultationDate">
-                  PREFERRED CONSULTATION DATE
-                </label>
+                <label htmlFor="consultationDate">PREFERRED CONSULTATION DATE</label>
 
                 <input
                   id="consultationDate"
