@@ -1,0 +1,159 @@
+/* ---------------- Root ---------------- */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 1px solid transparent;
+  outline: none;
+
+  font-family: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.root:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------------- Sizes ---------------- */
+
+.sm {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.md {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+
+.lg {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 15px;
+}
+
+/* ---------------- Shapes ---------------- */
+
+.default {
+  border-radius: 6px;
+}
+
+.pill {
+  border-radius: 999px;
+}
+
+.round {
+  padding: 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+/* ---------------- Primary ---------------- */
+
+.primary {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: var(--color-black);
+}
+
+.primary:hover:not(:disabled) {
+  /* background: var(--color-brand-primary-light); */
+  /* border-color: var(--color-brand-primary-light); */
+  transform: translateY(-2px);
+}
+
+/* ---------------- Outline ---------------- */
+
+.outline {
+  background: transparent;
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: var(--color-black);
+  transform: translateY(-2px);
+}
+
+/* ---------------- Ghost ---------------- */
+
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+.ghost:hover:not(:disabled) {
+  background: rgba(232, 169, 26, 0.08);
+  color: var(--color-brand-primary);
+}
+
+/* ---------------- Text ---------------- */
+
+.text {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-muted);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.text:hover:not(:disabled) {
+  color: var(--color-brand-primary);
+}
+
+/* ---------------- Layout ---------------- */
+
+.wide {
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------------- Loading ---------------- */
+
+.loader {
+  width: 14px;
+  height: 14px;
+
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

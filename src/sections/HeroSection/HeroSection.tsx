@@ -1,25 +1,25 @@
+"use client";
 import Link from "next/link";
 import styles from "./HeroSection.module.css";
 import Image from "next/image";
 import logo from "@/app/designSystem/images/imt-logooo.png";
+import { Navbar } from "./elements/Navbar";
+import { Button } from "@/shared/components/Button";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { Divider } from "@/shared/components/Divider";
 
 export const HeroSection = () => {
+  const navbarLinks = [
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Contact", href: "/#contact" },
+  ];
   return (
     <section id="about" className={styles.section}>
       <div className={styles.backgroundGlow} />
       <div className={styles.gridPattern} />
 
-      <nav className={styles.navbar}>
-        <Link href="/" className={styles.logo}>
-          <Image src={logo} alt="Marketing" width={100} height={50} priority />
-        </Link>
-
-        <div className={styles.navLinks}>
-          <Link href="/#about">About</Link>
-          <Link href="/#services">Services</Link>
-          <Link href="/#contact">Contact</Link>
-        </div>
-      </nav>
+      <Navbar links={navbarLinks} />
 
       <main className={styles.content}>
         <div className={styles.topLabel}>
@@ -45,21 +45,49 @@ export const HeroSection = () => {
           </div>
 
           <div className={styles.ctaBlock}>
-            <Link href="/#contact" className={styles.primaryCta}>
-              <span>Let's Connect</span>
-              <span className={styles.ctaArrow}>↗</span>
-            </Link>
+            <Button
+              type="button"
+              variant="primary"
+              size="lg"
+              shape="pill"
+              onClick={() => {
+                document.getElementById("contact")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              rightIcon={<ArrowUpRight className={styles.ctaArrow} />}
+            >
+              Let's Connect
+            </Button>
 
-            <Link href="/#services" className={styles.secondaryCta}>
-              Explore Services <span>↓</span>
-            </Link>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              shape="pill"
+              onClick={() => {
+                document.getElementById("services")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              rightIcon={<ArrowDown className={styles.secondaryArrow} />}
+            >
+              Explore Services
+            </Button>
           </div>
         </div>
       </main>
 
       <div className={styles.footer}>
-        <span>STRATEGY / CREATIVE / EXECUTION</span>
-        <span className={styles.footerRight}>SCROLL TO EXPLORE ↓</span>
+        <Divider size={2} />
+
+        <div className={styles.footerContent}>
+          <span>STRATEGY / CREATIVE / EXECUTION</span>
+
+          <span className={styles.footerRight}>SCROLL TO EXPLORE ↓</span>
+        </div>
       </div>
     </section>
   );

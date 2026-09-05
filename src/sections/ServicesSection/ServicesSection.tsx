@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import styles from "./ServicesSection.module.css";
 
@@ -108,11 +109,11 @@ export const ServicesSection = () => {
           ))}
         </div>
 
-        <div className={styles.bottomNote}>
+        {/* <div className={styles.bottomNote}>
           <span>FROM IDEA TO EXECUTION</span>
           <span className={styles.bottomLine} />
           <span>LET'S MAKE SOMETHING UNMISSABLE.</span>
-        </div>
+        </div> */}
       </div>
     </section>
   );
