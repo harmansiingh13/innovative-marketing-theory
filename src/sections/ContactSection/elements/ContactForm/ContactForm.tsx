@@ -1,23 +1,30 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-
-import { Button } from "@/shared/components/Button";
-import { Form } from "@/shared/components/Form/Form";
-
 import type { UseFormReturn } from "react-hook-form";
 
+import { Button } from "@/shared/components/Button";
+import { Form, InputField, TextareaField } from "@/shared/components/Form";
+
+import type { ContactFormData } from "./validationSchema";
 import styles from "./ContactForm.module.css";
-import { ContactFormData } from "./validationSchema";
-import { InputField, TextareaField } from "@/shared/components/Form";
 
 type ContactFormProps = {
   methods: UseFormReturn<ContactFormData>;
   onSubmit: (values: ContactFormData) => void | Promise<void>;
 };
 
+const getLocalDateTime = () => {
+  const date = new Date();
+  const offset = date.getTimezoneOffset();
+  const localDate = new Date(date.getTime() - offset * 60 * 1000);
+
+  return localDate.toISOString().slice(0, 16);
+};
+
 export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
-  const today = new Date().toISOString().slice(0, 16);
+  const today = getLocalDateTime();
+
   return (
     <Form methods={methods} onSubmit={onSubmit} className={styles.form}>
       <div className={styles.formRow}>
@@ -36,6 +43,7 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           type="number"
           placeholder="Enter your phone number"
           autoComplete="tel"
+          inputMode="tel"
           required
         />
       </div>
@@ -65,6 +73,7 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="PROFESSION / DESIGNATION"
           type="text"
           placeholder="Enter your designation"
+          autoComplete="organization-title"
           required
         />
 

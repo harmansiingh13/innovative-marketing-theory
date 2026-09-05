@@ -1,18 +1,34 @@
 import { z } from "zod";
 
 export const validationSchema = z.object({
+  /* ---------------- Required fields ---------------- */
+
   fullName: z
     .string()
     .trim()
-    .min(2, "Full name must be at least 2 characters")
-    .max(100, "Full name is too long"),
+    .min(1, "Please enter your full name")
+    .max(50, "Full name is too long"),
 
   phoneNumber: z
     .string()
     .trim()
+    .min(1, "Please enter your phone number")
     .min(10, "Please enter a valid phone number")
-    .max(15, "Phone number is too long")
     .regex(/^[+]?[0-9\s()-]+$/, "Please enter a valid phone number"),
+
+  companyName: z
+    .string()
+    .trim()
+    .min(1, "Please enter your company name")
+    .max(50, "Company name is too long"),
+
+  designation: z
+    .string()
+    .trim()
+    .min(1, "Please enter your profession or designation")
+    .max(50, "Designation is too long"),
+
+  /* ---------------- Optional fields ---------------- */
 
   workEmail: z
     .string()
@@ -24,21 +40,17 @@ export const validationSchema = z.object({
       "Please enter a valid work email",
     ),
 
-  companyName: z
+  consultationDate: z
     .string()
     .trim()
-    .min(2, "Company name must be at least 2 characters")
-    .max(100, "Company name is too long"),
+    .transform((value) => (value === "" ? undefined : value))
+    .optional(),
 
-  designation: z
+  businessOverview: z
     .string()
     .trim()
-    .min(2, "Please enter your profession or designation")
-    .max(100, "Designation is too long"),
-
-  consultationDate: z.string().optional(),
-
-  businessOverview: z.string().trim().max(1000, "Business overview is too long").optional(),
+    .transform((value) => (value === "" ? undefined : value))
+    .optional(),
 });
 
 export type ContactFormData = z.infer<typeof validationSchema>;
