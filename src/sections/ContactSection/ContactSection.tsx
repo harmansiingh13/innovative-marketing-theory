@@ -6,6 +6,7 @@ import { ContactForm } from "./elements/ContactForm/ContactForm";
 
 import styles from "./ContactSection.module.css";
 import { ContactFormData, validationSchema } from "./elements/ContactForm/validationSchema";
+import { Toast } from "@/shared/components/Toast";
 
 export const ContactSection = () => {
   const methods = useForm<ContactFormData>({
@@ -23,8 +24,13 @@ export const ContactSection = () => {
   });
 
   const handleSubmit = async (values: ContactFormData) => {
-    // Connect your API or email service here.
-    console.log("Consultation request:", values);
+    try {
+    //   await onSubmit(values);
+
+      Toast.success("Thank you! We’ll get back to you shortly.");
+    } catch {
+      Toast.error("We couldn’t send your message. Please try again later.");
+    }
   };
 
   return (

@@ -44,7 +44,14 @@ export const validationSchema = z.object({
     .string()
     .trim()
     .transform((value) => (value === "" ? undefined : value))
-    .optional(),
+    .optional()
+    .refine((value) => {
+      if (!value) return true;
+      const selectedDate = new Date(value);
+      const minimumDate = new Date();
+      minimumDate.setHours(minimumDate.getHours() + 1);
+      return selectedDate >= minimumDate;
+    }, "Please select a time at least 1 hour ahead."),
 
   businessOverview: z
     .string()

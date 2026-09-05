@@ -8,6 +8,7 @@ import { Form, InputField, TextareaField } from "@/shared/components/Form";
 
 import type { ContactFormData } from "./validationSchema";
 import styles from "./ContactForm.module.css";
+import { getMinimumConsultationDateTime } from "./helpers/getMinimumConsultationDateTime";
 
 type ContactFormProps = {
   methods: UseFormReturn<ContactFormData>;
@@ -23,8 +24,6 @@ const getLocalDateTime = () => {
 };
 
 export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
-  const today = getLocalDateTime();
-
   return (
     <Form methods={methods} onSubmit={onSubmit} className={styles.form}>
       <div className={styles.formRow}>
@@ -76,7 +75,7 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           name="consultationDate"
           label="PREFERRED CONSULTATION DATE"
           type="datetime-local"
-          min={today}
+          min={getMinimumConsultationDateTime()}
         />
       </div>
 
