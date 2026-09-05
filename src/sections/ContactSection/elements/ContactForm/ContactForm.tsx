@@ -33,7 +33,6 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="FULL NAME"
           type="text"
           placeholder="Enter your full name"
-          autoComplete="name"
           required
         />
 
@@ -42,7 +41,6 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="PHONE NUMBER"
           type="number"
           placeholder="Enter your phone number"
-          autoComplete="tel"
           inputMode="tel"
           required
         />
@@ -54,7 +52,6 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="WORK EMAIL"
           type="email"
           placeholder="Enter your work email"
-          autoComplete="email"
         />
 
         <InputField<ContactFormData>
@@ -62,7 +59,6 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="COMPANY NAME"
           type="text"
           placeholder="Enter your company name"
-          autoComplete="organization"
           required
         />
       </div>
@@ -73,7 +69,6 @@ export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
           label="PROFESSION / DESIGNATION"
           type="text"
           placeholder="Enter your designation"
-          autoComplete="organization-title"
           required
         />
 
