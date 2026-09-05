@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import styles from "./ServicesSection.module.css";
+import { ServiceCard } from "./elements/ServiceCard";
 
 const services = [
   {
@@ -89,31 +89,9 @@ export const ServicesSection = () => {
 
         <div className={styles.servicesGrid}>
           {services.map((service) => (
-            <Link key={service.title} href={service.href} className={styles.serviceCard}>
-              <div className={styles.cardImage}>
-                <img src={service.image} alt={service.alt} />
-              </div>
-
-              <div className={styles.cardContent}>
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
-
-                <p className={styles.serviceDescription}>{service.description}</p>
-              </div>
-
-              <div className={styles.cardBottom}>
-                <span>EXPLORE SERVICE</span>
-
-                <span className={styles.cardArrow}>↗</span>
-              </div>
-            </Link>
+            <ServiceCard key={service.title} {...service} />
           ))}
         </div>
-
-        {/* <div className={styles.bottomNote}>
-          <span>FROM IDEA TO EXECUTION</span>
-          <span className={styles.bottomLine} />
-          <span>LET'S MAKE SOMETHING UNMISSABLE.</span>
-        </div> */}
       </div>
     </section>
   );
