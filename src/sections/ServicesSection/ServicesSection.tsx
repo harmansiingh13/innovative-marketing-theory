@@ -33,7 +33,7 @@ const services = [
     title: "Advertisement Running",
     description:
       "Targeted campaigns designed to reach the right people and drive meaningful results.",
-    href: "/services/advertisement-running",
+    href: "/services/advertisement",
     image:
       "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80",
     alt: "Creative advertising workspace",
