@@ -1,7 +1,3 @@
-import React from 'react'
-
 export const VideoShootPage = () => {
-  return (
-    <div>videoShoots</div>
-  )
-}
+  return <div>videoShoots</div>;
+};

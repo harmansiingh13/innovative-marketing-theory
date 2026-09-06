@@ -25,10 +25,21 @@ export const ContactSection = () => {
 
   const handleSubmit = async (values: ContactFormData) => {
     try {
-    //   await onSubmit(values);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to submit form");
+      }
       Toast.success("Thank you! We’ll get back to you shortly.");
-    } catch {
+      methods.reset();
+    } catch (error) {
       Toast.error("We couldn’t send your message. Please try again later.");
     }
   };

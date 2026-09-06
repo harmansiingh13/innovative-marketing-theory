@@ -10,7 +10,7 @@ const serviceComponents = {
   "video-shoots": VideoShootPage,
   "video-editing": VideoEditingPage,
   "social-media": SocialMediaPage,
-  "advertisement": AdvertisementPage,
+  advertisement: AdvertisementPage,
   "web-development": WebDevelopmentPage,
   "event-organization": EventOrganizationPage,
 };
