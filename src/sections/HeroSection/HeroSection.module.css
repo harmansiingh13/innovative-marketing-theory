@@ -20,9 +20,11 @@
 
   background: var(--black);
   color: var(--white);
+
+  perspective: 1200px;
 }
 
-/* ---------------- Background ---------------- */
+/* ---------------- Background & 3D Environment ---------------- */
 
 .backgroundGlow {
   position: absolute;
@@ -52,6 +54,7 @@
   mask-image: linear-gradient(to bottom, black, transparent 85%);
 
   pointer-events: none;
+  will-change: transform;
 }
 
 /* ---------------- Navbar ---------------- */
@@ -203,6 +206,9 @@
 
   margin: 0 auto;
   padding: 80px 0 100px;
+
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* ---------------- Top label ---------------- */
@@ -242,14 +248,19 @@
   margin: 0;
 
   font-size: clamp(64px, 11vw, 160px);
-  font-weight: 800;
-  line-height: 0.88;
-  letter-spacing: -0.075em;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
 }
 
 .headingLine {
   display: block;
   white-space: nowrap;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 .headingLine:nth-child(2) {
@@ -544,7 +555,7 @@ button:hover .secondaryArrow {
   .heroHeading {
     font-size: clamp(48px, 14vw, 80px);
     line-height: 0.92;
-    letter-spacing: -0.07em;
+    letter-spacing: -0.025em;
   }
 
   .headingLine:nth-child(2) {
