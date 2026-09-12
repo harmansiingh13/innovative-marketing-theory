@@ -49,10 +49,6 @@ export const Form = <T extends FieldValues = FieldValues>({
     }
   }, [readOnly]);
 
-  const defaultSubmitErrorHandler: SubmitErrorHandler<T> = (errors) => {
-    console.error("Form validation failed:", errors);
-  };
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     const canSubmit = beforeSubmitValidators.every((validator) => validator());
 
@@ -61,7 +57,7 @@ export const Form = <T extends FieldValues = FieldValues>({
       return;
     }
 
-    return methods.handleSubmit(onSubmit, onSubmitError ?? defaultSubmitErrorHandler)(event);
+    return methods.handleSubmit(onSubmit, onSubmitError)(event);
   };
 
   return (
