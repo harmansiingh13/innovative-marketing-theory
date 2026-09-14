@@ -40,18 +40,7 @@
 }
 
 .gridPattern {
-  position: absolute;
-  inset: 0;
-
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-
-  background-size: 100px 100px;
-
-  mask-image: linear-gradient(to bottom, black, transparent 85%);
-
-  pointer-events: none;
+  display: none;
 }
 
 /* ---------------- Navbar ---------------- */
@@ -216,7 +205,7 @@
 
   color: var(--gold);
 
-  font-size: 10px;
+  font-size: 23px;
   font-weight: 700;
   letter-spacing: 0.22em;
 }
@@ -451,9 +440,56 @@ button:hover .secondaryArrow {
   width: 100%;
 }
 
+.footerLeft {
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.footerLeft:hover {
+  color: rgba(245, 242, 235, 0.75);
+}
+
 .footerRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  margin: -4px -6px;
+  cursor: pointer;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.75;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.25s ease;
+}
+
+.footerRight:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(232, 169, 26, 0.5));
+}
+
+.scrollArrow {
+  display: inline-block;
+  font-size: 12px;
+  animation: scrollBob 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
 }
 
 /* ---------------- Responsive ---------------- */

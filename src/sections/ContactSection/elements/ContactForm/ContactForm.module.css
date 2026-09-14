@@ -16,11 +16,23 @@
 }
 
 .submitArrow {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form :global(button[type="submit"]) {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.form :global(button[type="submit"]):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(232, 169, 26, 0.4);
 }
 
 .form :global(button[type="submit"]):hover .submitArrow {
-  transform: translate(3px, -3px);
+  transform: translate(4px, -4px);
 }
 
 @media (max-width: 768px) {

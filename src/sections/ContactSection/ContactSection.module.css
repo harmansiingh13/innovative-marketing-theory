@@ -63,7 +63,7 @@
 
   color: var(--gold);
 
-  font-size: 11px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.2em;
@@ -126,6 +126,17 @@
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.contactCard:hover {
+  border-color: rgba(232, 169, 26, 0.35);
+  box-shadow:
+    0 25px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 30px -5px rgba(232, 169, 26, 0.08);
 }
 
 /* ---------------- Card content ---------------- */

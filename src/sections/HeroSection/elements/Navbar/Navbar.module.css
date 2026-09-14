@@ -27,6 +27,15 @@
 
   color: inherit;
   text-decoration: none;
+
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 8px rgba(232, 169, 26, 0.35));
 }
 
 .logo img {
@@ -43,49 +52,67 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 42px;
+  gap: 36px;
 
   grid-column: 2;
 }
 
-.navLinks a {
+.navLinkButton {
   position: relative;
-
-  color: #9b9b96;
-  text-decoration: none;
-
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-
-  transition: color 0.25s ease;
+  letter-spacing: 0.05em;
+  color: #9b9b96 !important;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease !important;
 }
 
-.navLinks a::after {
+.navLinkButton::after {
   content: "";
 
   position: absolute;
-  left: 0;
-  bottom: -8px;
+  left: 50%;
+  bottom: 0px;
 
   width: 0;
-  height: 1px;
+  height: 2px;
 
   background: #e8a91a;
+  border-radius: 99px;
 
-  transition: width 0.25s ease;
+  transform: translateX(-50%);
+  opacity: 0;
+
+  transition:
+    width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease;
+  pointer-events: none;
 }
 
-.navLinks a:hover {
-  color: #f5f2eb;
+.navLinkButton:hover {
+  color: #f5f2eb !important;
+  transform: translateY(-1px);
 }
 
-.navLinks a:hover::after {
-  width: 100%;
+.navLinkButton:hover::after {
+  width: 80%;
+  opacity: 1;
+}
+
+.navLinkActive {
+  color: #f5f2eb !important;
+}
+
+.navLinkActive::after {
+  width: 80% !important;
+  opacity: 1 !important;
+  background: #e8a91a !important;
 }
 
 .divider {
   grid-column: 1 / -1;
+  transform-origin: center;
 }
 
 /* ---------------- Responsive ---------------- */
