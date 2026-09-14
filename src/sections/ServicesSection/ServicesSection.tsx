@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./ServicesSection.module.css";
 import { ServiceCard } from "./elements/ServiceCard";
-import { FlyInText } from "@/shared/animations";
+import { getDirectionalVars } from "@/shared/animations";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -67,12 +67,59 @@ const services = [
 ];
 
 export const ServicesSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingLabelRef = useRef<HTMLDivElement>(null);
+  const headingTitleRef = useRef<HTMLHeadingElement>(null);
+  const headingAsideRef = useRef<HTMLDivElement>(null);
   const cardsGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined" || !cardsGridRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Heading directional entrance
+      if (headingLabelRef.current) {
+        const labelVars = getDirectionalVars("left", {
+          distance: 50,
+          duration: 0.85,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        });
+        gsap.fromTo(headingLabelRef.current, labelVars.from, labelVars.to);
+      }
+
+      if (headingTitleRef.current) {
+        const titleVars = getDirectionalVars("topLeft", {
+          distance: 60,
+          duration: 0.95,
+          delay: 0.1,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        });
+        gsap.fromTo(headingTitleRef.current, titleVars.from, titleVars.to);
+      }
+
+      if (headingAsideRef.current) {
+        const asideVars = getDirectionalVars("right", {
+          subtle: true,
+          duration: 0.85,
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true,
+          },
+        });
+        gsap.fromTo(headingAsideRef.current, asideVars.from, asideVars.to);
+      }
+
+      // 2. Reverted card animations (original dispersed 3D fly-in)
       const cards = cardsGridRef.current?.children;
       if (!cards || cards.length === 0) return;
 
@@ -128,41 +175,35 @@ export const ServicesSection = () => {
           i * 0.08,
         );
       });
-    }, cardsGridRef);
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="services" className={styles.section}>
+    <section ref={sectionRef} id="services" className={styles.section}>
       <div className={styles.backgroundGlow} />
 
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.headingLabel}>
+          <div ref={headingLabelRef} className={styles.headingLabel}>
             <span className={styles.headingLine} />
-            <FlyInText as="span" distance={25}>
-              WHAT WE OFFER
-            </FlyInText>
+            <span>WHAT WE OFFER</span>
           </div>
 
           <div className={styles.headingRow}>
             <div className={styles.headingContent}>
-              <h2 className={styles.title}>
-                <FlyInText distance={32} delay={0.1}>
-                  Everything your
-                  <br />
-                  <span>brand needs.</span>
-                </FlyInText>
+              <h2 ref={headingTitleRef} className={styles.title}>
+                Everything your
+                <br />
+                <span>brand needs.</span>
               </h2>
             </div>
 
-            <div className={styles.headingAside}>
+            <div ref={headingAsideRef} className={styles.headingAside}>
               <p className={styles.description}>
-                <FlyInText distance={30} delay={0.25} seed={70}>
-                  Strategy, creativity, and execution — all working together to make your brand
-                  stand out.
-                </FlyInText>
+                Strategy, creativity, and execution — all working together to make your brand stand
+                out.
               </p>
             </div>
           </div>

@@ -15,14 +15,6 @@ type ContactFormProps = {
   onSubmit: (values: ContactFormData) => void | Promise<void>;
 };
 
-const getLocalDateTime = () => {
-  const date = new Date();
-  const offset = date.getTimezoneOffset();
-  const localDate = new Date(date.getTime() - offset * 60 * 1000);
-
-  return localDate.toISOString().slice(0, 16);
-};
-
 export const ContactForm = ({ methods, onSubmit }: ContactFormProps) => {
   return (
     <Form methods={methods} onSubmit={onSubmit} className={styles.form}>

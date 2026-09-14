@@ -10,102 +10,147 @@ import { ContactForm } from "./elements/ContactForm/ContactForm";
 import styles from "./ContactSection.module.css";
 import { ContactFormData, validationSchema } from "./elements/ContactForm/validationSchema";
 import { Toast } from "@/shared/components/Toast";
-import { FlyInText } from "@/shared/animations";
+import { getDirectionalVars, isReducedMotion } from "@/shared/animations";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export const ContactSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingLabelRef = useRef<HTMLDivElement>(null);
+  const headingTitleRef = useRef<HTMLHeadingElement>(null);
+  const headingAsideRef = useRef<HTMLDivElement>(null);
   const contactCardRef = useRef<HTMLDivElement>(null);
+  const cardHeadingRef = useRef<HTMLDivElement>(null);
+  const formWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !contactCardRef.current) return;
+    if (typeof window === "undefined" || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const q = gsap.utils.selector(contactCardRef);
-      const isMobile = window.innerWidth < 768;
-      const xLeft = isMobile ? 0 : -35;
-      const xRight = isMobile ? 0 : 30;
-      const yOffset = isMobile ? 22 : 15;
-
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: contactCardRef.current,
+          trigger: sectionRef.current,
           start: "top 80%",
           once: true,
         },
+        defaults: {
+          ease: "power3.out",
+        },
       });
 
-      // 1. Contact card container base entrance
-      tl.fromTo(
-        contactCardRef.current,
-        { opacity: 0, y: 40, scale: 0.98 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
+      // 1. Heading label: LEFT -> FINAL
+      if (headingLabelRef.current) {
+        const labelVars = getDirectionalVars("left", {
+          distance: 50,
           duration: 0.85,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        },
-        0,
-      );
-
-      // 2. Left column heading slides in
-      const headingH3 = q(`.${styles.cardHeading} h3`);
-      if (headingH3.length) {
-        tl.fromTo(
-          headingH3,
-          { opacity: 0, x: xLeft, y: isMobile ? 15 : 0 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            clearProps: "transform,opacity",
-          },
-          0.1,
-        );
+        });
+        tl.fromTo(headingLabelRef.current, labelVars.from, labelVars.to, 0);
       }
 
-      // 3. Left column paragraph fades in
-      const headingP = q(`.${styles.cardHeading} p`);
-      if (headingP.length) {
-        tl.fromTo(
-          headingP,
-          { opacity: 0, y: 15 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            clearProps: "transform,opacity",
-          },
-          0.2,
-        );
+      // 2. Main Title: TOP-LEFT -> FINAL (deliberate diagonal entrance from outside composition)
+      if (headingTitleRef.current) {
+        const titleVars = getDirectionalVars("topLeft", {
+          distance: 70,
+          duration: 0.95,
+        });
+        tl.fromTo(headingTitleRef.current, titleVars.from, titleVars.to, 0.1);
       }
 
-      // 4. Right column form rows stagger in from the right
-      const formItems = q("form > *");
-      if (formItems.length) {
-        tl.fromTo(
-          formItems,
-          { opacity: 0, x: xRight, y: yOffset },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 0.75,
-            stagger: 0.08,
-            ease: "power3.out",
-            clearProps: "transform,opacity",
-          },
-          0.22,
-        );
+      // 3. Supporting text: LEFT -> FINAL (creates visual balance)
+      if (headingAsideRef.current) {
+        const asideVars = getDirectionalVars("left", {
+          subtle: true,
+          duration: 0.85,
+        });
+        tl.fromTo(headingAsideRef.current, asideVars.from, asideVars.to, 0.22);
       }
-    }, contactCardRef);
+
+      // 4. Contact Card inner heading: TOP-LEFT -> FINAL
+      if (cardHeadingRef.current) {
+        const h3 = cardHeadingRef.current.querySelector("h3");
+        const p = cardHeadingRef.current.querySelector("p");
+
+        if (h3) {
+          const h3Vars = getDirectionalVars("topLeft", {
+            distance: 50,
+            duration: 0.9,
+          });
+          tl.fromTo(h3, h3Vars.from, h3Vars.to, 0.28);
+        }
+
+        if (p) {
+          const pVars = getDirectionalVars("left", {
+            subtle: true,
+            duration: 0.85,
+          });
+          tl.fromTo(p, pVars.from, pVars.to, 0.38);
+        }
+      }
+
+      // 5. Form container: RIGHT -> FINAL POSITION
+      if (formWrapperRef.current) {
+        const formVars = getDirectionalVars("right", {
+          distance: 60,
+          duration: 0.95,
+        });
+        tl.fromTo(formWrapperRef.current, formVars.from, formVars.to, 0.32);
+
+        // 6. Form fields appear progressively with controlled alternating directions
+        const reduced = isReducedMotion();
+        if (!reduced) {
+          const formRows = formWrapperRef.current.querySelectorAll(`[class*="formRow"]`);
+          let fieldDelay = 0.44;
+
+          formRows.forEach((row) => {
+            const firstChild = row.children[0] as HTMLElement | undefined;
+            const secondChild = row.children[1] as HTMLElement | undefined;
+
+            if (firstChild) {
+              const leftVars = getDirectionalVars("left", {
+                distance: 22,
+                duration: 0.75,
+              });
+              tl.fromTo(firstChild, leftVars.from, leftVars.to, fieldDelay);
+            }
+
+            if (secondChild) {
+              const rightVars = getDirectionalVars("right", {
+                distance: 22,
+                duration: 0.75,
+              });
+              tl.fromTo(secondChild, rightVars.from, rightVars.to, fieldDelay + 0.05);
+            }
+
+            fieldDelay += 0.1;
+          });
+
+          // Textarea (Message field): RIGHT -> FINAL
+          const textareaWrapper = formWrapperRef.current.querySelector(
+            `form > [class*="textarea"], form > [class*="root"]:not([class*="formRow"])`,
+          );
+          if (textareaWrapper) {
+            const areaVars = getDirectionalVars("right", {
+              distance: 22,
+              duration: 0.75,
+            });
+            tl.fromTo(textareaWrapper, areaVars.from, areaVars.to, fieldDelay);
+            fieldDelay += 0.08;
+          }
+
+          // Submit button: slight upward movement (BOTTOM -> FINAL)
+          const submitBtn = formWrapperRef.current.querySelector(`button[type="submit"]`);
+          if (submitBtn) {
+            const btnVars = getDirectionalVars("bottom", {
+              distance: 18,
+              duration: 0.75,
+            });
+            tl.fromTo(submitBtn, btnVars.from, btnVars.to, fieldDelay);
+          }
+        }
+      }
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
@@ -140,47 +185,41 @@ export const ContactSection = () => {
       }
       Toast.success("Thank you! We’ll get back to you shortly.");
       methods.reset();
-    } catch (error) {
+    } catch {
       Toast.error("We couldn’t send your message. Please try again later.");
     }
   };
 
   return (
-    <section id="contact" className={styles.section}>
+    <section ref={sectionRef} id="contact" className={styles.section}>
       <div className={styles.backgroundGlow} />
 
       <div className={styles.container}>
-        <div className={styles.headingLabel}>
+        <div ref={headingLabelRef} className={styles.headingLabel}>
           <span className={styles.headingLine} />
-          <FlyInText as="span" distance={25}>
-            LET&apos;S CONNECT
-          </FlyInText>
+          <span>LET&apos;S CONNECT</span>
         </div>
 
         <div className={styles.headingRow}>
-          <h2 className={styles.title}>
-            <FlyInText distance={32} delay={0.1}>
-              Let&apos;s make
-              <br />
-              <span>something</span>
-              <br />
-              unmissable.
-            </FlyInText>
+          <h2 ref={headingTitleRef} className={styles.title}>
+            Let&apos;s make
+            <br />
+            <span>something</span>
+            <br />
+            unmissable.
           </h2>
 
-          <div className={styles.headingAside}>
+          <div ref={headingAsideRef} className={styles.headingAside}>
             <p className={styles.description}>
-              <FlyInText distance={30} delay={0.25} seed={60}>
-                Tell us about your business, your goals, and where you want to go next. Let&apos;s
-                explore how we can help you grow.
-              </FlyInText>
+              Tell us about your business, your goals, and where you want to go next. Let&apos;s
+              explore how we can help you grow.
             </p>
           </div>
         </div>
 
         <div ref={contactCardRef} className={styles.contactCard}>
           <div className={styles.cardContent}>
-            <div className={styles.cardHeading}>
+            <div ref={cardHeadingRef} className={styles.cardHeading}>
               <h3>
                 Ready when
                 <br />
@@ -193,7 +232,9 @@ export const ContactSection = () => {
               </p>
             </div>
 
-            <ContactForm methods={methods} onSubmit={handleSubmit} />
+            <div ref={formWrapperRef}>
+              <ContactForm methods={methods} onSubmit={handleSubmit} />
+            </div>
           </div>
         </div>
       </div>
