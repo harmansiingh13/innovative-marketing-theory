@@ -6,14 +6,7 @@ if (typeof window !== "undefined") {
 }
 
 export type Direction =
-  | "left"
-  | "right"
-  | "topLeft"
-  | "topRight"
-  | "bottomLeft"
-  | "bottomRight"
-  | "top"
-  | "bottom";
+  "left" | "right" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "top" | "bottom";
 
 export interface DirectionalConfig {
   distance?: number;

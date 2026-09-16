@@ -1,0 +1,722 @@
+/* ---------------- Brand colors & Tokens ---------------- */
+
+.section {
+  --black: #080808;
+  --black-light: #111111;
+  --gold: #e8a91a;
+  --gold-light: #f4c44d;
+  --gold-dark: #b87900;
+  --white: #f5f2eb;
+  --text-muted: #9b9b96;
+  --text-soft: #b8b8b0;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-brand: rgba(232, 169, 26, 0.35);
+
+  position: relative;
+  overflow: hidden;
+
+  background: var(--black);
+  color: var(--white);
+
+  padding: 140px 7vw 130px;
+}
+
+/* ---------------- Ambient Background Glows ---------------- */
+
+.backgroundGlowLeft {
+  position: absolute;
+  top: 20%;
+  left: -180px;
+
+  width: 520px;
+  height: 520px;
+
+  background: rgba(232, 169, 26, 0.032);
+  border-radius: 50%;
+
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.backgroundGlowRight {
+  position: absolute;
+  bottom: 12%;
+  right: -150px;
+
+  width: 460px;
+  height: 460px;
+
+  background: rgba(232, 169, 26, 0.022);
+  border-radius: 50%;
+
+  filter: blur(160px);
+  pointer-events: none;
+}
+
+/* ---------------- Container ---------------- */
+
+.container {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---------------- Header ---------------- */
+
+.header {
+  margin-bottom: 72px;
+}
+
+.headingLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 26px;
+
+  color: var(--gold);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.headingLine {
+  width: 32px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--gold);
+}
+
+.headingRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.title {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(42px, 5.4vw, 76px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.title span {
+  color: var(--gold);
+}
+
+.headingAside {
+  max-width: 360px;
+  margin-bottom: 6px;
+}
+
+.headingDescription {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---------------- Editorial Grid ---------------- */
+
+.editorialGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 4.8fr) minmax(0, 7.2fr);
+  gap: 64px;
+  align-items: start;
+}
+
+/* ---------------- Visual Column (Left Visual Anchor) ---------------- */
+
+.visualColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 110px;
+}
+
+/* --- Portrait Frame --- */
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5.2;
+
+  border-radius: 4px;
+  overflow: hidden;
+
+  background: #111111;
+  border: 1px solid var(--border);
+
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.95);
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageFrame:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.98);
+}
+
+.imageTopBar {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  z-index: 3;
+}
+
+.imageTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 12px;
+
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(232, 169, 26, 0.35);
+  border-radius: 3px;
+
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.tagPulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+.imageFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: grayscale(80%) contrast(108%) brightness(0.85);
+
+  transition:
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease;
+}
+
+.imageFrame:hover img {
+  transform: scale(1.03);
+  filter: grayscale(50%) contrast(112%) brightness(0.92);
+}
+
+.imageVignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.1) 0%,
+    rgba(8, 8, 8, 0.2) 50%,
+    rgba(8, 8, 8, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Clean Portrait Attribution Line --- */
+
+.portraitAttribution {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px 2px;
+  color: var(--text-soft);
+}
+
+.attributionLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attributionDot {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--gold);
+}
+
+.attributionRole {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.attributionStatus {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* ---------------- Narrative Column (Right Editorial Flow) ---------------- */
+
+.narrativeColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+/* --- 1. Monumental Editorial Quote --- */
+
+.quoteBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.quoteKicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.quoteKickerLine {
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.quoteText {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(28px, 3.1vw, 44px);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.038em;
+}
+
+.quoteAccent {
+  color: var(--gold);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Subtle Hairline Divider --- */
+
+.hairlineDivider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 169, 26, 0.3) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+}
+
+/* --- 2. Integrated 5+ Experience Stat & Core Belief Duo --- */
+
+.experienceBeliefRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1.3fr);
+  gap: 36px;
+  align-items: stretch;
+}
+
+.verticalDivider {
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(232, 169, 26, 0.22) 0%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+
+/* 5+ Experience Stat */
+
+.statElement {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.statKicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.statNumberRow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.statNumber {
+  font-size: clamp(52px, 5.2vw, 76px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+  color: var(--gold);
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--gold-light) 35%,
+    var(--gold) 75%,
+    var(--gold-dark) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statLabelWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statLabelPrimary {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  line-height: 1.2;
+}
+
+.statLabelSecondary {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.statSummary {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 280px;
+}
+
+/* Core Philosophy Narrative */
+
+.philosophyLead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.beliefKicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.beliefText {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: clamp(16px, 1.45vw, 18.5px);
+  font-weight: 450;
+  line-height: 1.7;
+  letter-spacing: -0.012em;
+}
+
+/* --- 3. Strategic Triad (Direction · Impact · Growth) --- */
+
+.triadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.triadHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.triadKicker {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.triadHeaderLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.triadGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.triadItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0 4px;
+  transition: transform 0.3s ease;
+}
+
+.triadItem:hover {
+  transform: translateY(-2px);
+}
+
+.triadTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.triadNumber {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+}
+
+.triadDot {
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.triadTitle {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.triadItem:hover .triadTitle {
+  color: var(--gold-light);
+}
+
+.triadSubtitle {
+  margin: 0;
+
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* --- 4. Continuous Narrative Manifesto --- */
+
+.manifestoBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.manifestoParagraph {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.78;
+}
+
+.manifestoHighlight {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ---------------- Tablet ---------------- */
+
+@media (max-width: 1040px) {
+  .section {
+    padding: 100px 32px 90px;
+  }
+
+  .header {
+    margin-bottom: 52px;
+  }
+
+  .headingRow {
+    gap: 40px;
+  }
+
+  .editorialGrid {
+    gap: 40px;
+  }
+
+  .visualColumn {
+    position: static;
+  }
+
+  .experienceBeliefRow {
+    gap: 24px;
+  }
+
+  .triadGrid {
+    gap: 16px;
+  }
+}
+
+/* ---------------- Mobile ---------------- */
+
+@media (max-width: 768px) {
+  .section {
+    padding: 75px 20px 65px;
+  }
+
+  .header {
+    margin-bottom: 36px;
+  }
+
+  .headingLabel {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+
+  .headingRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: clamp(38px, 11vw, 52px);
+    line-height: 1;
+  }
+
+  .headingAside {
+    max-width: 100%;
+  }
+
+  /* Single-column linear storytelling on mobile */
+  .editorialGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .visualColumn {
+    position: static;
+    gap: 14px;
+  }
+
+  .imageFrame {
+    aspect-ratio: 4 / 4.4;
+  }
+
+  .narrativeColumn {
+    gap: 30px;
+  }
+
+  .quoteText {
+    font-size: clamp(23px, 6.5vw, 29px);
+    line-height: 1.28;
+  }
+
+  /* Stacked 5+ stat and philosophy lead */
+  .experienceBeliefRow {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .verticalDivider {
+    display: none;
+  }
+
+  .statNumber {
+    font-size: 48px;
+  }
+
+  .statSummary {
+    max-width: 100%;
+  }
+
+  .beliefText {
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
+  /* Triad list vertical rows with clean accent lines */
+  .triadGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .triadItem {
+    padding: 8px 0 8px 14px;
+    border-left: 2px solid rgba(232, 169, 26, 0.35);
+  }
+
+  .manifestoParagraph {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}

@@ -87,7 +87,7 @@ export const Navbar = ({ links }: NavbarProps) => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const sectionIds = ["about", "services", "contact"];
+    const sectionIds = links.map((link) => link.href.split("#")[1]).filter(Boolean);
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -108,7 +108,7 @@ export const Navbar = ({ links }: NavbarProps) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [links]);
 
   return (
     <nav ref={navRef} className={styles.navbar}>
