@@ -89,28 +89,28 @@ export const Navbar = ({ links }: NavbarProps) => {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        const sectionIds = ["about", "services", "contact"];
-        const handleScroll = () => {
-            const scrollPos = window.scrollY + 200;
-            for (let i = sectionIds.length - 1; i >= 0; i--) {
-                const el = document.getElementById(sectionIds[i]);
-                if (el) {
-                    const top = el.offsetTop;
-                    if (scrollPos >= top) {
-                        setActiveSection(sectionIds[i]);
-                        break;
-                    }
-                }
-            }
-        };
+    const sectionIds = links.map((link) => link.href.split("#")[1]).filter(Boolean);
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
         handleScroll();
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [links]);
 
     return (
         <nav ref={navRef} className={styles.navbar}>
