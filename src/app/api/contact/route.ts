@@ -2,22 +2,6 @@ import { validationSchema } from "@/sections/ContactSection/elements/ContactForm
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const getRequiredEnv = (key: string): string => {
-  const value = process.env[key];
-
-  if (!value) {
-    throw new Error(`Missing environment variable: ${key}`);
-  }
-
-  return value;
-};
-
-const RESEND_API_KEY = getRequiredEnv("RESEND_API_KEY");
-const EMAIL_FROM = getRequiredEnv("EMAIL_FROM");
-const CONTACT_EMAIL = getRequiredEnv("CONTACT_EMAIL");
-
-const resend = new Resend(RESEND_API_KEY);
-
 const formatConsultationDateTime = (value?: string) => {
   if (!value) {
     return {
@@ -39,7 +23,6 @@ const formatConsultationDateTime = (value?: string) => {
   const [hours, minutes] = timePart.split(":").map(Number);
 
   const date = new Date(Number(year), Number(month) - 1, Number(day));
-
   const time = new Date(2000, 0, 1, hours, minutes);
 
   return {
@@ -58,6 +41,15 @@ const formatConsultationDateTime = (value?: string) => {
 
 export async function POST(request: Request) {
   try {
+    const resendApiKey = process.env.RESEND_API_KEY || "";
+    const emailFrom = process.env.EMAIL_FROM || "";
+    const contactEmail = process.env.CONTACT_EMAIL || "";
+
+    if (!resendApiKey || !emailFrom || !contactEmail) {
+      console.warn("Missing email configuration environment variables.");
+    }
+
+    const resend = new Resend(resendApiKey);
     const body = await request.json();
 
     // Validate the incoming form data
@@ -74,7 +66,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Use the validated form data
     const {
       fullName,
       phoneNumber,
@@ -88,8 +79,8 @@ export async function POST(request: Request) {
     const { date: meetingDate, time: meetingTime } = formatConsultationDateTime(consultationDate);
 
     const { data: emailData, error } = await resend.emails.send({
-      from: EMAIL_FROM,
-      to: [CONTACT_EMAIL],
+      from: emailFrom || "onboarding@resend.dev",
+      to: [contactEmail || "contact@example.com"],
       replyTo: workEmail || undefined,
       subject: `New Consultation Request – ${fullName}`,
       text: `
@@ -121,8 +112,6 @@ export async function POST(request: Request) {
         { status: 500 },
       );
     }
-
-    console.log("Email sent successfully:", emailData?.id);
 
     return NextResponse.json({
       success: true,

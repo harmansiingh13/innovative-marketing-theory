@@ -1,0 +1,264 @@
+.section {
+  position: relative;
+  padding: 180px 2rem;
+  background-color: var(--color-background-primary);
+  border-bottom: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 90px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.eyebrowLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.title {
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.journeyWrapper {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.connectingLine {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-border-subtle);
+  z-index: 1;
+}
+
+.connectingProgress {
+  width: 100%;
+  height: 100%;
+  background: var(--color-brand-primary);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.journeyGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.journeyStep {
+  position: relative;
+  cursor: pointer;
+  padding: 24px 16px;
+  border-top: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+
+.journeyStep:hover {
+  border-top-color: var(--color-border-brand);
+}
+
+.activeStep {
+  border-top-color: var(--color-brand-primary) !important;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stepNumber {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-text-muted);
+  letter-spacing: -0.04em;
+  transition: color 0.3s ease;
+}
+
+.activeStep .stepNumber {
+  color: var(--color-brand-primary);
+}
+
+.stepNode {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-subtle);
+  transition: all 0.3s ease;
+}
+
+.nodeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+}
+
+.nodeActiveIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand-primary);
+}
+
+.stepTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.activeStep .stepTitle {
+  color: var(--color-brand-primary);
+}
+
+.stepDesc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+  font-weight: 300;
+}
+
+/* Editorial Active Detail Banner (Border-driven) */
+.activeDetailCard {
+  padding: 36px 48px;
+  background: var(--color-background-secondary);
+  border-left: 3px solid var(--color-brand-primary);
+  border-top: 1px solid var(--color-border-subtle);
+  border-right: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.activeDetailHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.activeNumber {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--color-brand-primary);
+  line-height: 1;
+}
+
+.activeTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.activeDetailText {
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  flex: 1;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.activeIndicator {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+}
+
+.arrowIcon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 1024px) {
+  .journeyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .connectingLine {
+    display: none;
+  }
+  .activeDetailCard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 100px 1.25rem;
+  }
+  .journeyGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .journeyStep {
+    padding: 20px;
+    border-top: none;
+    border-left: 3px solid var(--color-border-subtle);
+    border-radius: 0 8px 8px 0;
+  }
+  .activeStep {
+    border-left-color: var(--color-brand-primary) !important;
+    border-top: none !important;
+  }
+  .activeDetailCard {
+    padding: 24px 18px;
+    gap: 20px;
+  }
+  .activeNumber {
+    font-size: 2.2rem;
+  }
+  .activeTitle {
+    font-size: 1rem;
+  }
+  .activeDetailText {
+    font-size: 0.98rem;
+  }
+}

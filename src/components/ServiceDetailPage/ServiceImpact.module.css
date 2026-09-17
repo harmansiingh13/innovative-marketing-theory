@@ -1,0 +1,110 @@
+.section {
+  position: relative;
+  padding: 120px 5%;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.pillarCard {
+  padding: 40px;
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.pillarCard:hover {
+  border-color: var(--color-border-brand-strong);
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardIndex {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-brand-primary);
+}
+
+.cardSubtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.cardTitle {
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.cardDesc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 900px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}

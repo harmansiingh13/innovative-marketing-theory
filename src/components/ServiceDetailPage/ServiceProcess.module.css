@@ -1,0 +1,165 @@
+.section {
+  position: relative;
+  padding: 120px 5%;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.processLayout {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 40px;
+  position: relative;
+}
+
+.trackColumn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.connectingLine {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background-color: var(--color-border-subtle);
+}
+
+.connectingLineProgress {
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-brand-primary);
+  box-shadow: 0 0 12px var(--color-brand-primary);
+  transition: height 0.2s ease-out;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.stepCard {
+  padding: 36px;
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.stepCard:hover {
+  border-color: var(--color-border-hover);
+}
+
+.activeCard {
+  border-color: var(--color-brand-primary) !important;
+  background-color: var(--color-background-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stepNumber {
+  font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-text-muted);
+  transition: color 0.4s ease;
+}
+
+.activeCard .stepNumber {
+  color: var(--color-brand-primary);
+}
+
+.stepTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stepTitle {
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.stepSubtitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.stepDescription {
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .processLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .trackColumn {
+    display: none;
+  }
+
+  .stepCard {
+    padding: 24px;
+  }
+}

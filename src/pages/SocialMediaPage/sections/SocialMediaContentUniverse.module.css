@@ -1,0 +1,194 @@
+.section {
+  position: relative;
+  padding: 180px 2rem;
+  background-color: var(--color-background-primary);
+  border-bottom: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 90px;
+  max-width: 850px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.eyebrowLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.6;
+  color: var(--color-text-soft);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* 4-Column Editorial Magazine Spread */
+.spreadGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.column {
+  padding: 48px 32px;
+  border-right: 1px solid var(--color-border-subtle);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease;
+}
+
+.column:last-child {
+  border-right: none;
+}
+
+.column:hover {
+  background-color: rgba(255, 255, 255, 0.015);
+}
+
+.columnTop {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.colNumber {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-brand-primary);
+  line-height: 1;
+}
+
+.pillarHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pillarIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand-primary);
+}
+
+.pillarTitle {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.objectiveTag {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.colDivider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  margin: 32px 0;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.itemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.goldBullet {
+  color: var(--color-brand-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.itemTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.itemDesc {
+  font-size: 0.88rem;
+  color: var(--color-text-soft);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+  .spreadGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .column:nth-child(2) {
+    border-right: none;
+  }
+  .column {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 100px 1.25rem;
+  }
+  .spreadGrid {
+    grid-template-columns: 1fr;
+  }
+  .column {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding: 36px 0;
+  }
+  .colNumber {
+    font-size: 1.8rem;
+  }
+  .pillarTitle {
+    font-size: 1.2rem;
+  }
+}

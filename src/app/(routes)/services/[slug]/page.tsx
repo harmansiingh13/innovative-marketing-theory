@@ -1,28 +1,14 @@
-import { AdvertisementPage } from "@/pages/AdvertisementPage";
-import { EventOrganizationPage } from "@/pages/EventOrganizationPage";
-import { SocialMediaPage } from "@/pages/SocialMediaPage";
-import { VideoEditingPage } from "@/pages/VideoEditingPage";
-import { VideoShootPage } from "@/pages/VideoShootPage";
-import { WebDevelopmentPage } from "@/pages/WebDevelopmentPage";
 import { notFound } from "next/navigation";
-
-const serviceComponents = {
-  "video-shoots": VideoShootPage,
-  "video-editing": VideoEditingPage,
-  "social-media": SocialMediaPage,
-  advertisement: AdvertisementPage,
-  "web-development": WebDevelopmentPage,
-  "event-organization": EventOrganizationPage,
-};
+import { ServiceDetailPage } from "@/components/ServiceDetailPage";
+import { getServiceBySlug } from "@/data/servicesData";
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const serviceData = getServiceBySlug(slug);
 
-  const ServiceComponent = serviceComponents[slug as keyof typeof serviceComponents];
-
-  if (!ServiceComponent) {
+  if (!serviceData) {
     notFound();
   }
 
-  return <ServiceComponent />;
+  return <ServiceDetailPage service={serviceData} />;
 }

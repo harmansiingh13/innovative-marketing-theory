@@ -1,0 +1,182 @@
+.section {
+  position: relative;
+  padding: 120px 5%;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.title {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.serviceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background-color: transparent;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.4s ease;
+}
+
+.serviceRow:hover:not(.currentRow) {
+  background-color: var(--color-background-secondary);
+  border-bottom-color: var(--color-border-brand-strong);
+  padding-left: 36px;
+}
+
+.currentRow {
+  background-color: rgba(232, 169, 26, 0.04);
+  border-bottom-color: var(--color-border-brand);
+  cursor: default;
+}
+
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex: 1;
+}
+
+.serviceNum {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 900;
+  color: var(--color-brand-primary);;
+  min-width: 44px;
+}
+
+.serviceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 750px;
+}
+
+.serviceName {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.serviceRow:hover:not(.currentRow) .serviceName {
+  color: var(--color-brand-primary);
+}
+
+.serviceDesc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.rowRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exploreText {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 0.3s ease;
+}
+
+.serviceRow:hover:not(.currentRow) .exploreText {
+  color: var(--color-brand-primary);
+}
+
+.arrowIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+}
+
+.serviceRow:hover:not(.currentRow) .arrowIcon {
+  color: var(--color-brand-primary);
+  transform: translate(4px, -4px);
+}
+
+.currentBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  background: rgba(232, 169, 26, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-brand);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 4%;
+  }
+
+  .serviceRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 16px;
+  }
+
+  .rowLeft {
+    gap: 20px;
+  }
+
+  .rowRight {
+    align-self: flex-end;
+  }
+}

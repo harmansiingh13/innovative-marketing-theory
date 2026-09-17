@@ -1,0 +1,9 @@
+export { ServiceDetailPage } from "./ServiceDetailPage";
+export { ServiceHero } from "./ServiceHero";
+export { ServiceIntro } from "./ServiceIntro";
+export { ServiceCapabilities } from "./ServiceCapabilities";
+export { ServiceProcess } from "./ServiceProcess";
+export { ServiceShowcase } from "./ServiceShowcase";
+export { ServiceWorkflow } from "./ServiceWorkflow";
+export { ServiceImpact } from "./ServiceImpact";
+export { ServiceCTA } from "./ServiceCTA";

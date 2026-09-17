@@ -1,0 +1,49 @@
+.transitionOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-background-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.activeOverlay {
+  pointer-events: auto;
+}
+
+.transitionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+.transitionEyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+}
+
+.transitionTitle {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.goldLine {
+  width: 140px;
+  height: 2px;
+  background-color: var(--color-brand-primary);
+  box-shadow: 0 0 10px var(--color-brand-primary);
+  transform-origin: center;
+}

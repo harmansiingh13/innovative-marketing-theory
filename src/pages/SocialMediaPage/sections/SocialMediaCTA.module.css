@@ -1,0 +1,157 @@
+.section {
+  position: relative;
+  padding: 160px 2rem;
+  background-color: var(--color-background-primary);
+  overflow: hidden;
+}
+
+.backgroundGlow {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(232, 169, 26, 0.08) 0%,
+    rgba(232, 169, 26, 0.02) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.eyebrowLine {
+  width: 36px;
+  height: 1px;
+  background-color: var(--color-brand-primary);
+}
+
+.headingGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+.mainTitle {
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.goldText {
+  color: var(--color-brand-primary);
+}
+
+.headingAside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.secondStatement {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-soft);
+  font-weight: 300;
+}
+
+/* Form Card Container */
+.formCard {
+  background: var(--color-background-card);
+  border: 1px solid var(--color-border-brand);
+  border-radius: 16px;
+  padding: 60px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(232, 169, 26, 0.08);
+}
+
+.formCardHeader {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.formCardHeader h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+}
+
+.ctaArrowIcon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-brand-primary);
+}
+
+.formCardHeader p {
+  font-size: 1rem;
+  color: var(--color-text-soft);
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .headingGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .formCard {
+    padding: 32px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 90px 1.25rem;
+  }
+  .mainTitle {
+    font-size: clamp(2.2rem, 8vw, 3.4rem);
+  }
+  .secondStatement {
+    font-size: 1.4rem;
+  }
+  .formCard {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+  .formCardHeader h3 {
+    font-size: 1.4rem;
+  }
+}
