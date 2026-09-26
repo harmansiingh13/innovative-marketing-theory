@@ -1,0 +1,168 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(8, 8, 8, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 16px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  opacity: 0.92;
+  transition: opacity 0.25s ease;
+}
+
+.logoLink:hover {
+  opacity: 1;
+}
+
+.logoImg {
+  object-fit: contain;
+  height: auto;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-text-secondary, #9b9b96);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.backLink:hover {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.backArrow {
+  transition: transform 0.25s ease;
+}
+
+.backLink:hover .backArrow {
+  transform: translateX(-3px);
+}
+
+.centerBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: rgba(232, 169, 26, 0.08);
+  border: 1px solid rgba(232, 169, 26, 0.2);
+  border-radius: 999px;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-primary, #e8a91a);
+  box-shadow: 0 0 6px var(--color-brand-primary, #e8a91a);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.badgeText {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-brand-primary, #e8a91a);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--color-white, #f5f2eb);
+  color: var(--color-black, #080808);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ctaButton:hover {
+  background: var(--color-brand-primary-light, #f4c44d);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -6px rgba(232, 169, 26, 0.35);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 14px 20px;
+  }
+
+  .centerBadge {
+    display: none;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .ctaButton span {
+    display: none;
+  }
+
+  .ctaButton {
+    padding: 8px 10px;
+  }
+}

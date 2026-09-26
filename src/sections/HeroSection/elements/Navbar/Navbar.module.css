@@ -1,4 +1,47 @@
-/* ---------------- Navbar ---------------- */
+/* ---------------- Navbar Container & Dynamic States ---------------- */
+
+.fixedHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 5vw 0;
+  transition:
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease;
+  will-change: transform;
+}
+
+/* Shown state (default / scrolling up) */
+.headerVisible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Hidden state (scrolling down) */
+.headerHidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* Top of page state */
+.headerTop {
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+
+/* Scrolled state: dark luxury frosted glass */
+.headerScrolled {
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
+}
 
 .navbar {
   position: relative;
@@ -15,12 +58,22 @@
   margin: 0 auto;
 }
 
-/* ---------------- Logo ---------------- */
+.navbarFixed {
+  max-width: 1360px;
+}
+
+/* ---------------- Nav Left & Logo ---------------- */
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-self: start;
+}
 
 .logo {
   display: inline-flex;
   align-items: center;
-  justify-self: start;
 
   width: 60px;
   height: 20px;
@@ -44,6 +97,47 @@
   height: auto;
   max-width: 100%;
   object-fit: contain;
+}
+
+/* ---------------- Back Button & Divider ---------------- */
+
+.backGroup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.backDivider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary, #9b9b96);
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.backButton:hover {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.backArrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.backButton:hover .backArrow {
+  transform: translateX(-3px);
 }
 
 /* ---------------- Navigation links ---------------- */
@@ -110,6 +204,40 @@
   background: #e8a91a !important;
 }
 
+/* ---------------- Nav Right & CTA ---------------- */
+
+.navRight {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+}
+
+.ctaButton {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 8px 18px !important;
+  box-shadow: 0 2px 12px rgba(232, 169, 26, 0.2) !important;
+  transition: all 0.25s ease !important;
+}
+
+.ctaButton:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 18px rgba(232, 169, 26, 0.35) !important;
+}
+
+.ctaArrow {
+  transition: transform 0.2s ease;
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translate(2px, -2px);
+}
+
+/* ---------------- Divider Line ---------------- */
+
 .divider {
   grid-column: 1 / -1;
   transform-origin: center;
@@ -117,40 +245,44 @@
 
 /* ---------------- Responsive ---------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   .navbar {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
   }
 
   .navLinks {
-    grid-column: 2;
-    justify-self: end;
-    gap: 28px;
+    gap: 20px;
+  }
+
+  .navLinkButton {
+    font-size: 12px !important;
   }
 }
 
-@media (max-width: 600px) {
-  .navbar {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 18px;
+@media (max-width: 768px) {
+  .fixedHeader {
+    padding: 14px 4vw 0;
   }
 
-  .logo {
-    position: absolute;
-    left: 0;
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .navLinks {
-    display: flex;
-    gap: 18px;
+    display: none;
   }
 
-  .navLinks a {
+  .backButton span {
     font-size: 10px;
+    letter-spacing: 0.1em;
   }
+}
 
-  .navLinks a::after {
-    bottom: -6px;
+@media (max-width: 480px) {
+  .backButton span {
+    display: none;
   }
 }

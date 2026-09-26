@@ -1,0 +1,609 @@
+.section {
+  position: relative;
+  background: var(--color-background-primary, #080808);
+  color: var(--color-white, #f5f2eb);
+  padding: 120px 5vw 140px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* ---------------- Header ---------------- */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--gold, var(--color-brand-primary, #e8a91a));
+}
+
+.kickerLine {
+  width: 28px;
+  height: 1px;
+  background: var(--gold, var(--color-brand-primary, #e8a91a));
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(34px, 4.2vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-white, #f5f2eb);
+}
+
+.title span {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.description {
+  max-width: 480px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary, #9b9b96);
+}
+
+/* ---------------- Two-Column Layout ---------------- */
+
+.showcaseGrid {
+  display: grid;
+  grid-template-columns: 44fr 56fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* ---------------- LEFT COLUMN: Interactive Steps List ---------------- */
+
+.navColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stepItem {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  padding: 22px 24px;
+  width: 100%;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stepItem:focus-visible {
+  outline: 2px solid var(--color-brand-primary, #e8a91a);
+  outline-offset: 3px;
+}
+
+.stepItem:hover {
+  background: rgba(255, 255, 255, 0.028);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.stepItem:hover .stepTitle {
+  color: var(--color-white, #f5f2eb);
+}
+
+/* Active Step Styling */
+
+.stepItemActive {
+  background: rgba(14, 14, 14, 0.88);
+  border-color: rgba(232, 169, 26, 0.38);
+  box-shadow:
+    inset 2px 0 0 var(--color-brand-primary, #e8a91a),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 26px 26px 28px;
+}
+
+.stepMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-geist-mono, monospace);
+}
+
+.stepNumber {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(245, 242, 235, 0.35);
+  transition: color 0.3s ease;
+}
+
+.stepItemActive .stepNumber {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.stepCategory {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 235, 0.38);
+  transition: color 0.3s ease;
+}
+
+.stepItemActive .stepCategory {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.stepTitle {
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: rgba(245, 242, 235, 0.5);
+  transition: color 0.3s ease;
+}
+
+.stepItemActive .stepTitle {
+  color: var(--color-white, #f5f2eb);
+  font-weight: 800;
+}
+
+/* Accordion Smooth Height Expansion */
+
+.accordionWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordionWrapperOpen {
+  grid-template-rows: 1fr;
+}
+
+.accordionInner {
+  overflow: hidden;
+}
+
+.activeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 16px;
+  margin-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.35s ease 0.1s,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.accordionWrapperOpen .activeContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.activeDescription {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--color-text-secondary, #9b9b96);
+}
+
+.deliverablesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deliverablesLabel {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.deliverablesPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deliverablePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--color-white, #f5f2eb);
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.pillDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-brand-primary, #e8a91a);
+}
+
+/* ---------------- RIGHT COLUMN: Media Showcase ---------------- */
+
+.mediaColumn {
+  position: relative;
+  width: 100%;
+}
+
+.mediaFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10.5;
+  background: #090909;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(232, 169, 26, 0.06);
+}
+
+/* Corner Viewfinder Crop Marks */
+
+.cropMarkTL,
+.cropMarkTR,
+.cropMarkBL,
+.cropMarkBR {
+  position: absolute;
+  z-index: 6;
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 15px;
+  color: var(--color-brand-primary, #e8a91a);
+  opacity: 0.75;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.cropMarkTL {
+  top: 14px;
+  left: 16px;
+}
+
+.cropMarkTR {
+  top: 14px;
+  right: 16px;
+}
+
+.cropMarkBL {
+  bottom: 14px;
+  left: 16px;
+}
+
+.cropMarkBR {
+  bottom: 14px;
+  right: 16px;
+}
+
+/* Media Viewport & Crossfade Layers */
+
+.mediaViewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mediaLayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.mediaLayerActive {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.mediaAsset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Subtle Cinematic Vignette */
+
+.vignetteOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 60%, rgba(8, 8, 8, 0.5) 100%);
+  z-index: 2;
+}
+
+/* Top Telemetry HUD */
+
+.mediaHudTop {
+  position: absolute;
+  top: 18px;
+  left: 32px;
+  right: 32px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.hudBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(8, 8, 8, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(232, 169, 26, 0.28);
+  border-radius: 4px;
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-white, #f5f2eb);
+}
+
+.recordDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-primary, #e8a91a);
+  box-shadow: 0 0 8px var(--color-brand-primary, #e8a91a);
+  flex-shrink: 0;
+}
+
+.hudTelemetry {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(245, 242, 235, 0.8);
+  padding: 6px 12px;
+  background: rgba(8, 8, 8, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bottom Telemetry HUD */
+
+.mediaHudBottom {
+  position: absolute;
+  bottom: 18px;
+  left: 32px;
+  right: 32px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.hudSequence {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+}
+
+.timecodeText {
+  color: var(--color-brand-primary, #e8a91a);
+  font-weight: 700;
+}
+
+.sceneTagText {
+  color: rgba(245, 242, 235, 0.7);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Slide Indicator & Segmented Progress */
+
+.hudPagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  pointer-events: auto;
+}
+
+.stepProgressBars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.progressBar {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progressBar:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.progressBarActive {
+  background: var(--color-brand-primary, #e8a91a);
+  width: 22px;
+  box-shadow: 0 0 8px rgba(232, 169, 26, 0.6);
+}
+
+.stepCounterText {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-primary-light, #f4c44d);
+  padding-left: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Minimal Circular Prev/Next Controls */
+
+.mediaNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 8;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--color-white, #f5f2eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.mediaNavBtn:hover {
+  background: rgba(20, 20, 20, 0.9);
+  border-color: var(--color-brand-primary, #e8a91a);
+  color: var(--color-brand-primary, #e8a91a);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 16px rgba(232, 169, 26, 0.35);
+}
+
+.mediaNavPrev {
+  left: 16px;
+}
+
+.mediaNavNext {
+  right: 16px;
+}
+
+/* ---------------- Responsive Styles ---------------- */
+
+@media (max-width: 1024px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .showcaseGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 90px 5vw 100px;
+  }
+
+  /* Mobile Stack Order: 1. Active Step -> 2. Media -> 3. Remaining Steps */
+  .showcaseGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .navColumn {
+    display: contents;
+  }
+
+  .stepsList {
+    display: contents;
+  }
+
+  .stepItemActive {
+    order: 1;
+  }
+
+  .mediaColumn {
+    order: 2;
+    margin: 8px 0;
+  }
+
+  .stepItem:not(.stepItemActive) {
+    order: 3;
+  }
+
+  .mediaHudTop,
+  .mediaHudBottom {
+    left: 16px;
+    right: 16px;
+  }
+
+  .hudTelemetry {
+    display: none;
+  }
+
+  .sceneTagText {
+    display: none;
+  }
+}

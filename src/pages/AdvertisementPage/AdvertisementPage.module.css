@@ -1,0 +1,8 @@
+.main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-background-primary, #080808);
+  color: var(--color-white, #f5f2eb);
+  overflow-x: hidden;
+}

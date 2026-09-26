@@ -108,8 +108,8 @@ export const HeroSection = () => {
 
   const navbarLinks = [
     { name: "About", href: "/#about" },
-    { name: "Founder", href: "/#founder" },
     { name: "Services", href: "/#services" },
+    { name: "Founder", href: "/#founder" },
     { name: "Contact", href: "/#contact" },
   ];
 
