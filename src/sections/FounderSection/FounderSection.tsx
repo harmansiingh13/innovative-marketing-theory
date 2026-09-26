@@ -189,27 +189,12 @@ export const FounderSection = ({
               <img src={imageSrc} alt={imageAlt} />
               <div className={styles.imageVignette} />
             </div>
-
-            {/* <div ref={portraitAttributionRef} className={styles.portraitAttribution}>
-              <div className={styles.attributionLeft}>
-                <span className={styles.attributionDot} />
-                <span className={styles.attributionRole}>
-                  FOUNDER // INNOVATIVE MARKETING THEORY
-                </span>
-              </div>
-              <span className={styles.attributionStatus}>EST. 2021</span>
-            </div> */}
           </div>
 
           {/* Right Column: Unboxed Editorial Flow */}
           <div className={styles.narrativeColumn}>
             {/* 1. Monumental Editorial Quote */}
             <div ref={quoteBlockRef} className={styles.quoteBlock}>
-              <div className={styles.quoteKicker}>
-                <span className={styles.quoteKickerLine} />
-                <span>BRAND PHILOSOPHY & CONVICTION</span>
-              </div>
-
               <blockquote className={styles.quoteText}>
                 Success isn’t just about being seen today. It’s about building a brand people{" "}
                 <span className={styles.quoteAccent}>remember tomorrow.</span>

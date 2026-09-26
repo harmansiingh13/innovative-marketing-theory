@@ -139,7 +139,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 .stepNumber {
@@ -231,7 +231,7 @@
 }
 
 .deliverablesLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -293,7 +293,7 @@
 .cropMarkBR {
   position: absolute;
   z-index: 6;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 15px;
   color: var(--color-brand-primary, #e8a91a);
   opacity: 0.75;
@@ -389,7 +389,7 @@
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(232, 169, 26, 0.28);
   border-radius: 4px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -406,7 +406,7 @@
 }
 
 .hudTelemetry {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -438,7 +438,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   letter-spacing: 0.14em;
 }
@@ -497,7 +497,7 @@
 }
 
 .stepCounterText {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;

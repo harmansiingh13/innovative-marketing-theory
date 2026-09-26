@@ -62,13 +62,9 @@
   border-color: rgba(232, 169, 26, 0.45);
 
   transform: translateY(-7px);
-  box-shadow:
+  /* box-shadow:
     0 20px 40px -15px rgba(0, 0, 0, 0.7),
-    0 0 25px -5px rgba(232, 169, 26, 0.14);
-}
-
-.serviceCard:hover .spotlight {
-  opacity: 1;
+    0 0 25px -5px rgba(232, 169, 26, 0.14); */
 }
 
 .serviceCard:hover::before {
@@ -221,7 +217,6 @@
   color: var(--black);
 
   transform: rotate(45deg) scale(1.08);
-  box-shadow: 0 0 14px rgba(232, 169, 26, 0.55);
 }
 
 /* ---------------- Responsive ---------------- */

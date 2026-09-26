@@ -277,7 +277,7 @@ button:hover .secondaryArrow {
 }
 
 .hudTitle {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -293,7 +293,7 @@ button:hover .secondaryArrow {
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: 999px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 800;
   color: #10b981;
@@ -351,14 +351,14 @@ button:hover .secondaryArrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 13px;
   font-weight: 800;
   color: #10b981;
 }
 
 .scoreLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -390,7 +390,7 @@ button:hover .secondaryArrow {
 }
 
 .vitalLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -399,7 +399,7 @@ button:hover .secondaryArrow {
 }
 
 .vitalValue {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 15px;
   font-weight: 800;
   color: var(--color-white, #f5f2eb);
@@ -420,7 +420,7 @@ button:hover .secondaryArrow {
 }
 
 .stackLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -435,7 +435,7 @@ button:hover .secondaryArrow {
 }
 
 .stackPill {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -494,7 +494,7 @@ button:hover .secondaryArrow {
 }
 
 .valueNumber {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -502,7 +502,7 @@ button:hover .secondaryArrow {
 }
 
 .valueTag {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.16em;

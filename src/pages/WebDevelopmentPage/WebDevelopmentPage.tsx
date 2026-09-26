@@ -170,7 +170,7 @@ export const WebDevelopmentPage = () => {
   return (
     <main ref={mainRef} className={styles.main}>
       {/* Studio Navigation */}
-      <Navbar links={webNavLinks} backLink={{ name: "ALL SERVICES", href: "/#services" }} fixed />
+      <Navbar links={webNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
       {/* 1. Main Section 1: ABOUT (Hero, Manifesto & Lighthouse 100 Command Center HUD) */}
       <WebHero

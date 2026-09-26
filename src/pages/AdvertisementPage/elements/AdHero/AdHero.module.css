@@ -281,14 +281,14 @@ button:hover .secondaryArrow {
 }
 
 .headerTitle {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   letter-spacing: 0.14em;
   color: rgba(245, 242, 235, 0.7);
 }
 
 .headerBadge {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   color: var(--color-brand-primary, #e8a91a);
@@ -333,7 +333,7 @@ button:hover .secondaryArrow {
 }
 
 .metricLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -342,7 +342,7 @@ button:hover .secondaryArrow {
 }
 
 .metricValue {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 22px;
   font-weight: 900;
   color: #fff;
@@ -350,7 +350,7 @@ button:hover .secondaryArrow {
 }
 
 .metricDelta {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   color: #27c93f;
@@ -390,7 +390,7 @@ button:hover .secondaryArrow {
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(4px);
   color: var(--color-brand-primary, #e8a91a);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 8px;
   font-weight: 700;
   padding: 2px 6px;
@@ -405,7 +405,7 @@ button:hover .secondaryArrow {
 }
 
 .creativeKicker {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   color: var(--color-brand-primary, #e8a91a);
@@ -423,7 +423,7 @@ button:hover .secondaryArrow {
 .creativeStatsRow {
   display: flex;
   gap: 12px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   color: var(--color-text-secondary, #9b9b96);
 }
@@ -471,7 +471,7 @@ button:hover .secondaryArrow {
 }
 
 .ledgerNumber {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;

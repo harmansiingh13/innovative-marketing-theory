@@ -168,7 +168,7 @@
 }
 
 .stepIndex {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -176,7 +176,7 @@
 }
 
 .stepCategoryBadge {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -254,7 +254,7 @@
 }
 
 .deliverablesLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -336,7 +336,7 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(232, 169, 26, 0.3);
   border-radius: 4px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -352,7 +352,7 @@
 }
 
 .hudTelemetry {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -379,7 +379,7 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 4px;
   color: #fff;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   cursor: pointer;
@@ -510,7 +510,7 @@
 }
 
 .counterBadge {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -535,14 +535,14 @@
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   color: var(--color-brand-primary, #e8a91a);
 }
 
 .subtitleBadge {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   color: rgba(245, 242, 235, 0.8);
 }

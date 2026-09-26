@@ -170,11 +170,7 @@ export const VideoEditingPage = () => {
   return (
     <main ref={mainRef} className={styles.main}>
       {/* Studio Navigation */}
-      <Navbar
-        links={videoEditingNavLinks}
-        backLink={{ name: "ALL SERVICES", href: "/#services" }}
-        fixed
-      />
+      <Navbar links={videoEditingNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
       {/* 1. Main Section 1: ABOUT (Hero, Retention Manifesto & NLE Timeline Card) */}
       <EditingHero

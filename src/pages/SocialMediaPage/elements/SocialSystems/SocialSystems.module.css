@@ -120,7 +120,7 @@
   background: transparent;
   border: none;
   color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -211,7 +211,7 @@
   background: none;
   border: none;
   color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -291,7 +291,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: #fff;
@@ -415,7 +415,7 @@
   font-size: 14px;
   font-weight: 700;
   color: #fff;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 .igStatLbl {
@@ -476,7 +476,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 8.5px;
   font-weight: 700;
   color: var(--color-brand-primary, #e8a91a);
@@ -485,7 +485,7 @@
 .highlightTitle {
   font-size: 9.5px;
   color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 /* Tabs: Grid vs Reels vs Tagged */
@@ -585,7 +585,7 @@
   align-items: center;
   gap: 4px;
   color: #fff;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   font-weight: 700;
 }
@@ -612,7 +612,7 @@
   background: none;
   border: none;
   color: var(--color-brand-primary, #e8a91a);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   display: flex;
@@ -674,7 +674,7 @@
   font-size: 11.5px;
   font-weight: 700;
   color: #fff;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 .detailCaptionBlock {
@@ -706,7 +706,7 @@
 }
 
 .expandedTitle {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -714,7 +714,7 @@
 }
 
 .expandedCount {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   color: var(--color-text-secondary, #9b9b96);
 }
@@ -779,7 +779,7 @@
   align-items: center;
   gap: 5px;
   color: #fff;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
 }
@@ -906,7 +906,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   color: var(--color-brand-primary, #e8a91a);
@@ -956,7 +956,7 @@
   border: 1px solid rgba(232, 169, 26, 0.4);
   padding: 4px 10px;
   border-radius: 999px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   color: var(--color-brand-primary, #e8a91a);
   font-weight: 700;
@@ -1001,7 +1001,7 @@
 }
 
 .reelsActionCount {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
 }
@@ -1090,7 +1090,7 @@
 .linkedInTime {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.4);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 .linkedInBody {
@@ -1249,7 +1249,7 @@
   padding-top: 12px;
   color: var(--color-text-secondary, #9b9b96);
   font-size: 11.5px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 /* ---------------- Right Column: Strategy & Deliverables ---------------- */
@@ -1272,7 +1272,7 @@
 }
 
 .clientKicker {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1309,7 +1309,7 @@
 }
 
 .deliverablesHeading {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1364,7 +1364,7 @@
   font-size: 28px;
   font-weight: 900;
   color: var(--color-brand-primary, #e8a91a);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
 }
 
 .metricLabel {
@@ -1428,7 +1428,7 @@
 }
 
 .stripStat {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(28px, 3vw, 42px);
   font-weight: 900;
   color: #fff;

@@ -3,13 +3,14 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import clsx from "clsx";
 import styles from "./Navbar.module.css";
 import logo from "@/app/designSystem/images/imt-logooo.png";
 import { Divider } from "@/shared/components/Divider";
 import { Button } from "@/shared/components/Button";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export type NavbarLink = {
   name: string;
@@ -34,6 +35,7 @@ export type NavbarProps = {
 };
 
 export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
+  const router = useRouter();
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const backBtnRef = useRef<HTMLDivElement>(null);
@@ -47,6 +49,7 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
 
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isAtTop, setIsAtTop] = useState<boolean>(true);
   const lastScrollY = useRef<number>(0);
 
   useEffect(() => {
@@ -144,6 +147,9 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Only show the yellow bottom border when at the very top (scroll position = 0)
+      setIsAtTop(Math.round(currentScrollY) <= 0);
+
       // 1. Dynamic Hide on Scroll Down / Show on Scroll Up
       if (currentScrollY <= 20) {
         // At the very top: always visible, not scrolled
@@ -201,10 +207,24 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
         {backLink && (
           <div ref={backBtnRef} className={styles.backGroup}>
             <span className={styles.backDivider} />
-            <Link href={backLink.href} className={styles.backButton}>
-              <ArrowLeft size={13} className={styles.backArrow} />
-              <span>{backLink.name}</span>
-            </Link>
+            <Button
+              type="button"
+              variant="text"
+              size="md"
+              leftIcon={<ArrowLeft size={13} className={styles.backArrow} />}
+              className={styles.backButton}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  if (backLink.href.startsWith("/#")) {
+                    window.location.href = backLink.href;
+                  } else {
+                    router.push(backLink.href);
+                  }
+                }
+              }}
+            >
+              <span className={styles.backText}>{backLink.name}</span>
+            </Button>
           </div>
         )}
       </div>
@@ -239,7 +259,7 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
         })}
       </div>
 
-      <div ref={dividerRef} className={styles.divider}>
+      <div ref={dividerRef} className={clsx(styles.divider, !isAtTop && styles.dividerHidden)}>
         <Divider size={2} />
       </div>
     </nav>

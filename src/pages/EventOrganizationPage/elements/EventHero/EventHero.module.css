@@ -277,7 +277,7 @@ button:hover .secondaryArrow {
 }
 
 .hudTitle {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -293,7 +293,7 @@ button:hover .secondaryArrow {
   background: rgba(232, 169, 26, 0.1);
   border: 1px solid rgba(232, 169, 26, 0.3);
   border-radius: 999px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 800;
   color: var(--color-brand-primary-light, #f4c44d);
@@ -316,7 +316,7 @@ button:hover .secondaryArrow {
 }
 
 .cueNumber {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -324,7 +324,7 @@ button:hover .secondaryArrow {
 }
 
 .cueTimecode {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   color: rgba(245, 242, 235, 0.6);
 }
@@ -341,7 +341,7 @@ button:hover .secondaryArrow {
   display: flex;
   align-items: center;
   gap: 16px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   color: var(--color-text-secondary, #9b9b96);
   flex-wrap: wrap;
@@ -378,7 +378,7 @@ button:hover .secondaryArrow {
 }
 
 .telemetryLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -387,7 +387,7 @@ button:hover .secondaryArrow {
 }
 
 .telemetryValue {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 15px;
   font-weight: 800;
   color: var(--color-white, #f5f2eb);
@@ -408,7 +408,7 @@ button:hover .secondaryArrow {
 }
 
 .specsLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -423,7 +423,7 @@ button:hover .secondaryArrow {
 }
 
 .specsPill {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -482,7 +482,7 @@ button:hover .secondaryArrow {
 }
 
 .valueNumber {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -490,7 +490,7 @@ button:hover .secondaryArrow {
 }
 
 .valueTag {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.16em;

@@ -170,7 +170,7 @@ export const EventOrganizationPage = () => {
   return (
     <main ref={mainRef} className={styles.main}>
       {/* Studio Navigation */}
-      <Navbar links={eventNavLinks} backLink={{ name: "ALL SERVICES", href: "/#services" }} fixed />
+      <Navbar links={eventNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
       {/* 1. Main Section 1: ABOUT (Hero, Experiential Manifesto & Stage Ops HUD) */}
       <EventHero

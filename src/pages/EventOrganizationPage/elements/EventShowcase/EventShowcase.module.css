@@ -119,7 +119,7 @@
   background: transparent;
   border: none;
   color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -179,7 +179,7 @@
 }
 
 .theaterHeaderTitle {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -191,7 +191,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   color: var(--color-brand-primary, #e8a91a);
   font-weight: 700;
@@ -228,7 +228,7 @@
 }
 
 .clientBadge {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -244,7 +244,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   letter-spacing: 0.12em;
   color: rgba(245, 242, 235, 0.5);
@@ -313,7 +313,7 @@
 }
 
 .productionSpecsLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -328,7 +328,7 @@
 }
 
 .productionSpecPill {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -374,7 +374,7 @@
 }
 
 .previewTag {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -399,7 +399,7 @@
 }
 
 .metricBig {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(32px, 3.2vw, 44px);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -442,14 +442,14 @@
 }
 
 .proofValue {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(24px, 2.2vw, 32px);
   font-weight: 800;
   color: var(--color-white, #f5f2eb);
 }
 
 .proofLabel {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;

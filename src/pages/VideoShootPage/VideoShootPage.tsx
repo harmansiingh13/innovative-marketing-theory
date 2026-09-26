@@ -220,11 +220,7 @@ export const VideoShootPage = () => {
   return (
     <main ref={mainRef} className={styles.main}>
       {/* Studio Navigation with Back Button & Page Sections */}
-      <Navbar
-        links={videoShootNavLinks}
-        backLink={{ name: "ALL SERVICES", href: "/#services" }}
-        fixed
-      />
+      <Navbar links={videoShootNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
       {/* 1. Main Section 1: ABOUT (Cinematic Intro, 4-Line Manifesto & Layered Cards) */}
       <VideoHero

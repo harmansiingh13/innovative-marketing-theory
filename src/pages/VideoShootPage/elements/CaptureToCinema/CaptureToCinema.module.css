@@ -130,7 +130,7 @@
   border: none;
   border-radius: 9999px;
   color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -207,7 +207,7 @@
 .cropMarkBottomLeft,
 .cropMarkBottomRight {
   position: absolute;
-  font-family: monospace;
+  font-family: var(--font-inter), sans-serif;
   font-size: 18px;
   line-height: 1;
   color: rgba(255, 255, 255, 0.35);
@@ -271,7 +271,7 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(232, 169, 26, 0.3);
   border-radius: 3px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -336,7 +336,7 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 3px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -429,7 +429,7 @@
   border: 1px solid rgba(232, 169, 26, 0.4);
   padding: 3px 8px;
   border-radius: 3px;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 800;
   color: var(--color-brand-primary, #e8a91a);
@@ -448,7 +448,7 @@
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -519,7 +519,7 @@
 }
 
 .notePrefix {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -529,7 +529,7 @@
 }
 
 .focalReadout {
-  font-family: var(--font-geist-mono, monospace);
+  font-family: var(--font-inter), sans-serif;
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.16em;
