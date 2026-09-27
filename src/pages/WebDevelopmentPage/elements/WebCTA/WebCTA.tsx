@@ -51,23 +51,22 @@ export const WebCTA = forwardRef<HTMLElement, WebCTAProps>(
           <div ref={ctaRef} className={styles.compositionBlock}>
             <div ref={eyebrowRef} className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span>CATEGORY DOMINANCE // DIGITAL EXPERIENCES</span>
+              <span>CATEGORY DOMINANCE // DIGITAL FLAGSHIPS</span>
             </div>
 
             <h2 ref={headlineRef} className={styles.headline}>
-              <span className={styles.headlineRow}>READY TO REPLACE YOUR</span>
-              <span className={styles.headlineRow}>OUTDATED WEBSITE</span>
-              <span className={styles.headlineRow}>WITH A</span>
-              <span className={styles.headlineRow}>HIGH-PERFORMING</span>
+              <span className={styles.headlineRow}>Ready to replace your outdated website</span>
+              <span className={styles.headlineRow}>with an industry-dominating</span>
               <span className={`${styles.headlineRow} ${styles.accentHighlight}`}>
-                DIGITAL EXPERIENCE?
+                digital flagship?
               </span>
             </h2>
 
             <div ref={contentRef} className={styles.contentBlock}>
               <p className={styles.paragraph}>
-                Let&apos;s turn your ideas into a fast, responsive and conversion-focused digital
-                experience built around your business.
+                Claim a comprehensive Technical &amp; UX Performance Audit. We inspect your current
+                site architecture, Core Web Vitals bottlenecks, mobile checkout friction, and
+                conversion rate leaks to blueprint an immediate path to category dominance.
               </p>
             </div>
 
@@ -80,7 +79,7 @@ export const WebCTA = forwardRef<HTMLElement, WebCTAProps>(
                 rightIcon={<ArrowUpRight className={styles.ctaArrow} />}
                 onClick={handleConnectClick}
               >
-                LET&apos;S CONNECT
+                Let&apos;s Connect
               </Button>
 
               <Button
@@ -91,7 +90,7 @@ export const WebCTA = forwardRef<HTMLElement, WebCTAProps>(
                 rightIcon={<ArrowDown className={styles.secondaryArrow} />}
                 onClick={handleServicesClick}
               >
-                EXPLORE OTHER SERVICES
+                Explore Other Services
               </Button>
             </div>
           </div>

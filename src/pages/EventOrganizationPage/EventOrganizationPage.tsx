@@ -12,6 +12,7 @@ import { EventHero } from "./elements/EventHero/EventHero";
 import { EventShowcase } from "./elements/EventShowcase/EventShowcase";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";
 import { EventCTA } from "./elements/EventCTA/EventCTA";
+import EventManage from "./elements/EventManage/EventManage";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -183,11 +184,12 @@ export const EventOrganizationPage = () => {
       />
 
       {/* 2. Main Section 2: PRODUCTIONS (Interactive Stage Theater & Archetypes) */}
-      <EventShowcase
+      {/* <EventShowcase
         ref={productionsSectionRef}
         headerRef={productionsHeaderRef}
         canvasRef={productionsCanvasRef}
-      />
+      /> */}
+      <EventManage />
 
       {/* 3. Main Section 3: THE METHODOLOGY (Production Lifecycle) */}
       <ServiceProcess

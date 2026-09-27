@@ -8,11 +8,9 @@ import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
 import { Navbar } from "@/sections/HeroSection/elements/Navbar";
-import { ReusableServiceHero } from "@/components/ServiceHero";
-import { WebIntro } from "./elements/WebIntro/WebIntro";
+import { WebHero } from "./elements/WebHero/WebHero";
 import { WebCapabilities } from "./elements/WebCapabilities/WebCapabilities";
-import { WebShowcase } from "./elements/WebShowcase/WebShowcase";
-import { WebProcess } from "./elements/WebProcess/WebProcess";
+import { ServiceProcess } from "@/shared/components/ServiceProcess";
 import { WebCTA } from "./elements/WebCTA/WebCTA";
 
 if (typeof window !== "undefined") {
@@ -163,9 +161,8 @@ export const WebDevelopmentPage = () => {
   }, []);
 
   const webNavLinks = [
-    { name: "About", href: "#intro" },
-    { name: "Services", href: "#deliverables" },
-    { name: "Our Work", href: "#showcase" },
+    { name: "About", href: "#about" },
+    { name: "Capabilities", href: "#capabilities" },
     { name: "Process", href: "#process" },
     { name: "Inquire", href: "#inquire" },
   ];
@@ -175,55 +172,32 @@ export const WebDevelopmentPage = () => {
       {/* Studio Navigation */}
       <Navbar links={webNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
-      {/* 1. Main Section 1: ABOUT (Hero Section with Overlapping Visual Collage) */}
-      <ReusableServiceHero
-        eyebrow="01 / WEB DEVELOPMENT"
-        titleLine1="WE DON'T JUST"
-        titleLine2Prefix="BUILD WEBSITES. WE BUILD "
-        titleHighlight="DIGITAL EXPERIENCES."
-        description="Fast, responsive websites designed to look exceptional, perform smoothly, and turn visitors into customers."
-        watermarkText="WEB DEVELOPMENT"
-        images={[
-          {
-            src: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1000&q=80",
-            alt: "Desktop Website Experience",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80",
-            alt: "Responsive Layouts",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-            alt: "Clean Development",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-            alt: "Premium UI",
-          },
-        ]}
-        primaryCtaText="START A CONVERSATION"
-        primaryCtaTargetId="inquire"
-        secondaryCtaText="EXPLORE OUR APPROACH"
-        secondaryCtaTargetId="intro"
+      {/* 1. Main Section 1: ABOUT (Hero, Manifesto & Lighthouse 100 Command Center HUD) */}
+      <WebHero
+        ref={heroSectionRef}
+        headingKickerRef={heroKickerRef}
+        headingTitleRef={heroTitleRef}
+        headingAsideRef={heroAsideRef}
+        commandCenterRef={heroCommandCenterRef}
+        valueLedgerRef={heroValueLedgerRef}
       />
 
-      {/* 2. Main Section 2: THE IDEA (Brand & Experience Statement) */}
-      <WebIntro />
+      {/* 2. Main Section 2: CAPABILITIES (Interactive Browser Frame & Archetype Switcher) */}
+      <WebCapabilities
+        ref={capabilitiesSectionRef}
+        headerRef={capabilitiesHeaderRef}
+        canvasRef={capabilitiesCanvasRef}
+      />
 
-      {/* 3. Main Section 3: WHAT WE DELIVER (Capabilities & Services Showcase) */}
-      <WebCapabilities />
-
-      {/* 4. Main Section 4: SELECTED WORK / CASE STUDIES (Reusable Carousel) */}
-      <WebShowcase />
-
-      {/* 5. Main Section 5: EXECUTION WORKFLOW (How We Execute) */}
-      <WebProcess
+      {/* 3. Main Section 3: THE METHODOLOGY (Engineering Pipeline) */}
+      <ServiceProcess
+        service="web-development"
         ref={processSectionRef}
         headerRef={processHeaderRef}
         phasesListRef={processPhasesRef}
       />
 
-      {/* 5. Main Section 5: FINAL CTA & TECHNICAL AUDIT */}
+      {/* 4. Main Section 4: FINAL CTA & TECHNICAL AUDIT */}
       <WebCTA
         ref={ctaSectionRef}
         eyebrowRef={ctaEyebrowRef}

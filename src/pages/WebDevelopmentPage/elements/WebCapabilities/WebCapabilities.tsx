@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import gsap from "gsap";
 import styles from "./WebCapabilities.module.css";
 import {
@@ -13,7 +13,6 @@ import {
   Code2,
   Gauge,
   Activity,
-  ArrowRight,
   Monitor,
   Tablet,
   MousePointer,
@@ -170,592 +169,599 @@ export interface WebCapabilitiesProps {
   canvasRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-export const WebCapabilities: React.FC<WebCapabilitiesProps> = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoRotating, setIsAutoRotating] = useState(true);
+export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
+  ({ headerRef: externalHeaderRef, canvasRef: externalCanvasRef }, ref) => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isAutoRotating, setIsAutoRotating] = useState(true);
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLDivElement>(null);
-  const activePanelRef = useRef<HTMLDivElement>(null);
-  const visualCardRef = useRef<HTMLDivElement>(null);
-  const visualImageRef = useRef<HTMLDivElement>(null);
-  const contentWrapperRef = useRef<HTMLDivElement>(null);
-  const progressLineRef = useRef<HTMLDivElement>(null);
+    const internalSectionRef = useRef<HTMLElement>(null);
+    const internalHeaderRef = useRef<HTMLDivElement>(null);
+    const navRef = useRef<HTMLDivElement>(null);
+    const internalActivePanelRef = useRef<HTMLDivElement>(null);
+    const visualCardRef = useRef<HTMLDivElement>(null);
+    const visualImageRef = useRef<HTMLDivElement>(null);
+    const contentWrapperRef = useRef<HTMLDivElement>(null);
+    const progressLineRef = useRef<HTMLDivElement>(null);
 
-  const autoRotateTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const progressTweenRef = useRef<gsap.core.Tween | null>(null);
+    const sectionRef = (ref as React.RefObject<HTMLElement | null>) || internalSectionRef;
+    const headerRef = externalHeaderRef || internalHeaderRef;
+    const activePanelRef = externalCanvasRef || internalActivePanelRef;
 
-  const activeService = SERVICES[activeIndex];
+    const autoRotateTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const progressTweenRef = useRef<gsap.core.Tween | null>(null);
 
-  // ----------------------------------------------------
-  // Switch Active Service with Synced GSAP Timeline
-  // ----------------------------------------------------
-  const handleSelectService = useCallback(
-    (index: number, manualClick = false) => {
-      if (index === activeIndex && manualClick) return;
+    const activeService = SERVICES[activeIndex];
 
-      if (manualClick) {
-        setIsAutoRotating(false);
-        if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-        resumeTimerRef.current = setTimeout(() => {
-          setIsAutoRotating(true);
-        }, 8000);
-      }
+    // ----------------------------------------------------
+    // Switch Active Service with Synced GSAP Timeline
+    // ----------------------------------------------------
+    const handleSelectService = useCallback(
+      (index: number, manualClick = false) => {
+        if (index === activeIndex && manualClick) return;
 
-      const imgEl = visualImageRef.current;
-      const contentEl = contentWrapperRef.current;
+        if (manualClick) {
+          setIsAutoRotating(false);
+          if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+          resumeTimerRef.current = setTimeout(() => {
+            setIsAutoRotating(true);
+          }, 8000);
+        }
 
-      const tl = gsap.timeline({
-        defaults: { duration: 0.5, ease: "power3.out" },
-      });
+        const imgEl = visualImageRef.current;
+        const contentEl = contentWrapperRef.current;
 
-      if (imgEl && contentEl) {
-        tl.to(imgEl, { scale: 0.97, opacity: 0, duration: 0.25 }, 0);
-        tl.to(contentEl, { opacity: 0, x: 20, duration: 0.25 }, 0);
-      }
-
-      tl.call(() => {
-        setActiveIndex(index);
-      });
-
-      if (imgEl && contentEl) {
-        tl.fromTo(
-          imgEl,
-          { scale: 1.03, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.5 },
-          0.3
-        );
-        tl.fromTo(
-          contentEl,
-          { opacity: 0, x: -20 },
-          { opacity: 1, x: 0, duration: 0.5 },
-          0.35
-        );
-      }
-    },
-    [activeIndex]
-  );
-
-  // ----------------------------------------------------
-  // Progress Bar & Auto Rotation Loop
-  // ----------------------------------------------------
-  useEffect(() => {
-    if (progressLineRef.current) {
-      if (progressTweenRef.current) progressTweenRef.current.kill();
-
-      if (isAutoRotating) {
-        gsap.set(progressLineRef.current, { width: "0%" });
-        progressTweenRef.current = gsap.to(progressLineRef.current, {
-          width: "100%",
-          duration: 5.5,
-          ease: "none",
+        const tl = gsap.timeline({
+          defaults: { duration: 0.5, ease: "power3.out" },
         });
-      } else {
-        gsap.set(progressLineRef.current, { width: "100%" });
-      }
-    }
 
-    if (!isAutoRotating) {
-      if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
-      return;
-    }
+        if (imgEl && contentEl) {
+          tl.to(imgEl, { scale: 0.97, opacity: 0, duration: 0.25 }, 0);
+          tl.to(contentEl, { opacity: 0, x: 20, duration: 0.25 }, 0);
+        }
 
-    autoRotateTimerRef.current = setTimeout(() => {
-      const nextIndex = (activeIndex + 1) % SERVICES.length;
-      handleSelectService(nextIndex, false);
-    }, 5500);
+        tl.call(() => {
+          setActiveIndex(index);
+        });
 
-    return () => {
-      if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
-    };
-  }, [activeIndex, isAutoRotating, handleSelectService]);
+        if (imgEl && contentEl) {
+          tl.fromTo(
+            imgEl,
+            { scale: 1.03, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.5 },
+            0.3
+          );
+          tl.fromTo(
+            contentEl,
+            { opacity: 0, x: -20 },
+            { opacity: 1, x: 0, duration: 0.5 },
+            0.35
+          );
+        }
+      },
+      [activeIndex]
+    );
 
-  useEffect(() => {
-    return () => {
-      if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-      if (progressTweenRef.current) progressTweenRef.current.kill();
-    };
-  }, []);
+    // ----------------------------------------------------
+    // Progress Bar & Auto Rotation Loop
+    // ----------------------------------------------------
+    useEffect(() => {
+      if (progressLineRef.current) {
+        if (progressTweenRef.current) progressTweenRef.current.kill();
 
-  // ----------------------------------------------------
-  // Subtle Cursor Parallax Effect (x: ±5px, y: ±3px)
-  // ----------------------------------------------------
-  useEffect(() => {
-    const card = visualCardRef.current;
-    if (!card) return;
-
-    const xTo = gsap.quickTo(card, "x", { duration: 0.6, ease: "power2.out" });
-    const yTo = gsap.quickTo(card, "y", { duration: 0.6, ease: "power2.out" });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = card.getBoundingClientRect();
-      const relativeX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const relativeY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-
-      xTo(relativeX * 5);
-      yTo(relativeY * 3);
-    };
-
-    const handleMouseLeave = () => {
-      xTo(0);
-      yTo(0);
-    };
-
-    card.addEventListener("mousemove", handleMouseMove);
-    card.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      card.removeEventListener("mousemove", handleMouseMove);
-      card.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  // ----------------------------------------------------
-  // ScrollTrigger Entrance Animation
-  // ----------------------------------------------------
-  useEffect(() => {
-    if (typeof window === "undefined" || !sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
-        },
-        defaults: { ease: "power3.out" },
-      });
-
-      if (headerRef.current) {
-        tl.fromTo(
-          headerRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          0
-        );
+        if (isAutoRotating) {
+          gsap.set(progressLineRef.current, { width: "0%" });
+          progressTweenRef.current = gsap.to(progressLineRef.current, {
+            width: "100%",
+            duration: 5.5,
+            ease: "none",
+          });
+        } else {
+          gsap.set(progressLineRef.current, { width: "100%" });
+        }
       }
 
-      if (navRef.current) {
-        tl.fromTo(
-          navRef.current.children,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
-          0.2
-        );
+      if (!isAutoRotating) {
+        if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
+        return;
       }
 
-      if (activePanelRef.current) {
-        tl.fromTo(
-          activePanelRef.current,
-          { opacity: 0, y: 35, scale: 0.98 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.85 },
-          0.3
-        );
-      }
-    }, sectionRef);
+      autoRotateTimerRef.current = setTimeout(() => {
+        const nextIndex = (activeIndex + 1) % SERVICES.length;
+        handleSelectService(nextIndex, false);
+      }, 5500);
 
-    return () => ctx.revert();
-  }, []);
+      return () => {
+        if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
+      };
+    }, [activeIndex, isAutoRotating, handleSelectService]);
 
-  return (
-    <section ref={sectionRef} id="deliverables" className={styles.section}>
-      <div className={styles.backgroundGlow} />
+    useEffect(() => {
+      return () => {
+        if (autoRotateTimerRef.current) clearTimeout(autoRotateTimerRef.current);
+        if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+        if (progressTweenRef.current) progressTweenRef.current.kill();
+      };
+    }, []);
 
-      <div className={styles.container}>
-        {/* Section Header */}
-        <div ref={headerRef} className={styles.header}>
-          <div className={styles.eyebrow}>
-            <span className={styles.eyebrowLine} />
-            <span>02 / WHAT WE DELIVER</span>
+    // ----------------------------------------------------
+    // Subtle Cursor Parallax Effect (x: ±5px, y: ±3px)
+    // ----------------------------------------------------
+    useEffect(() => {
+      const card = visualCardRef.current;
+      if (!card) return;
+
+      const xTo = gsap.quickTo(card, "x", { duration: 0.6, ease: "power2.out" });
+      const yTo = gsap.quickTo(card, "y", { duration: 0.6, ease: "power2.out" });
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const relativeX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        const relativeY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+        xTo(relativeX * 5);
+        yTo(relativeY * 3);
+      };
+
+      const handleMouseLeave = () => {
+        xTo(0);
+        yTo(0);
+      };
+
+      card.addEventListener("mousemove", handleMouseMove);
+      card.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        card.removeEventListener("mousemove", handleMouseMove);
+        card.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }, []);
+
+    // ----------------------------------------------------
+    // ScrollTrigger Entrance Animation
+    // ----------------------------------------------------
+    useEffect(() => {
+      if (typeof window === "undefined" || !sectionRef.current) return;
+
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            once: true,
+          },
+          defaults: { ease: "power3.out" },
+        });
+
+        if (headerRef.current) {
+          tl.fromTo(
+            headerRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8 },
+            0
+          );
+        }
+
+        if (navRef.current) {
+          tl.fromTo(
+            navRef.current.children,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
+            0.2
+          );
+        }
+
+        if (activePanelRef.current) {
+          tl.fromTo(
+            activePanelRef.current,
+            { opacity: 0, y: 35, scale: 0.98 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.85 },
+            0.3
+          );
+        }
+      }, sectionRef);
+
+      return () => ctx.revert();
+    }, []);
+
+    return (
+      <section ref={sectionRef} id="deliverables" className={styles.section}>
+        <div className={styles.backgroundGlow} />
+
+        <div className={styles.container}>
+          {/* Section Header */}
+          <div ref={headerRef} className={styles.header}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowLine} />
+              <span>02 / WHAT WE DELIVER</span>
+            </div>
+
+            <div className={styles.headerContent}>
+              <h2 className={styles.title}>
+                VISUAL DEMONSTRATION OF <span className={styles.goldText}>OUR SERVICES.</span>
+              </h2>
+              <p className={styles.subtitle}>
+                See the direct impact before reading the terminology. Every service delivers a clear,
+                measurable transformation for your digital presence.
+              </p>
+            </div>
           </div>
 
-          <div className={styles.headerContent}>
-            <h2 className={styles.title}>
-              VISUAL DEMONSTRATION OF <span className={styles.goldText}>OUR SERVICES.</span>
-            </h2>
-            <p className={styles.subtitle}>
-              See the direct impact before reading the terminology. Every service delivers a clear,
-              measurable transformation for your digital presence.
-            </p>
+          {/* Top Horizontal Navigation Service Selector Pills */}
+          <div ref={navRef} className={styles.topNavPillRow} role="tablist">
+            {SERVICES.map((srv, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <button
+                  key={srv.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`${styles.topNavBtn} ${isActive ? styles.topNavBtnActive : ""}`}
+                  onClick={() => handleSelectService(idx, true)}
+                >
+                  <span className={styles.topNavNum}>{srv.num}</span>
+                  <span className={styles.topNavName}>{srv.name}</span>
+                </button>
+              );
+            })}
           </div>
-        </div>
 
-        {/* Top Horizontal Navigation Service Selector Pills */}
-        <div ref={navRef} className={styles.topNavPillRow} role="tablist">
-          {SERVICES.map((srv, idx) => {
-            const isActive = idx === activeIndex;
-            return (
-              <button
-                key={srv.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`${styles.topNavBtn} ${isActive ? styles.topNavBtnActive : ""}`}
-                onClick={() => handleSelectService(idx, true)}
+          {/* Main Showcase Split Card Frame */}
+          <div ref={activePanelRef} className={styles.activePanel}>
+            {/* Top Bar: Active Title + Progress Bar */}
+            <div className={styles.panelTopBar}>
+              <div className={styles.panelBadge}>
+                <span className={styles.panelBadgeDot} />
+                <span>
+                  {activeService.num} / {activeService.name}
+                </span>
+              </div>
+
+              {/* Progress Indicator */}
+              <div className={styles.progressWrapper}>
+                <span className={styles.progressText}>
+                  {activeService.num} / 06
+                </span>
+                <div className={styles.progressTrack}>
+                  <div ref={progressLineRef} className={styles.progressFill} />
+                </div>
+              </div>
+            </div>
+
+            {/* 2 Equal Columns Split Body */}
+            <div className={styles.panelBodyGrid}>
+              {/* LEFT COLUMN: LARGE HIGH-IMPACT VISUAL GRAPHIC CANVAS */}
+              <div
+                ref={visualCardRef}
+                className={styles.visualCard}
+                onMouseEnter={() => setIsAutoRotating(false)}
               >
-                <span className={styles.topNavNum}>{srv.num}</span>
-                <span className={styles.topNavName}>{srv.name}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Main Showcase Split Card Frame (Exact UI from Reference Screenshot) */}
-        <div ref={activePanelRef} className={styles.activePanel}>
-          {/* Top Bar: Active Title + Progress Bar */}
-          <div className={styles.panelTopBar}>
-            <div className={styles.panelBadge}>
-              <span className={styles.panelBadgeDot} />
-              <span>
-                {activeService.num} / {activeService.name}
-              </span>
-            </div>
-
-            {/* Progress Indicator */}
-            <div className={styles.progressWrapper}>
-              <span className={styles.progressText}>
-                {activeService.num} / 06
-              </span>
-              <div className={styles.progressTrack}>
-                <div ref={progressLineRef} className={styles.progressFill} />
-              </div>
-            </div>
-          </div>
-
-          {/* 2 Equal Columns Split Body: Left Visual Mockup Card + Right Content Details Card */}
-          <div className={styles.panelBodyGrid}>
-            {/* LEFT COLUMN: LARGE HIGH-IMPACT VISUAL GRAPHIC CANVAS */}
-            <div
-              ref={visualCardRef}
-              className={styles.visualCard}
-              onMouseEnter={() => setIsAutoRotating(false)}
-            >
-              <div ref={visualImageRef} className={styles.imageInner}>
-                {/* Visual Top macOS Bar */}
-                <div className={styles.graphicHeaderBar}>
-                  <div className={styles.macDots}>
-                    <span className={styles.macRed} />
-                    <span className={styles.macYellow} />
-                    <span className={styles.macGreen} />
+                <div ref={visualImageRef} className={styles.imageInner}>
+                  {/* Visual Top macOS Bar */}
+                  <div className={styles.graphicHeaderBar}>
+                    <div className={styles.macDots}>
+                      <span className={styles.macRed} />
+                      <span className={styles.macYellow} />
+                      <span className={styles.macGreen} />
+                    </div>
+                    <div className={styles.graphicUrlPill}>
+                      <Lock size={10} className={styles.urlLock} />
+                      <span>https://your-brand-flagship.com/{activeService.name.toLowerCase().replace(/\s+/g, "-")}</span>
+                    </div>
+                    <span className={styles.liveTag}>LIVE SYSTEM PREVIEW</span>
                   </div>
-                  <div className={styles.graphicUrlPill}>
-                    <Lock size={10} className={styles.urlLock} />
-                    <span>https://your-brand-flagship.com/{activeService.name.toLowerCase().replace(/\s+/g, "-")}</span>
+
+                  {/* Background Grid Pattern */}
+                  <div className={styles.graphicGridBg} />
+
+                  {/* Subtle Overlay Tag Pills Top Left */}
+                  <div className={styles.overlayLabelsWrapper}>
+                    {activeService.overlayLabels.map((lbl, idx) => (
+                      <span key={idx} className={styles.overlayTag}>
+                        {lbl}
+                      </span>
+                    ))}
                   </div>
-                  <span className={styles.liveTag}>LIVE SYSTEM PREVIEW</span>
-                </div>
 
-                {/* Background Grid Pattern */}
-                <div className={styles.graphicGridBg} />
-
-                {/* Subtle Overlay Tag Pills Top Left */}
-                <div className={styles.overlayLabelsWrapper}>
-                  {activeService.overlayLabels.map((lbl, idx) => (
-                    <span key={idx} className={styles.overlayTag}>
-                      {lbl}
-                    </span>
-                  ))}
-                </div>
-
-                {/* ----------------- SERVICE 01: WEBSITE DESIGN ----------------- */}
-                {activeService.visualType === "design" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.designHeroMockup}>
-                      <div className={styles.designNavRow}>
-                        <div className={styles.brandLogoBox} />
-                        <div className={styles.navLinksPills}>
-                          <span className={styles.navPill} />
-                          <span className={styles.navPill} />
-                          <span className={styles.navPill} />
+                  {/* ----------------- SERVICE 01: WEBSITE DESIGN ----------------- */}
+                  {activeService.visualType === "design" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.designHeroMockup}>
+                        <div className={styles.designNavRow}>
+                          <div className={styles.brandLogoBox} />
+                          <div className={styles.navLinksPills}>
+                            <span className={styles.navPill} />
+                            <span className={styles.navPill} />
+                            <span className={styles.navPill} />
+                          </div>
+                          <div className={styles.ctaButtonBox}>BOOK CONSULTATION</div>
                         </div>
-                        <div className={styles.ctaButtonBox}>BOOK CONSULTATION</div>
-                      </div>
 
-                      <div className={styles.designHeadlineGroup}>
-                        <div className={styles.designTaglineBadge}>CREATIVE DIRECTED UI / UX</div>
-                        <h4 className={styles.designBigTitle}>
-                          WE DESIGN HOW YOUR <span className={styles.goldTextInline}>WEBSITE LOOKS.</span>
-                        </h4>
-                        <p className={styles.designSubtext}>
-                          Custom typography grids, brand color palettes, high-converting layouts, and interactive visual design systems.
-                        </p>
-                      </div>
+                        <div className={styles.designHeadlineGroup}>
+                          <div className={styles.designTaglineBadge}>CREATIVE DIRECTED UI / UX</div>
+                          <h4 className={styles.designBigTitle}>
+                            WE DESIGN HOW YOUR <span className={styles.goldTextInline}>WEBSITE LOOKS.</span>
+                          </h4>
+                          <p className={styles.designSubtext}>
+                            Custom typography grids, brand color palettes, high-converting layouts, and interactive visual design systems.
+                          </p>
+                        </div>
 
-                      <div className={styles.designCardsRow}>
-                        <div className={styles.designUiCard}>
-                          <div className={styles.cardHeaderBox} />
-                          <span className={styles.cardTitleLine} />
-                          <span className={styles.cardDescLine} />
-                        </div>
-                        <div className={`${styles.designUiCard} ${styles.designCardFeatured}`}>
-                          <div className={styles.cardHeaderBoxGold} />
-                          <span className={styles.cardTitleLine} />
-                          <span className={styles.cardDescLine} />
-                        </div>
-                        <div className={styles.designUiCard}>
-                          <div className={styles.cardHeaderBox} />
-                          <span className={styles.cardTitleLine} />
-                          <span className={styles.cardDescLine} />
+                        <div className={styles.designCardsRow}>
+                          <div className={styles.designUiCard}>
+                            <div className={styles.cardHeaderBox} />
+                            <span className={styles.cardTitleLine} />
+                            <span className={styles.cardDescLine} />
+                          </div>
+                          <div className={`${styles.designUiCard} ${styles.designCardFeatured}`}>
+                            <div className={styles.cardHeaderBoxGold} />
+                            <span className={styles.cardTitleLine} />
+                            <span className={styles.cardDescLine} />
+                          </div>
+                          <div className={styles.designUiCard}>
+                            <div className={styles.cardHeaderBox} />
+                            <span className={styles.cardTitleLine} />
+                            <span className={styles.cardDescLine} />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-
-                {/* ----------------- SERVICE 02: FRONTEND DEVELOPMENT ----------------- */}
-                {activeService.visualType === "frontend" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.frontendArchitectureMap}>
-                      <div className={styles.archBoxTop}>
-                        <div className={styles.archLabel}>
-                          <Layout size={14} />
-                          <span>NAVBAR COMPONENT</span>
-                        </div>
-                        <span className={styles.archStatus}>STATUS: READY</span>
-                      </div>
-
-                      <div className={styles.archBoxMiddle}>
-                        <div className={styles.archMainLabel}>
-                          <Code2 size={16} />
-                          <span>HERO &amp; INTERACTIVE APPLICATION COMPONENT</span>
-                        </div>
-                        <div className={styles.archConnectors}>
-                          <div className={styles.archChip}>REACT 19</div>
-                          <div className={styles.archChip}>NEXT.JS 15</div>
-                          <div className={styles.archChip}>TYPESCRIPT</div>
-                        </div>
-                      </div>
-
-                      <div className={styles.archGridRow}>
-                        <div className={styles.archCardItem}>
-                          <span>PRODUCT CARD 01</span>
-                        </div>
-                        <div className={styles.archCardItem}>
-                          <span>CTA BUTTON</span>
-                        </div>
-                        <div className={styles.archCardItem}>
-                          <span>FOOTER SYSTEM</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ----------------- SERVICE 03: RESPONSIVE DEVELOPMENT ----------------- */}
-                {activeService.visualType === "responsive" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.responsiveDeviceSuite}>
-                      <div className={styles.deviceDesktop}>
-                        <div className={styles.deviceHeader}>
-                          <Monitor size={14} />
-                          <span>DESKTOP (3-COLUMNS)</span>
-                        </div>
-                        <div className={styles.desktopGrid}>
-                          <div className={styles.gridCol} />
-                          <div className={styles.gridCol} />
-                          <div className={styles.gridCol} />
-                        </div>
-                      </div>
-
-                      <div className={styles.deviceTablet}>
-                        <div className={styles.deviceHeader}>
-                          <Tablet size={13} />
-                          <span>TABLET (2-COL)</span>
-                        </div>
-                        <div className={styles.tabletGrid}>
-                          <div className={styles.gridCol} />
-                          <div className={styles.gridCol} />
-                        </div>
-                      </div>
-
-                      <div className={styles.deviceMobile}>
-                        <div className={styles.deviceHeader}>
-                          <Smartphone size={13} />
-                          <span>MOBILE (1-COL)</span>
-                        </div>
-                        <div className={styles.mobileGrid}>
-                          <div className={styles.gridColFull} />
-                          <div className={styles.gridColFull} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ----------------- SERVICE 04: INTERACTIVE EXPERIENCES ----------------- */}
-                {activeService.visualType === "interactive" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.interactiveMotionSuite}>
-                      <div className={styles.stateCard}>
-                        <span className={styles.stateLabel}>01 / NORMAL STATE</span>
-                        <div className={styles.stateCardBox}>
-                          <span>CARD ELEMENT</span>
-                        </div>
-                      </div>
-
-                      <div className={styles.motionArrow}>→</div>
-
-                      <div className={`${styles.stateCard} ${styles.stateCardHover}`}>
-                        <span className={styles.stateLabelGold}>02 / HOVER STATE (GLOW)</span>
-                        <div className={styles.stateCardBoxActive}>
-                          <span>INTERACTIVE CARD</span>
-                          <MousePointer size={16} className={styles.cursorIconGlow} />
-                        </div>
-                      </div>
-
-                      <div className={styles.motionArrow}>→</div>
-
-                      <div className={`${styles.stateCard} ${styles.stateCardActive}`}>
-                        <span className={styles.stateLabelActive}>03 / ACTIVE ACTION</span>
-                        <div className={styles.stateCardBoxTriggered}>
-                          <span>TRIGGER ANIMATION</span>
-                          <Zap size={14} className={styles.activeZapIcon} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ----------------- SERVICE 05: PERFORMANCE OPTIMIZATION ----------------- */}
-                {activeService.visualType === "performance" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.performanceComparisonGrid}>
-                      <div className={styles.perfSideSlow}>
-                        <div className={styles.perfHeader}>
-                          <span className={styles.slowTag}>SLOW / UNOPTIMIZED</span>
-                        </div>
-                        <div className={styles.perfMetricBox}>
-                          <span className={styles.perfBigNumberRed}>2.8s</span>
-                          <span className={styles.perfSubtext}>SLOW PAGE LOAD</span>
-                        </div>
-                        <div className={styles.perfBarRed}>
-                          <div className={styles.barFillRed} />
-                        </div>
-                      </div>
-
-                      <div className={styles.perfVsDivider}>
-                        <Sparkles size={20} className={styles.perfOptIcon} />
-                        <span>OPTIMIZED</span>
-                      </div>
-
-                      <div className={styles.perfSideFast}>
-                        <div className={styles.perfHeader}>
-                          <span className={styles.fastTag}>⚡ ULTRA FAST</span>
-                        </div>
-                        <div className={styles.perfMetricBox}>
-                          <span className={styles.perfBigNumberGreen}>0.8s</span>
-                          <span className={styles.perfSubtext}>LIGHTHOUSE 100/100</span>
-                        </div>
-                        <div className={styles.perfBarGreen}>
-                          <div className={styles.barFillGreen} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ----------------- SERVICE 06: MAINTENANCE & SUPPORT ----------------- */}
-                {activeService.visualType === "maintenance" && (
-                  <div className={styles.canvasContainer}>
-                    <div className={styles.maintenanceDashboardGrid}>
-                      <div className={styles.maintCard}>
-                        <Activity size={20} className={styles.maintGreenIcon} />
-                        <div className={styles.maintInfo}>
-                          <span className={styles.maintTitle}>SYSTEM HEALTH</span>
-                          <span className={styles.maintValue}>100% ONLINE</span>
-                        </div>
-                      </div>
-
-                      <div className={styles.maintCard}>
-                        <ShieldCheck size={20} className={styles.maintGoldIcon} />
-                        <div className={styles.maintInfo}>
-                          <span className={styles.maintTitle}>SECURITY STATUS</span>
-                          <span className={styles.maintValue}>PROTECTED 24/7</span>
-                        </div>
-                      </div>
-
-                      <div className={styles.maintCard}>
-                        <Gauge size={20} className={styles.maintBlueIcon} />
-                        <div className={styles.maintInfo}>
-                          <span className={styles.maintTitle}>SPEED MONITOR</span>
-                          <span className={styles.maintValue}>0.8s OPTIMIZED</span>
-                        </div>
-                      </div>
-
-                      <div className={styles.maintCard}>
-                        <RefreshCw size={20} className={styles.maintGreenIcon} />
-                        <div className={styles.maintInfo}>
-                          <span className={styles.maintTitle}>CLOUD BACKUPS</span>
-                          <span className={styles.maintValue}>AUTOMATED DAILY</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Service Concept Explainer Banner over image (Bottom Pill) */}
-                <div className={styles.visualMessageBanner}>
-                  <Sparkles size={14} className={styles.bannerIcon} />
-                  <span className={styles.bannerText}>{activeService.visualMessage}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN: SERVICE TEXT CONTENT WRAPPER */}
-            <div ref={contentWrapperRef} className={styles.contentWrapper}>
-              {/* Service Heading & Description */}
-              <div className={styles.serviceTextGroup}>
-                <h3 className={styles.serviceTitle}>{activeService.name}</h3>
-                <p className={styles.serviceDescription}>{activeService.description}</p>
-              </div>
-
-              {/* Capabilities Checkpoints */}
-              <div className={styles.capabilitiesBlock}>
-                <span className={styles.blockLabel}>CORE CAPABILITIES</span>
-                <div className={styles.capsGrid}>
-                  {activeService.capabilities.map((cap, i) => (
-                    <div key={i} className={styles.capItem}>
-                      <CheckCircle2 size={15} className={styles.checkIcon} />
-                      <span>{cap}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tech Stack Pills */}
-              <div className={styles.techStackBlock}>
-                <span className={styles.blockLabel}>TECHNOLOGY STACK</span>
-                <div className={styles.techPills}>
-                  {activeService.techStack.map((tech, i) => (
-                    <span key={i} className={styles.techPill}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Client Outcome Highlight Box ("UNDERSTAND THE CLIENT BENEFIT") */}
-              <div className={styles.outcomeCard}>
-                <div className={styles.outcomeHeader}>
-                  <Code2 size={16} className={styles.outcomeIcon} />
-                  <span className={styles.outcomeTitle}>CLIENT BENEFIT</span>
-                  {activeService.outcomeMetric && (
-                    <span className={styles.outcomeMetricBadge}>
-                      {activeService.outcomeMetric}
-                    </span>
                   )}
+
+                  {/* ----------------- SERVICE 02: FRONTEND DEVELOPMENT ----------------- */}
+                  {activeService.visualType === "frontend" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.frontendArchitectureMap}>
+                        <div className={styles.archBoxTop}>
+                          <div className={styles.archLabel}>
+                            <Layout size={14} />
+                            <span>NAVBAR COMPONENT</span>
+                          </div>
+                          <span className={styles.archStatus}>STATUS: READY</span>
+                        </div>
+
+                        <div className={styles.archBoxMiddle}>
+                          <div className={styles.archMainLabel}>
+                            <Code2 size={16} />
+                            <span>HERO &amp; INTERACTIVE APPLICATION COMPONENT</span>
+                          </div>
+                          <div className={styles.archConnectors}>
+                            <div className={styles.archChip}>REACT 19</div>
+                            <div className={styles.archChip}>NEXT.JS 15</div>
+                            <div className={styles.archChip}>TYPESCRIPT</div>
+                          </div>
+                        </div>
+
+                        <div className={styles.archGridRow}>
+                          <div className={styles.archCardItem}>
+                            <span>PRODUCT CARD 01</span>
+                          </div>
+                          <div className={styles.archCardItem}>
+                            <span>CTA BUTTON</span>
+                          </div>
+                          <div className={styles.archCardItem}>
+                            <span>FOOTER SYSTEM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ----------------- SERVICE 03: RESPONSIVE DEVELOPMENT ----------------- */}
+                  {activeService.visualType === "responsive" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.responsiveDeviceSuite}>
+                        <div className={styles.deviceDesktop}>
+                          <div className={styles.deviceHeader}>
+                            <Monitor size={14} />
+                            <span>DESKTOP (3-COLUMNS)</span>
+                          </div>
+                          <div className={styles.desktopGrid}>
+                            <div className={styles.gridCol} />
+                            <div className={styles.gridCol} />
+                            <div className={styles.gridCol} />
+                          </div>
+                        </div>
+
+                        <div className={styles.deviceTablet}>
+                          <div className={styles.deviceHeader}>
+                            <Tablet size={13} />
+                            <span>TABLET (2-COL)</span>
+                          </div>
+                          <div className={styles.tabletGrid}>
+                            <div className={styles.gridCol} />
+                            <div className={styles.gridCol} />
+                          </div>
+                        </div>
+
+                        <div className={styles.deviceMobile}>
+                          <div className={styles.deviceHeader}>
+                            <Smartphone size={13} />
+                            <span>MOBILE (1-COL)</span>
+                          </div>
+                          <div className={styles.mobileGrid}>
+                            <div className={styles.gridColFull} />
+                            <div className={styles.gridColFull} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ----------------- SERVICE 04: INTERACTIVE EXPERIENCES ----------------- */}
+                  {activeService.visualType === "interactive" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.interactiveMotionSuite}>
+                        <div className={styles.stateCard}>
+                          <span className={styles.stateLabel}>01 / NORMAL STATE</span>
+                          <div className={styles.stateCardBox}>
+                            <span>CARD ELEMENT</span>
+                          </div>
+                        </div>
+
+                        <div className={styles.motionArrow}>→</div>
+
+                        <div className={`${styles.stateCard} ${styles.stateCardHover}`}>
+                          <span className={styles.stateLabelGold}>02 / HOVER STATE (GLOW)</span>
+                          <div className={styles.stateCardBoxActive}>
+                            <span>INTERACTIVE CARD</span>
+                            <MousePointer size={16} className={styles.cursorIconGlow} />
+                          </div>
+                        </div>
+
+                        <div className={styles.motionArrow}>→</div>
+
+                        <div className={`${styles.stateCard} ${styles.stateCardActive}`}>
+                          <span className={styles.stateLabelActive}>03 / ACTIVE ACTION</span>
+                          <div className={styles.stateCardBoxTriggered}>
+                            <span>TRIGGER ANIMATION</span>
+                            <Zap size={14} className={styles.activeZapIcon} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ----------------- SERVICE 05: PERFORMANCE OPTIMIZATION ----------------- */}
+                  {activeService.visualType === "performance" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.performanceComparisonGrid}>
+                        <div className={styles.perfSideSlow}>
+                          <div className={styles.perfHeader}>
+                            <span className={styles.slowTag}>SLOW / UNOPTIMIZED</span>
+                          </div>
+                          <div className={styles.perfMetricBox}>
+                            <span className={styles.perfBigNumberRed}>2.8s</span>
+                            <span className={styles.perfSubtext}>SLOW PAGE LOAD</span>
+                          </div>
+                          <div className={styles.perfBarRed}>
+                            <div className={styles.barFillRed} />
+                          </div>
+                        </div>
+
+                        <div className={styles.perfVsDivider}>
+                          <Sparkles size={20} className={styles.perfOptIcon} />
+                          <span>OPTIMIZED</span>
+                        </div>
+
+                        <div className={styles.perfSideFast}>
+                          <div className={styles.perfHeader}>
+                            <span className={styles.fastTag}>⚡ ULTRA FAST</span>
+                          </div>
+                          <div className={styles.perfMetricBox}>
+                            <span className={styles.perfBigNumberGreen}>0.8s</span>
+                            <span className={styles.perfSubtext}>LIGHTHOUSE 100/100</span>
+                          </div>
+                          <div className={styles.perfBarGreen}>
+                            <div className={styles.barFillGreen} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ----------------- SERVICE 06: MAINTENANCE & SUPPORT ----------------- */}
+                  {activeService.visualType === "maintenance" && (
+                    <div className={styles.canvasContainer}>
+                      <div className={styles.maintenanceDashboardGrid}>
+                        <div className={styles.maintCard}>
+                          <Activity size={20} className={styles.maintGreenIcon} />
+                          <div className={styles.maintInfo}>
+                            <span className={styles.maintTitle}>SYSTEM HEALTH</span>
+                            <span className={styles.maintValue}>100% ONLINE</span>
+                          </div>
+                        </div>
+
+                        <div className={styles.maintCard}>
+                          <ShieldCheck size={20} className={styles.maintGoldIcon} />
+                          <div className={styles.maintInfo}>
+                            <span className={styles.maintTitle}>SECURITY STATUS</span>
+                            <span className={styles.maintValue}>PROTECTED 24/7</span>
+                          </div>
+                        </div>
+
+                        <div className={styles.maintCard}>
+                          <Gauge size={20} className={styles.maintBlueIcon} />
+                          <div className={styles.maintInfo}>
+                            <span className={styles.maintTitle}>SPEED MONITOR</span>
+                            <span className={styles.maintValue}>0.8s OPTIMIZED</span>
+                          </div>
+                        </div>
+
+                        <div className={styles.maintCard}>
+                          <RefreshCw size={20} className={styles.maintGreenIcon} />
+                          <div className={styles.maintInfo}>
+                            <span className={styles.maintTitle}>CLOUD BACKUPS</span>
+                            <span className={styles.maintValue}>AUTOMATED DAILY</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Service Concept Explainer Banner over image (Bottom Pill) */}
+                  <div className={styles.visualMessageBanner}>
+                    <Sparkles size={14} className={styles.bannerIcon} />
+                    <span className={styles.bannerText}>{activeService.visualMessage}</span>
+                  </div>
                 </div>
-                <p className={styles.outcomeText}>{activeService.clientOutcome}</p>
+              </div>
+
+              {/* RIGHT COLUMN: SERVICE TEXT CONTENT WRAPPER */}
+              <div ref={contentWrapperRef} className={styles.contentWrapper}>
+                {/* Service Heading & Description */}
+                <div className={styles.serviceTextGroup}>
+                  <h3 className={styles.serviceTitle}>{activeService.name}</h3>
+                  <p className={styles.serviceDescription}>{activeService.description}</p>
+                </div>
+
+                {/* Capabilities Checkpoints */}
+                <div className={styles.capabilitiesBlock}>
+                  <span className={styles.blockLabel}>CORE CAPABILITIES</span>
+                  <div className={styles.capsGrid}>
+                    {activeService.capabilities.map((cap, i) => (
+                      <div key={i} className={styles.capItem}>
+                        <CheckCircle2 size={15} className={styles.checkIcon} />
+                        <span>{cap}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech Stack Pills */}
+                <div className={styles.techStackBlock}>
+                  <span className={styles.blockLabel}>TECHNOLOGY STACK</span>
+                  <div className={styles.techPills}>
+                    {activeService.techStack.map((tech, i) => (
+                      <span key={i} className={styles.techPill}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Client Outcome Highlight Box */}
+                <div className={styles.outcomeCard}>
+                  <div className={styles.outcomeHeader}>
+                    <Code2 size={16} className={styles.outcomeIcon} />
+                    <span className={styles.outcomeTitle}>CLIENT BENEFIT</span>
+                    {activeService.outcomeMetric && (
+                      <span className={styles.outcomeMetricBadge}>
+                        {activeService.outcomeMetric}
+                      </span>
+                    )}
+                  </div>
+                  <p className={styles.outcomeText}>{activeService.clientOutcome}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  }
+);
 
+WebCapabilities.displayName = "WebCapabilities";
 export default WebCapabilities;
