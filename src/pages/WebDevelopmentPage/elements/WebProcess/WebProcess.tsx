@@ -1,93 +1,101 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, forwardRef } from "react";
+import Image from "next/image";
 import styles from "./WebProcess.module.css";
+import { ArrowRight, Check } from "lucide-react";
 
-interface ProcessPhase {
+export interface ProcessStage {
   id: string;
-  number: string;
-  category: string;
+  num: string;
   title: string;
+  subtitle: string;
   description: string;
+  image: string;
+  imageAlt: string;
   deliverables: string[];
-  mediaType: "video" | "image";
-  mediaSrc: string;
-  telemetry: string;
-  timecode: string;
 }
 
-const PHASES: ProcessPhase[] = [
+const STAGES: ProcessStage[] = [
   {
-    id: "architecture",
-    number: "01",
-    category: "SPECIFICATION",
-    title: "System Architecture, Schema Design & High-Converting UX Blueprint",
+    id: "discover",
+    num: "01",
+    title: "DISCOVER",
+    subtitle: "Research & Scope",
     description:
-      "We begin by modeling relational database schemas, state management diagrams, component hierarchies, and checkout user journeys to eliminate technical debt before writing a single line of production code.",
+      "Initial technical audit, audience research, project scope definition, and strategic roadmap planning.",
+    image:
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Research & Discovery Phase",
     deliverables: [
-      "Relational Database Schemas (Prisma / SQL)",
-      "Information Architecture & User Journeys",
-      "Strict API Interface & Endpoint Contracts",
-      "Interactive Low-Fi UX Wireframe Blueprints",
+      "Technical Audit & Scope",
+      "Competitive Analysis",
+      "Project Scope & Roadmap",
     ],
-    mediaType: "image",
-    mediaSrc: "/images/director_monitor_bts.jpg",
-    telemetry: "BLUEPRINT: 0% ARCH DEBT // TYPESAFE",
-    timecode: "PHASE 01 // ARCHITECTURE",
+  },
+  {
+    id: "plan",
+    num: "02",
+    title: "PLAN",
+    subtitle: "User Journeys",
+    description:
+      "Structuring site architecture, conversion funnels, wireframes, and interactive user journeys.",
+    image:
+      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Planning & Wireframing Phase",
+    deliverables: [
+      "Sitemap & Information Architecture",
+      "User Flow Diagrams",
+      "UX Wireframe Blueprints",
+    ],
   },
   {
     id: "design",
-    number: "02",
-    category: "DESIGN SYSTEM",
-    title: "Bespoke Dark Luxury Art Direction & Kinetic Micro-Interactions",
+    num: "03",
+    title: "DESIGN",
+    subtitle: "UI & Style Tokens",
     description:
-      "Developing bespoke responsive design systems with Figma tokens, dark luxury typography, custom iconographies, and interactive kinetic prototypes modeling every hover state, micro-interaction, and layout transition.",
+      "Crafting dark-mode layout designs, typography tokens, custom UI components, and kinetic prototypes.",
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "UI & Style Tokens Design Phase",
     deliverables: [
-      "Atomic Design System & Token Library",
-      "Dark Luxury Editorial Art Direction",
-      "Interactive Micro-Physics Prototypes",
-      "Fluid Responsive Grid Breakpoints",
+      "UI Design System",
+      "High-Fidelity Mockups",
+      "Responsive Layout Specs",
     ],
-    mediaType: "video",
-    mediaSrc: "/videos/cinema_production_graded.mp4",
-    telemetry: "DESIGN SYSTEM // 60 FPS MOTION",
-    timecode: "PHASE 02 // PROTOTYPING",
   },
   {
-    id: "engineering",
-    number: "03",
-    category: "FULL-STACK BUILD",
-    title: "Next.js 15 Server Components & Fluid GSAP Motion",
+    id: "develop",
+    num: "04",
+    title: "DEVELOP",
+    subtitle: "Frontend Build",
     description:
-      "Writing clean, type-safe Next.js 15 App Router code with React Server Components, server actions, optimistic UI updates, and frictionless GSAP ScrollTrigger timeline animations engineered for zero-jank frame rates.",
+      "Writing clean, type-safe Next.js code, React server components, and GSAP scroll timeline animations.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Frontend Development Phase",
     deliverables: [
-      "Next.js 15 Server Components & Actions",
-      "Strict TypeScript Type-Safety Across All APIs",
-      "GSAP ScrollTrigger & Timeline Sequencing",
-      "Zero-Jank Layout Shift (CLS: 0.000)",
+      "Next.js 15 & React 19 Build",
+      "Strict TypeScript Type-Safety",
+      "GSAP ScrollTrigger Animations",
     ],
-    mediaType: "image",
-    mediaSrc: "/images/cinema_production_graded.jpg",
-    telemetry: "CODE QUALITY // 100% TESTED & TYPED",
-    timecode: "PHASE 03 // FULL-STACK BUILD",
   },
   {
-    id: "deployment",
-    number: "04",
-    category: "EDGE DEPLOYMENT",
-    title: "100/100 Lighthouse Optimization & Global Edge CDN Handover",
+    id: "launch",
+    num: "05",
+    title: "LAUNCH",
+    subtitle: "Testing & Go-Live",
     description:
-      "Stress-testing across 50+ device viewport configurations, automated Lighthouse audits, edge cache rule tuning, enterprise security penetration checks, and a white-glove CMS handover with complete source code ownership.",
+      "Performance optimization, 100/100 Lighthouse auditing, cross-browser testing, and global edge deployment.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Testing & Go-Live Launch Phase",
     deliverables: [
-      "Automated 100/100 Lighthouse CI/CD Pipeline",
-      "Edge Cache Caching & Geo-Routing",
-      "Enterprise SSL & Security Hardening",
-      "Full Source Code & Admin Handover",
+      "100/100 Lighthouse Optimization",
+      "Cross-Browser & Device Testing",
+      "Global Edge CDN Handover",
     ],
-    mediaType: "image",
-    mediaSrc: "/images/cinematic_reel_portrait.jpg",
-    telemetry: "DEPLOYMENT // 24ms GLOBAL TTFB",
-    timecode: "PHASE 04 // EDGE DEPLOY",
   },
 ];
 
@@ -96,225 +104,101 @@ export interface WebProcessProps {
   phasesListRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-export const WebProcess = React.forwardRef<HTMLElement, WebProcessProps>(
+export const WebProcess = forwardRef<HTMLElement, WebProcessProps>(
   ({ headerRef, phasesListRef }, ref) => {
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-    const [isPlaying, setIsPlaying] = useState<boolean>(true);
-    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-    const activePhase = PHASES[activeIndex];
-
-    const handleNext = () => {
-      setActiveIndex((prev) => (prev + 1) % PHASES.length);
-    };
-
-    const handlePrev = () => {
-      setActiveIndex((prev) => (prev - 1 + PHASES.length) % PHASES.length);
-    };
-
-    const toggleVideoPlayback = () => {
-      const currentVideo = videoRefs.current[activeIndex];
-      if (currentVideo) {
-        if (currentVideo.paused) {
-          currentVideo.play().catch(() => {});
-          setIsPlaying(true);
-        } else {
-          currentVideo.pause();
-          setIsPlaying(false);
-        }
-      } else {
-        setIsPlaying(!isPlaying);
-      }
-    };
-
-    useEffect(() => {
-      const currentVideo = videoRefs.current[activeIndex];
-      if (currentVideo) {
-        if (isPlaying) {
-          currentVideo.play().catch(() => {});
-        } else {
-          currentVideo.pause();
-        }
-      }
-    }, [activeIndex, isPlaying]);
+    const [activeStageIndex, setActiveStageIndex] = useState(2); // Stage 03 DESIGN default as in screenshot
+    const currentStage = STAGES[activeStageIndex];
 
     return (
-      <section ref={ref} className={styles.section} id="process">
+      <section ref={ref} id="process" className={styles.section}>
+        <div className={styles.backgroundGlow} />
+
         <div className={styles.container}>
           {/* Section Header */}
           <div ref={headerRef} className={styles.header}>
-            <div className={styles.kicker}>
-              <span className={styles.kickerLine} />
-              <span>SYSTEMIZED ARCHITECTURE</span>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowLine} />
+              <span>— 05 / EXECUTION WORKFLOW</span>
             </div>
 
             <div className={styles.headerRow}>
               <h2 className={styles.title}>
-                THE 4-PHASE <span>ENGINEERING PIPELINE</span>
+                HOW WE <span className={styles.goldText}>EXECUTE.</span>
               </h2>
               <p className={styles.description}>
-                We do not build ad-hoc. Every digital flagship is delivered through a proven
-                four-phase engineering lifecycle that guarantees flawless execution, sub-second
-                speed, and zero technical compromises.
+                Select a stage to explore our full-stack engineering workflow. Every project is
+                engineered for zero-jank frame rates, 100/100 Lighthouse performance, and category dominance.
               </p>
             </div>
           </div>
 
-          {/* Showcase Grid */}
+          {/* 2-Column Split: Stage Navigation + Active Stage Panel */}
           <div ref={phasesListRef} className={styles.showcaseGrid}>
-            {/* Left Column: Interactive Steps */}
-            <div className={styles.navColumn}>
-              <div className={styles.stepsList}>
-                {PHASES.map((phase, idx) => {
-                  const isActive = idx === activeIndex;
-                  return (
-                    <button
-                      key={phase.id}
-                      type="button"
-                      className={`${styles.stepItem} ${isActive ? styles.stepActive : ""}`}
-                      onClick={() => setActiveIndex(idx)}
-                      aria-pressed={isActive}
-                    >
-                      {isActive && <div className={styles.activeIndicatorLine} />}
-
-                      <div className={styles.stepTopRow}>
-                        <div className={styles.stepNumberGroup}>
-                          <span className={styles.stepIndex}>{phase.number}</span>
-                          <span className={styles.stepCategoryBadge}>{phase.category}</span>
-                        </div>
-                        <div className={styles.stepStatusDot} />
+            {/* Left Column: Vertical Stages List */}
+            <div className={styles.leftNav} role="tablist">
+              {STAGES.map((stage, idx) => {
+                const isActive = idx === activeStageIndex;
+                return (
+                  <button
+                    key={stage.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`${styles.navItem} ${isActive ? styles.navItemActive : ""}`}
+                    onClick={() => setActiveStageIndex(idx)}
+                  >
+                    <div className={styles.navLeftGroup}>
+                      <span className={styles.navNumber}>{stage.num}</span>
+                      <div className={styles.navTextGroup}>
+                        <span className={styles.navTitle}>{stage.title}</span>
+                        <span className={styles.navSubtitle}>{stage.subtitle}</span>
                       </div>
-
-                      <h3 className={styles.stepTitle}>{phase.title}</h3>
-
-                      {isActive && (
-                        <div className={styles.stepStoryExpanded}>
-                          <p className={styles.stepStoryDesc}>{phase.description}</p>
-                          <div className={styles.deliverablesWrapper}>
-                            <span className={styles.deliverablesLabel}>KEY DELIVERABLES</span>
-                            <ul className={styles.deliverablesList}>
-                              {phase.deliverables.map((item, dIdx) => (
-                                <li key={dIdx} className={styles.deliverableItem}>
-                                  <span className={styles.checkMark}>✓</span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+                    </div>
+                    <ArrowRight className={styles.navArrow} size={16} />
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Right Column: Media Carousel / HUD */}
-            <div className={styles.mediaColumn}>
-              <div className={styles.mediaFrame}>
-                {/* HUD Top Bar */}
-                <div className={styles.mediaHudTop}>
-                  <div className={styles.hudBadge}>
-                    <span className={styles.recordDot} />
-                    <span>ENGINEERING VIEW</span>
-                  </div>
-                  <div className={styles.hudTelemetry}>{activePhase.telemetry}</div>
+            {/* Right Column: Active Stage Showcase Panel */}
+            <div className={styles.activePanel}>
+              {/* Image Container */}
+              <div className={styles.imageCard}>
+                <div className={styles.imageInner}>
+                  <Image
+                    src={currentStage.image}
+                    alt={currentStage.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 760px"
+                    priority={activeStageIndex === 2}
+                    className={styles.stageImage}
+                  />
+                  <div className={styles.imageOverlay} />
+                </div>
+              </div>
+
+              {/* Stage Content Below Image */}
+              <div className={styles.panelContent}>
+                <div className={styles.titleGroup}>
+                  <h3 className={styles.stageTitle}>
+                    <span className={styles.stageNumGold}>{currentStage.num}</span> {currentStage.title}
+                  </h3>
+                  <p className={styles.stageDescription}>{currentStage.description}</p>
                 </div>
 
-                {/* Video control button if active slide has video */}
-                {activePhase.mediaType === "video" && (
-                  <button
-                    type="button"
-                    className={styles.videoControlBtn}
-                    onClick={toggleVideoPlayback}
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                  >
-                    {isPlaying ? "❚❚ PAUSE" : "▶ PLAY"}
-                  </button>
-                )}
+                <div className={styles.dividerLine} />
 
-                {/* Viewport & Carousel Track */}
-                <div className={styles.mediaViewport}>
-                  <div
-                    className={styles.carouselTrack}
-                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                  >
-                    {PHASES.map((phase, idx) => (
-                      <div key={phase.id} className={styles.carouselSlide}>
-                        {phase.mediaType === "video" ? (
-                          <div className={styles.videoWrapper}>
-                            <video
-                              ref={(el) => {
-                                videoRefs.current[idx] = el;
-                              }}
-                              src={phase.mediaSrc}
-                              className={styles.mediaAsset}
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                            />
-                            <div className={styles.vignetteOverlay} />
-                          </div>
-                        ) : (
-                          <div className={styles.imageWrapper}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={phase.mediaSrc}
-                              alt={phase.title}
-                              className={styles.mediaAsset}
-                              loading="lazy"
-                            />
-                            <div className={styles.vignetteOverlay} />
-                          </div>
-                        )}
+                {/* Key Deliverables Block */}
+                <div className={styles.deliverablesBlock}>
+                  <span className={styles.deliverablesLabel}>KEY DELIVERABLES:</span>
+                  <div className={styles.deliverablesList}>
+                    {currentStage.deliverables.map((item, i) => (
+                      <div key={i} className={styles.deliverableItem}>
+                        <Check size={14} className={styles.checkIcon} />
+                        <span>{item}</span>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                {/* Nav Arrows */}
-                <button
-                  type="button"
-                  className={`${styles.carouselNavBtn} ${styles.carouselNavPrev}`}
-                  onClick={handlePrev}
-                  aria-label="Previous phase"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.carouselNavBtn} ${styles.carouselNavNext}`}
-                  onClick={handleNext}
-                  aria-label="Next phase"
-                >
-                  ›
-                </button>
-
-                {/* Pagination HUD */}
-                <div className={styles.carouselPagination}>
-                  <div className={styles.paginationDots}>
-                    {PHASES.map((phase, idx) => (
-                      <button
-                        key={phase.id}
-                        type="button"
-                        className={`${styles.paginationDot} ${
-                          idx === activeIndex ? styles.paginationDotActive : ""
-                        }`}
-                        onClick={() => setActiveIndex(idx)}
-                        aria-label={`Go to slide ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <span className={styles.counterBadge}>
-                    0{activeIndex + 1} / 0{PHASES.length}
-                  </span>
-                </div>
-
-                {/* HUD Bottom */}
-                <div className={styles.mediaHudBottom}>
-                  <span className={styles.timecodeBadge}>{activePhase.timecode}</span>
-                  <span className={styles.subtitleBadge}>{activePhase.category}</span>
                 </div>
               </div>
             </div>
@@ -322,7 +206,7 @@ export const WebProcess = React.forwardRef<HTMLElement, WebProcessProps>(
         </div>
       </section>
     );
-  },
+  }
 );
 
 WebProcess.displayName = "WebProcess";

@@ -1,0 +1,335 @@
+.heroSection {
+  position: relative;
+  min-height: auto;
+  padding: 100px 5% 70px 5%;
+  background-color: var(--color-background-primary, #08090c);
+  color: var(--color-text-primary, #ffffff);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.backgroundWatermark {
+  position: absolute;
+  top: 18%;
+  left: -2%;
+  font-size: clamp(4rem, 12vw, 14rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  opacity: 0.04;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.heroLayout {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-brand-primary, #d4af37);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.eyebrowText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brand-primary, #d4af37);
+}
+
+.sparkleIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.mainTitle {
+  font-size: clamp(2.5rem, 5.5vw, 5.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.titleLineWrapper {
+  display: block;
+  overflow: hidden;
+}
+
+.titleLineInner {
+  display: block;
+}
+
+.goldText {
+  color: var(--color-brand-primary, #d4af37);
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 580px;
+  margin: 0;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #000000;
+  background: var(--color-brand-primary, #d4af37);
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+  text-decoration: none;
+}
+
+.btnPrimary:hover {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btnOutline:hover {
+  border-color: var(--color-brand-primary, #d4af37);
+  color: var(--color-brand-primary, #d4af37);
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-2px);
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* RIGHT COLUMN OVERLAPPING PHOTO COMPOSITION */
+.compositionColumn {
+  position: relative;
+  min-height: 520px;
+  width: 100%;
+}
+
+.artFrame {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #0e1017;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+  transition: transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.artFrame:hover {
+  border-color: var(--color-brand-primary, #d4af37);
+  z-index: 20 !important;
+  opacity: 1 !important;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.95);
+}
+
+.frameImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: transform 0.8s ease, filter 0.8s ease;
+  display: block;
+}
+
+.artFrame:hover .frameImage {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.frameOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.frameBadge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.frameMain {
+  width: 70%;
+  height: 380px;
+  top: 40px;
+  left: 15%;
+  z-index: 3;
+}
+
+.frameReel {
+  width: 45%;
+  height: 240px;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.frameTop {
+  width: 42%;
+  height: 220px;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.frameBackground {
+  width: 50%;
+  height: 260px;
+  bottom: 30px;
+  right: 5%;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 1024px) {
+  .heroLayout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .compositionColumn {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding: 100px 4% 60px 4%;
+  }
+
+  .mainTitle {
+    font-size: 2.3rem;
+  }
+
+  .compositionColumn {
+    min-height: 340px;
+  }
+
+  .frameMain {
+    width: 85%;
+    height: 260px;
+    left: 7.5%;
+  }
+
+  .frameReel {
+    width: 55%;
+    height: 170px;
+  }
+
+  .frameTop {
+    width: 50%;
+    height: 160px;
+  }
+
+  .frameBackground {
+    display: none;
+  }
+}

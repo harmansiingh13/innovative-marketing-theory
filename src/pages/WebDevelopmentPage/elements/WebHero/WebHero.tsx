@@ -39,7 +39,7 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
 
         {/* Massive Ghost Watermark Typography */}
         <div className={styles.ghostWatermark} aria-hidden="true">
-          DIGITAL FLAGSHIP
+          WEB DEVELOPMENT
         </div>
 
         {/* Ambient Top Glow */}
@@ -52,24 +52,22 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
             <div className={styles.leftColumn}>
               <div ref={headingKickerRef} className={styles.kicker}>
                 <span className={styles.kickerDash}>—</span>
-                <span className={styles.kickerHash}>#</span>
-                <span>BESPOKE ENGINEERING & DIGITAL FLAGSHIPS</span>
+                <span>01 / WEB DEVELOPMENT</span>
               </div>
 
               <h1 ref={headingTitleRef} className={styles.headline}>
-                <span className={styles.headlineLine}>WE DON&apos;T BUILD TEMPLATES.</span>
-                <span className={styles.headlineLine}>WE ENGINEER HIGH-PERFORMANCE</span>
+                <span className={styles.headlineLine}>WE DON&apos;T JUST</span>
+                <span className={styles.headlineLine}>BUILD WEBSITES.</span>
+                <span className={styles.headlineLine}>WE BUILD</span>
                 <span className={`${styles.headlineLine} ${styles.accentLine}`}>
-                  DIGITAL FLAGSHIPS.
+                  DIGITAL EXPERIENCES.
                 </span>
               </h1>
 
               <div ref={headingAsideRef} className={styles.asideBlock}>
                 <p className={styles.description}>
-                  No bloated WordPress themes or slow drag-and-drop builders. We craft custom web
-                  systems with Next.js 15, React 19, TypeScript, and fluid GSAP/WebGL
-                  motion—delivering sub-50ms TTFB, 100/100 Core Web Vitals, and uncompromising
-                  conversion rates.
+                  Fast, responsive websites designed to look exceptional, perform smoothly, and turn
+                  visitors into customers.
                 </p>
 
                 <div className={styles.actionsRow}>
@@ -81,7 +79,7 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
                     rightIcon={<ArrowUpRight className={styles.ctaArrow} />}
                     onClick={handleConnectClick}
                   >
-                    Let&apos;s Connect
+                    START A CONVERSATION
                   </Button>
 
                   <Button
@@ -97,7 +95,7 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
                       });
                     }}
                   >
-                    Explore Our Approach
+                    EXPLORE OUR APPROACH
                   </Button>
                 </div>
               </div>

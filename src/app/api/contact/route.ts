@@ -2,21 +2,15 @@ import { validationSchema } from "@/sections/ContactSection/elements/ContactForm
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const getRequiredEnv = (key: string): string => {
-  const value = process.env[key];
-
-  if (!value) {
-    throw new Error(`Missing environment variable: ${key}`);
-  }
-
-  return value;
+const getEnv = (key: string): string => {
+  return process.env[key] || "";
 };
 
-const RESEND_API_KEY = getRequiredEnv("RESEND_API_KEY");
-const EMAIL_FROM = getRequiredEnv("EMAIL_FROM");
-const CONTACT_EMAIL = getRequiredEnv("CONTACT_EMAIL");
+const RESEND_API_KEY = getEnv("RESEND_API_KEY");
+const EMAIL_FROM = getEnv("EMAIL_FROM");
+const CONTACT_EMAIL = getEnv("CONTACT_EMAIL");
 
-const resend = new Resend(RESEND_API_KEY);
+const resend = new Resend(RESEND_API_KEY || "re_dummy_key");
 
 const formatConsultationDateTime = (value?: string) => {
   if (!value) {
