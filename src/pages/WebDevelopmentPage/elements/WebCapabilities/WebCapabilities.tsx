@@ -365,7 +365,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
     }, []);
 
     return (
-      <section ref={sectionRef} id="deliverables" className={styles.section}>
+      <section ref={sectionRef} id="capabilities" className={styles.section}>
         <div className={styles.backgroundGlow} />
 
         <div className={styles.container}>

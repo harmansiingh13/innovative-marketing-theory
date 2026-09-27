@@ -90,7 +90,7 @@ export const EventManage = forwardRef<HTMLElement, EventManageProps>(
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     return (
-      <section ref={ref} id="what-we-manage" className={styles.section}>
+      <section ref={ref} id="productions" className={styles.section}>
         {/* Subtle Background Pattern & Ambient Glow */}
         <div className={styles.gridPattern} />
         <div className={styles.ambientGlow} />
