@@ -165,7 +165,7 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
           <div ref={headerRef} className={styles.header}>
             <div className={styles.kicker}>
               <span className={styles.kickerLine} />
-              <span>THE SHOWREEL VAULT // CURATED PORTFOLIO</span>
+              <span>THE SHOWREEL VAULT</span>
             </div>
 
             <div className={styles.headerRow}>
@@ -223,19 +223,6 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
               <span className={styles.cropMarkTopRight}>⌝</span>
               <span className={styles.cropMarkBottomLeft}>⌞</span>
               <span className={styles.cropMarkBottomRight}>⌟</span>
-
-              {/* Top HUD Overlay */}
-              <div className={styles.theaterHudTop}>
-                <div className={styles.hudBadge}>
-                  <span className={styles.recDot} />
-                  <span>
-                    LIVE REEL {"//"} {selectedProject.client}
-                  </span>
-                </div>
-                <div className={styles.hudOptics}>
-                  <span>{selectedProject.optics}</span>
-                </div>
-              </div>
 
               {/* Center Play Button Overlay (when paused) */}
               {!isPlaying && (
@@ -300,11 +287,6 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
                 <span className={styles.statHighlight}>{selectedProject.runtime}</span>
                 <span className={styles.statLabel}>{selectedProject.deliverable}</span>
               </div>
-
-              <Link href="/#contact" className={styles.inquireBtn}>
-                <span>INQUIRE SIMILAR SHOOT</span>
-                <ArrowUpRight size={14} />
-              </Link>
             </div>
 
             {/* Project Cards Vault Grid */}

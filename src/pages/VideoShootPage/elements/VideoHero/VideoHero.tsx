@@ -48,12 +48,6 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography, Conviction & Actions */}
             <div className={styles.leftColumn}>
-              {/* Kicker */}
-              <div ref={headingKickerRef} className={styles.kicker}>
-                <span className={styles.kickerDash}>—</span>
-                <span className={styles.kickerHash}>#</span>
-                <span className={styles.kickerText}>PROFESSIONAL VIDEO SHOOTS</span>
-              </div>
 
               {/* Monumental 4-Line Headline */}
               <h1 ref={headingTitleRef} className={styles.headline}>
@@ -110,7 +104,6 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
                 <span className={styles.valueNumber}>01</span>
-                <span className={styles.valueDivider}>/</span>
                 <span className={styles.valueTag}>WHAT WE BRING</span>
               </div>
               <h2 className={styles.valueTitle}>Cinematic Direction & Controlled Optics</h2>
@@ -123,7 +116,6 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
                 <span className={styles.valueNumber}>02</span>
-                <span className={styles.valueDivider}>/</span>
                 <span className={styles.valueTag}>WHY IT MATTERS</span>
               </div>
               <h2 className={styles.valueTitle}>First-Frame Perception & Retention</h2>
@@ -137,7 +129,6 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
                 <span className={styles.valueNumber}>03</span>
-                <span className={styles.valueDivider}>/</span>
                 <span className={styles.valueTag}>BRAND IMPACT</span>
               </div>
               <h2 className={styles.valueTitle}>Prestige That Drives Conviction</h2>

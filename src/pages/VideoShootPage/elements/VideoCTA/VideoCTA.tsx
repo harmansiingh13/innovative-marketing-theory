@@ -51,7 +51,7 @@ export const VideoCTA = forwardRef<HTMLElement, VideoCTAProps>(
           <div ref={ctaRef} className={styles.compositionBlock}>
             <div ref={eyebrowRef} className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span>INITIATE PRODUCTION // SESSION WRAP</span>
+              <span>INITIATE PRODUCTION</span>
             </div>
 
             <h2 ref={headlineRef} className={styles.headline}>

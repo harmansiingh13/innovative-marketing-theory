@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useForm } from "react-hook-form";
@@ -16,13 +17,21 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export const ContactSection = () => {
+export interface ContactSectionProps {
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+export const ContactSection = ({
+  imageSrc = "/images/welcome_consultation.jpg",
+  imageAlt = "Welcome to your consultation with Innovative Marketing Theory",
+}: ContactSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const headingLabelRef = useRef<HTMLDivElement>(null);
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
   const headingAsideRef = useRef<HTMLDivElement>(null);
   const contactCardRef = useRef<HTMLDivElement>(null);
-  const cardHeadingRef = useRef<HTMLDivElement>(null);
+  const cardVisualRef = useRef<HTMLDivElement>(null);
   const formWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,26 +76,13 @@ export const ContactSection = () => {
         tl.fromTo(headingAsideRef.current, asideVars.from, asideVars.to, 0.22);
       }
 
-      // 4. Contact Card inner heading: TOP-LEFT -> FINAL
-      if (cardHeadingRef.current) {
-        const h3 = cardHeadingRef.current.querySelector("h3");
-        const p = cardHeadingRef.current.querySelector("p");
-
-        if (h3) {
-          const h3Vars = getDirectionalVars("topLeft", {
-            distance: 50,
-            duration: 0.9,
-          });
-          tl.fromTo(h3, h3Vars.from, h3Vars.to, 0.28);
-        }
-
-        if (p) {
-          const pVars = getDirectionalVars("left", {
-            subtle: true,
-            duration: 0.85,
-          });
-          tl.fromTo(p, pVars.from, pVars.to, 0.38);
-        }
+      // 4. Contact Card image visual: TOP-LEFT -> FINAL
+      if (cardVisualRef.current) {
+        const visualVars = getDirectionalVars("topLeft", {
+          distance: 40,
+          duration: 0.9,
+        });
+        tl.fromTo(cardVisualRef.current, visualVars.from, visualVars.to, 0.28);
       }
 
       // 5. Form container: RIGHT -> FINAL POSITION
@@ -219,20 +215,24 @@ export const ContactSection = () => {
 
         <div ref={contactCardRef} className={styles.contactCard}>
           <div className={styles.cardContent}>
-            <div ref={cardHeadingRef} className={styles.cardHeading}>
-              <h3>
-                Ready when
-                <br />
-                <span>you are.</span>
-              </h3>
-
-              <p>
-                Share a few details about your business and preferred consultation date. Our team
-                will get back to you to discuss your goals.
-              </p>
+            <div ref={cardVisualRef} className={styles.cardVisual}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={imageSrc}
+                  alt={imageAlt}
+                  fill
+                  sizes="(max-width: 700px) 100vw, (max-width: 1000px) 45vw, 500px"
+                  className={styles.cardImage}
+                />
+                <div className={styles.imageOverlay} />
+                {/* <div className={styles.visualBadge}>
+                  <span className={styles.badgeDot} />
+                  <span>CONSULTATION OPEN</span>
+                </div> */}
+              </div>
             </div>
 
-            <div ref={formWrapperRef}>
+            <div ref={formWrapperRef} className={styles.formWrapper}>
               <ContactForm methods={methods} onSubmit={handleSubmit} />
             </div>
           </div>

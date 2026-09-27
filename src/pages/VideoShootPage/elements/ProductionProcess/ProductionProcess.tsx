@@ -139,7 +139,7 @@ export const ProductionProcess = forwardRef<HTMLElement, ProductionProcessProps>
           <div ref={headerRef} className={styles.header}>
             <div className={styles.kicker}>
               <span className={styles.kickerLine} />
-              <span>{"THE PRODUCTION METHODOLOGY // HOW WE MAKE IT"}</span>
+              <span>THE PRODUCTION METHODOLOGY</span>
             </div>
             <div className={styles.headerRow}>
               <h2 className={styles.title}>

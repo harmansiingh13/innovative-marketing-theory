@@ -37,7 +37,7 @@ export interface ServiceProcessData {
 
 export const serviceProcessData: Record<ServiceType, ServiceProcessData> = {
   "video-shoots": {
-    kicker: "THE PRODUCTION METHODOLOGY // HOW WE MAKE IT",
+    kicker: "THE PRODUCTION METHODOLOGY",
     title: "How we make it.",
     titleHighlight: "From blueprint to final frame.",
     description:
