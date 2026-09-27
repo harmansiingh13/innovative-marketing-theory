@@ -117,7 +117,7 @@ export const serviceProcessData: Record<ServiceType, ServiceProcessData> = {
   },
 
   "video-editing": {
-    kicker: "THE EDITORIAL PIPELINE // HOW WE PACE IT",
+    kicker: "THE EDITORIAL PIPELINE",
     title: "How we cut it.",
     titleHighlight: "From raw footage to master export.",
     description:
@@ -220,7 +220,7 @@ export const serviceProcessData: Record<ServiceType, ServiceProcessData> = {
   },
 
   "social-media": {
-    kicker: "THE GROWTH FORMULA // HOW WE SCALE IT",
+    kicker: "THE GROWTH FORMULA",
     title: "How we grow it.",
     titleHighlight: "From fleeting attention to compounding authority.",
     description:
@@ -323,7 +323,7 @@ export const serviceProcessData: Record<ServiceType, ServiceProcessData> = {
   },
 
   advertisement: {
-    kicker: "PAID MEDIA ARCHITECTURE // HOW WE SCALE IT",
+    kicker: "PAID MEDIA ARCHITECTURE",
     title: "How we scale it.",
     titleHighlight: "From wasted spend to profitable ROAS.",
     description:

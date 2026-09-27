@@ -77,7 +77,7 @@ export const AdCampaigns = forwardRef<HTMLElement, AdCampaignsProps>(
           <div ref={headerRef} className={styles.header}>
             <div className={styles.kicker}>
               <span className={styles.kickerLine} />
-              <span>CAMPAIGN ARCHITECTURES {" // "} 02</span>
+              <span>CAMPAIGN ARCHITECTURES</span>
             </div>
 
             <div className={styles.headerRow}>

@@ -51,11 +51,6 @@ export const AdHero = forwardRef<HTMLElement, AdHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography & Actions */}
             <div className={styles.leftColumn}>
-              <div ref={headingKickerRef} className={styles.kicker}>
-                <span className={styles.kickerDash}>—</span>
-                <span className={styles.kickerHash}>#</span>
-                <span>PERFORMANCE MARKETING & CONVERSION ARCHITECTURE</span>
-              </div>
 
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>WE DON&apos;T BUY CLICKS.</span>
@@ -177,7 +172,7 @@ export const AdHero = forwardRef<HTMLElement, AdHeroProps>(
           <div ref={valueLedgerRef} className={styles.valueLedger}>
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>01 // ALGORITHMIC BIDDING</span>
+                <span className={styles.ledgerNumber}>01 ALGORITHMIC BIDDING</span>
               </div>
               <h3 className={styles.ledgerTitle}>1st-Party Conversion Modeling</h3>
               <p className={styles.ledgerDesc}>
@@ -189,7 +184,7 @@ export const AdHero = forwardRef<HTMLElement, AdHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>02 // CREATIVE VELOCITY</span>
+                <span className={styles.ledgerNumber}>02 CREATIVE VELOCITY</span>
               </div>
               <h3 className={styles.ledgerTitle}>Rapid Direct-Response Testing</h3>
               <p className={styles.ledgerDesc}>
@@ -200,7 +195,7 @@ export const AdHero = forwardRef<HTMLElement, AdHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>03 // CONVERSION OPTIMIZATION</span>
+                <span className={styles.ledgerNumber}>03 CONVERSION OPTIMIZATION</span>
               </div>
               <h3 className={styles.ledgerTitle}>Post-Click Revenue Funnels</h3>
               <p className={styles.ledgerDesc}>

@@ -81,11 +81,6 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography & Actions */}
             <div className={styles.leftColumn}>
-              <div ref={headingKickerRef} className={styles.kicker}>
-                <span className={styles.kickerDash}>—</span>
-                <span className={styles.kickerHash}>#</span>
-                <span>ORGANIC SCALE & COMMUNITY INFRASTRUCTURE</span>
-              </div>
 
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>WE DON&apos;T POST.</span>
@@ -254,7 +249,7 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
           <div ref={valueLedgerRef} className={styles.valueLedger}>
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>01 // ALGORITHMIC VELOCITY</span>
+                <span className={styles.ledgerNumber}>01 ALGORITHMIC VELOCITY</span>
               </div>
               <h3 className={styles.ledgerTitle}>Multi-Channel Daily Choreography</h3>
               <p className={styles.ledgerDesc}>
@@ -265,7 +260,7 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>02 // CULT BRAND NARRATIVE</span>
+                <span className={styles.ledgerNumber}>02 CULT BRAND NARRATIVE</span>
               </div>
               <h3 className={styles.ledgerTitle}>Polarizing Intellectual IP</h3>
               <p className={styles.ledgerDesc}>
@@ -276,7 +271,7 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>03 // CONVERSION ARCHITECTURE</span>
+                <span className={styles.ledgerNumber}>03 CONVERSION ARCHITECTURE</span>
               </div>
               <h3 className={styles.ledgerTitle}>Attention into Pipeline</h3>
               <p className={styles.ledgerDesc}>

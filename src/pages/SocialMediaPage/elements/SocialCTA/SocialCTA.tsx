@@ -51,7 +51,7 @@ export const SocialCTA = forwardRef<HTMLElement, SocialCTAProps>(
           <div ref={ctaRef} className={styles.compositionBlock}>
             <div ref={eyebrowRef} className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span>SCALE YOUR AUDIENCE // ORGANIC DISTRIBUTION</span>
+              <span>SCALE YOUR AUDIENCE</span>
             </div>
 
             <h2 ref={headlineRef} className={styles.headline}>

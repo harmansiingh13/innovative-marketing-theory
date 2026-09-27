@@ -51,7 +51,7 @@ export const AdCTA = forwardRef<HTMLElement, AdCTAProps>(
           <div ref={ctaRef} className={styles.compositionBlock}>
             <div ref={eyebrowRef} className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span>SCALE YOUR PROFIT MARGINS // CAPITAL ALLOCATION</span>
+              <span>SCALE YOUR PROFIT MARGINS</span>
             </div>
 
             <h2 ref={headlineRef} className={styles.headline}>

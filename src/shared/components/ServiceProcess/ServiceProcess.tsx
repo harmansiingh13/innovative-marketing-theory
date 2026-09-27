@@ -186,14 +186,6 @@ export const ServiceProcess = forwardRef<HTMLElement, ServiceProcessProps>(
                   ⌟
                 </span>
 
-                {/* Top Telemetry HUD */}
-                <div className={styles.mediaHudTop}>
-                  <div className={styles.hudBadge}>
-                    <span className={styles.recordDot} />
-                    <span>{`${activeStep.number} // ${activeStep.category}`}</span>
-                  </div>
-                  <span className={styles.hudTelemetry}>{activeStep.optics}</span>
-                </div>
 
                 {/* Full-Bleed Media Layers with Seamless Crossfade */}
                 <div className={styles.mediaViewport}>
@@ -260,7 +252,6 @@ export const ServiceProcess = forwardRef<HTMLElement, ServiceProcessProps>(
                 {/* Bottom Telemetry HUD */}
                 <div className={styles.mediaHudBottom}>
                   <div className={styles.hudSequence}>
-                    <span className={styles.timecodeText}>{activeStep.timecode}</span>
                     <span className={styles.sceneTagText}>{activeStep.sceneTag}</span>
                   </div>
 

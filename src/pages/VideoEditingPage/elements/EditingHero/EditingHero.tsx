@@ -48,11 +48,6 @@ export const EditingHero = forwardRef<HTMLElement, EditingHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography & Actions */}
             <div className={styles.leftColumn}>
-              <div ref={headingKickerRef} className={styles.kicker}>
-                <span className={styles.kickerDash}>—</span>
-                <span className={styles.kickerHash}>#</span>
-                <span>POST-PRODUCTION & RETENTION EDITING</span>
-              </div>
 
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>RAW FOOTAGE IN.</span>
@@ -187,7 +182,7 @@ export const EditingHero = forwardRef<HTMLElement, EditingHeroProps>(
           <div ref={valueLedgerRef} className={styles.valueLedger}>
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>01 // RETENTION ENGINEERING</span>
+                <span className={styles.ledgerNumber}>01 RETENTION ENGINEERING</span>
               </div>
               <h3 className={styles.ledgerTitle}>Engineered for Watch Time</h3>
               <p className={styles.ledgerDesc}>
@@ -198,7 +193,7 @@ export const EditingHero = forwardRef<HTMLElement, EditingHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>02 // COLOR SCIENCE & MOOD</span>
+                <span className={styles.ledgerNumber}>02 COLOR SCIENCE & MOOD</span>
               </div>
               <h3 className={styles.ledgerTitle}>Bespoke DaVinci Color Grading</h3>
               <p className={styles.ledgerDesc}>
@@ -209,7 +204,7 @@ export const EditingHero = forwardRef<HTMLElement, EditingHeroProps>(
 
             <div className={styles.ledgerCard}>
               <div className={styles.ledgerHeader}>
-                <span className={styles.ledgerNumber}>03 // MULTI-PLATFORM MASTERS</span>
+                <span className={styles.ledgerNumber}>03 MULTI-PLATFORM MASTERS</span>
               </div>
               <h3 className={styles.ledgerTitle}>Native Format Delivery</h3>
               <p className={styles.ledgerDesc}>

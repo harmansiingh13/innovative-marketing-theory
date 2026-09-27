@@ -166,7 +166,7 @@ export const EditingVault = forwardRef<HTMLElement, EditingVaultProps>(
           <div ref={headerRef} className={styles.header}>
             <div className={styles.kicker}>
               <span className={styles.kickerLine} />
-              <span>POST-PRODUCTION REEL VAULT // 02</span>
+              <span>POST-PRODUCTION REEL VAULT</span>
             </div>
 
             <div className={styles.headerRow}>
@@ -298,11 +298,6 @@ export const EditingVault = forwardRef<HTMLElement, EditingVaultProps>(
                 <span className={styles.statHighlight}>{selectedProject.runtime}</span>
                 <span className={styles.statLabel}>{selectedProject.deliverable}</span>
               </div>
-
-              <Link href="/#contact" className={styles.inquireBtn}>
-                <span>INQUIRE SIMILAR EDIT</span>
-                <ArrowUpRight size={14} />
-              </Link>
             </div>
 
             {/* Project Cards Vault Grid */}

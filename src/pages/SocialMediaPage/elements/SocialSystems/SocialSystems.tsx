@@ -242,7 +242,7 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
           <div ref={headerRef} className={styles.header}>
             <div className={styles.kicker}>
               <span className={styles.kickerLine} />
-              <span>DISTRIBUTION SYSTEMS // 02</span>
+              <span>DISTRIBUTION SYSTEMS</span>
             </div>
 
             <div className={styles.headerRow}>

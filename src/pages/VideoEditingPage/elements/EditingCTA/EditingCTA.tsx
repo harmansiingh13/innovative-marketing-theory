@@ -51,7 +51,7 @@ export const EditingCTA = forwardRef<HTMLElement, EditingCTAProps>(
           <div ref={ctaRef} className={styles.compositionBlock}>
             <div ref={eyebrowRef} className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span>INITIATE SPRINT // HIGH-RETENTION CUT</span>
+              <span>INITIATE SPRINT</span>
             </div>
 
             <h2 ref={headlineRef} className={styles.headline}>
