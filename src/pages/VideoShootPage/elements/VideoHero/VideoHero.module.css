@@ -458,7 +458,7 @@ button:hover .secondaryArrow {
 }
 
 .valueTag {
-  color: rgba(245, 242, 235, 0.6);
+  color: var(--color-brand-primary, #e8a91a);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;

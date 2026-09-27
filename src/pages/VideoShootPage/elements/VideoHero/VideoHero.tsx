@@ -103,8 +103,7 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
           <div ref={valueLedgerRef} className={styles.valueLedger}>
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
-                <span className={styles.valueNumber}>01</span>
-                <span className={styles.valueTag}>WHAT WE BRING</span>
+                <span className={styles.valueTag}>01 WHAT WE BRING</span>
               </div>
               <h2 className={styles.valueTitle}>Cinematic Direction & Controlled Optics</h2>
               <p className={styles.valueText}>
@@ -115,8 +114,7 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
 
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
-                <span className={styles.valueNumber}>02</span>
-                <span className={styles.valueTag}>WHY IT MATTERS</span>
+                <span className={styles.valueTag}>02 WHY IT MATTERS</span>
               </div>
               <h2 className={styles.valueTitle}>First-Frame Perception & Retention</h2>
               <p className={styles.valueText}>
@@ -128,8 +126,7 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
 
             <div className={styles.valueCard}>
               <div className={styles.valueHeader}>
-                <span className={styles.valueNumber}>03</span>
-                <span className={styles.valueTag}>BRAND IMPACT</span>
+                <span className={styles.valueTag}>03 BRAND IMPACT</span>
               </div>
               <h2 className={styles.valueTitle}>Prestige That Drives Conviction</h2>
               <p className={styles.valueText}>
