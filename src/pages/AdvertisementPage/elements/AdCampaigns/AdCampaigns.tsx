@@ -4,7 +4,18 @@ import { useState, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./AdCampaigns.module.css";
-import { ArrowUpRight } from "lucide-react";
+import MobileEmulator from "@/shared/components/MobileEmulator";
+import {
+  ArrowUpRight,
+  Layers,
+  Heart,
+  MessageCircle,
+  Send,
+  Bookmark,
+  MoreHorizontal,
+  ChevronRight,
+  Search,
+} from "lucide-react";
 
 export type AdPlatformKey = "META" | "GOOGLE";
 
@@ -92,147 +103,244 @@ export const AdCampaigns = forwardRef<HTMLElement, AdCampaignsProps>(
                   out-scale competitors.
                 </p>
               </div>
-
-              {/* Platform Selector Tabs */}
-              <div className={styles.platformTabs} role="tablist" aria-label="Platform selection">
-                {(Object.keys(adPlatforms) as AdPlatformKey[]).map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    role="tab"
-                    aria-selected={activePlatform === key}
-                    className={`${styles.tabBtn} ${
-                      activePlatform === key ? styles.tabBtnActive : ""
-                    }`}
-                    onClick={() => setActivePlatform(key)}
-                  >
-                    {adPlatforms[key].tabLabel}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 
           {/* Interactive Ad Simulator Canvas & Strategy */}
           <div ref={canvasRef} className={styles.simulatorGrid}>
-            {/* Left Column: Simulated Ad Interface */}
+            {/* Left Column: Interactive Smartphone Emulator */}
             <div className={styles.adCanvas}>
               <div className={styles.canvasAmbientGlow} />
 
-              {/* 1. META ADS PREVIEW */}
-              {activePlatform === "META" && (
-                <div className={styles.metaAdCard}>
-                  <div className={styles.metaHeader}>
-                    <div className={styles.metaAuthorGroup}>
-                      <div className={styles.metaAvatar}>
+              {/* Reusable Mobile Emulator Component */}
+              <MobileEmulator>
+                {/* Contextual App Top Bar */}
+                {activePlatform === "META" ? (
+                  <div className={styles.igAppHeader}>
+                    <span className={styles.igLogoText}>Instagram</span>
+                    <div className={styles.igHeaderIcons}>
+                      <Heart size={18} strokeWidth={1.8} />
+                      <Send size={18} strokeWidth={1.8} />
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.browserHeader}>
+                    <div className={styles.browserUrlPill}>
+                      <span className={styles.browserLockIcon}>🔒</span>
+                      <span className={styles.browserUrlText}>google.com</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Screen Content: No vertical scroll for Instagram */}
+                <div
+                  className={`${styles.phoneScreenContent} ${
+                    activePlatform === "META"
+                      ? styles.phoneScreenNoScroll
+                      : styles.phoneScreenScrollable
+                  }`}
+                >
+                  {/* 1. META ADS (INSTAGRAM) PREVIEW */}
+                  {activePlatform === "META" && (
+                    <div className={styles.metaAdCard}>
+                      {/* Post Header */}
+                      <div className={styles.metaPostHeader}>
+                        <div className={styles.metaUserGroup}>
+                          <div className={styles.metaAvatarRing}>
+                            <div className={styles.metaAvatar}>
+                              <Image
+                                src="/images/cinema_production_graded.jpg"
+                                alt="Hyperion Athletics"
+                                fill
+                                sizes="32px"
+                                className={styles.metaMediaImg}
+                              />
+                            </div>
+                          </div>
+                          <div className={styles.metaUserMeta}>
+                            <div className={styles.metaHandleRow}>
+                              <span className={styles.metaHandle}>hyperionathletics</span>
+                              <span className={styles.metaVerifiedBadge}>✓</span>
+                            </div>
+                            <span className={styles.metaSponsoredLabel}>Sponsored</span>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className={styles.metaOptionsBtn}
+                          aria-label="Ad options"
+                        >
+                          <MoreHorizontal size={15} />
+                        </button>
+                      </div>
+
+                      {/* Post Media (1:1 Full Bleed) */}
+                      <div className={styles.metaMediaWrap}>
                         <Image
-                          src="/images/cinema_production_graded.jpg"
-                          alt="Hyperion Athletics"
+                          src="/images/cinematic_reel_portrait.jpg"
+                          alt="Hyperion Athletics Apparel"
                           fill
-                          sizes="38px"
+                          sizes="330px"
+                          priority
                           className={styles.metaMediaImg}
                         />
                       </div>
-                      <div className={styles.metaAuthorMeta}>
-                        <span className={styles.metaBrandName}>
-                          Hyperion Athletics
-                          <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>✓</span>
-                        </span>
-                        <span className={styles.metaSponsoredTag}>Sponsored • 🌐</span>
+
+                      {/* Instagram Native Sponsored CTA Bar */}
+                      <div className={styles.igCtaBar}>
+                        <span className={styles.igCtaText}>Shop now</span>
+                        <ChevronRight size={14} className={styles.igCtaChevron} />
+                      </div>
+
+                      {/* Engagement Actions Row */}
+                      <div className={styles.igActionRow}>
+                        <div className={styles.igActionLeft}>
+                          <Heart size={18} strokeWidth={1.8} />
+                          <MessageCircle size={18} strokeWidth={1.8} />
+                          <Send size={18} strokeWidth={1.8} />
+                        </div>
+                        <Bookmark size={18} strokeWidth={1.8} />
+                      </div>
+
+                      {/* Post Details: Likes, Caption, Comments */}
+                      <div className={styles.igCaptionBlock}>
+                        <span className={styles.igLikesCount}>14,820 likes</span>
+                        <p className={styles.igCaptionText}>
+                          <span className={styles.igCaptionHandle}>hyperionathletics</span> The 1%
+                          don&apos;t train what looks good in photos.
+                        </p>
+                        <span className={styles.igCommentsLink}>View all 142 comments</span>
+                        <span className={styles.igTimestamp}>SPONSORED • 2 HOURS AGO</span>
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  <p className={styles.metaPrimaryText}>
-                    The 1% don&apos;t train what looks good in photos. They train what compounds
-                    under maximum pressure. Engineered for elite output. Claim your launch edition
-                    kit.
-                  </p>
+                  {/* 2. GOOGLE ADS (SEARCH) PREVIEW */}
+                  {activePlatform === "GOOGLE" && (
+                    <div className={styles.googleSearchContainer}>
+                      {/* Google Search Header with Logo & Query */}
+                      <div className={styles.googleSearchHeader}>
+                        <div className={styles.googleBrandRow}>
+                          <span className={styles.googleLogo}>
+                            <span style={{ color: "#4285F4" }}>G</span>
+                            <span style={{ color: "#EA4335" }}>o</span>
+                            <span style={{ color: "#FBBC05" }}>o</span>
+                            <span style={{ color: "#4285F4" }}>g</span>
+                            <span style={{ color: "#34A853" }}>l</span>
+                            <span style={{ color: "#EA4335" }}>e</span>
+                          </span>
+                        </div>
 
-                  <div className={styles.metaMediaWrap}>
-                    <Image
-                      src="/images/cinematic_reel_portrait.jpg"
-                      alt="Meta Ad Creative"
-                      fill
-                      sizes="420px"
-                      className={styles.metaMediaImg}
-                    />
-                  </div>
+                        <div className={styles.googleSearchInputBar}>
+                          <Search size={13} className={styles.googleSearchIcon} />
+                          <span className={styles.googleSearchQueryText}>
+                            performance marketing agency
+                          </span>
+                        </div>
 
-                  <div className={styles.metaCtaBar}>
-                    <div className={styles.metaCtaMeta}>
-                      <span className={styles.metaDomain}>HYPERIONATHLETICS.COM</span>
-                      <span className={styles.metaHeadline}>
-                        High-Performance Gear // Launch Drop
-                      </span>
+                        {/* Search Navigation Tabs */}
+                        <div className={styles.googleNavTabs}>
+                          <span className={styles.googleNavTabActive}>All</span>
+                          <span className={styles.googleNavTab}>Images</span>
+                          <span className={styles.googleNavTab}>News</span>
+                          <span className={styles.googleNavTab}>Videos</span>
+                        </div>
+                      </div>
+
+                      {/* The Sponsored Ad Result */}
+                      <div className={styles.googleResultCard}>
+                        <div className={styles.googleAdMetaLine}>
+                          <div className={styles.googleFavicon}>G</div>
+                          <div className={styles.googleAdSource}>
+                            <span className={styles.googleAdSiteName}>IMT Agency</span>
+                            <span className={styles.googleAdUrl}>
+                              https://imt.agency › ads › performance
+                            </span>
+                          </div>
+                          <span className={styles.googleSponsoredPill}>Sponsored</span>
+                        </div>
+
+                        <h3 className={styles.googleAdHeadline}>
+                          Category Domination Marketing | Paid Ads That Scale 4X+ ROAS
+                        </h3>
+
+                        <p className={styles.googleAdSnippet}>
+                          Stop burning media budget on low-intent clicks. High-velocity performance
+                          acquisition systems across Meta, Google & TikTok. Transparent weekly war
+                          rooms.
+                        </p>
+
+                        <div className={styles.googleSitelinksGrid}>
+                          <div className={styles.sitelinkItem}>
+                            <span className={styles.sitelinkTitle}>Verified Case Studies</span>
+                            <span className={styles.sitelinkDesc}>Scale brands to $100K+/Mo</span>
+                          </div>
+                          <div className={styles.sitelinkItem}>
+                            <span className={styles.sitelinkTitle}>Free Growth Audit</span>
+                            <span className={styles.sitelinkDesc}>
+                              Full audit of ad account & CAPI
+                            </span>
+                          </div>
+                          <div className={styles.sitelinkItem}>
+                            <span className={styles.sitelinkTitle}>CAPI Server Setup</span>
+                            <span className={styles.sitelinkDesc}>
+                              Bypass iOS tracking degradation
+                            </span>
+                          </div>
+                          <div className={styles.sitelinkItem}>
+                            <span className={styles.sitelinkTitle}>ROAS Calculator</span>
+                            <span className={styles.sitelinkDesc}>Calculate scaling returns</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <button type="button" className={styles.metaActionBtn}>
-                      Shop Now
-                    </button>
-                  </div>
-
-                  <div className={styles.metaMetricsRibbon}>
-                    <span>ROAS: 7.2X</span>
-                    <span>CTR: 3.8%</span>
-                    <span>CPA: $24.80</span>
-                  </div>
+                  )}
                 </div>
-              )}
-
-              {/* 2. GOOGLE ADS PREVIEW */}
-              {activePlatform === "GOOGLE" && (
-                <div className={styles.googleAdCard}>
-                  <div className={styles.googleAdHeader}>
-                    <div className={styles.googleFavicon}>G</div>
-                    <div className={styles.googleUrlMeta}>
-                      <span className={styles.googleSponsoredTag}>Sponsored</span>
-                      <span className={styles.googleBreadcrumb}>
-                        https://imt.agency/growth/performance-ads
-                      </span>
-                    </div>
-                  </div>
-
-                  <h3 className={styles.googleHeadline}>
-                    Category Domination Marketing | Paid Ads That Scale 4X+ ROAS
-                  </h3>
-
-                  <p className={styles.googleSnippet}>
-                    Stop burning media budget on low-intent clicks. High-velocity performance
-                    acquisition systems across Meta, Google & TikTok. Transparent weekly war rooms.
-                  </p>
-
-                  <div className={styles.googleSitelinks}>
-                    <div className={styles.sitelinkItem}>
-                      <span className={styles.sitelinkTitle}>Verified Case Studies</span>
-                      <span className={styles.sitelinkDesc}>
-                        See how we scale brands to $100K+ monthly
-                      </span>
-                    </div>
-                    <div className={styles.sitelinkItem}>
-                      <span className={styles.sitelinkTitle}>Free Growth Audit</span>
-                      <span className={styles.sitelinkDesc}>
-                        Full audit of your ad account & CAPI health
-                      </span>
-                    </div>
-                    <div className={styles.sitelinkItem}>
-                      <span className={styles.sitelinkTitle}>CAPI Server Setup</span>
-                      <span className={styles.sitelinkDesc}>
-                        Bypass iOS privacy tracking degradation
-                      </span>
-                    </div>
-                    <div className={styles.sitelinkItem}>
-                      <span className={styles.sitelinkTitle}>ROAS Calculator</span>
-                      <span className={styles.sitelinkDesc}>
-                        Calculate expected returns on scaled spend
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
+              </MobileEmulator>
             </div>
 
-            {/* Right Column: Strategy & Deliverables */}
+            {/* Right Column: Strategy Card with Tabs on Top */}
             <div className={styles.strategyColumn}>
+              {/* Platform Selector Header Area (Matching Vault Tabs UI) */}
+              <div className={styles.campaignSelectorHeader}>
+                <div className={styles.vaultTitleRow}>
+                  <div className={styles.vaultTitleGroup}>
+                    <span className={styles.vaultKickerBullet} />
+                    <h3 className={styles.vaultTitleKicker}>
+                      SELECT CAMPAIGN BLUEPRINT TO PREVIEW
+                    </h3>
+                  </div>
+                  {/* <span className={styles.vaultFormatBadge}>
+                    <Layers size={11} />
+                    <span>
+                      {Object.keys(adPlatforms).length} PLATFORMS // FULL-FUNNEL MASTER
+                    </span>
+                  </span> */}
+                </div>
+
+                {/* Platform Selector Tabs */}
+                <div
+                  className={styles.cardPlatformTabs}
+                  role="tablist"
+                  aria-label="Platform selection"
+                >
+                  {(Object.keys(adPlatforms) as AdPlatformKey[]).map((key) => (
+                    <button
+                      key={key}
+                      type="button"
+                      role="tab"
+                      aria-selected={activePlatform === key}
+                      className={`${styles.cardTabBtn} ${
+                        activePlatform === key ? styles.cardTabBtnActive : ""
+                      }`}
+                      onClick={() => setActivePlatform(key)}
+                    >
+                      {adPlatforms[key].tabLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className={styles.strategyHeader}>
                 <span className={styles.clientKicker}>
                   {current.client} {" // "} STRATEGY SPEC
@@ -259,42 +367,6 @@ export const AdCampaigns = forwardRef<HTMLElement, AdCampaignsProps>(
                 <span className={styles.metricBig}>{current.metricBig}</span>
                 <span className={styles.metricLabel}>{current.metricLabel}</span>
               </div>
-
-              <Link href="/#contact" className={styles.strategyCtaBtn}>
-                <span>DEPLOY THIS CAMPAIGN SYSTEM</span>
-                <ArrowUpRight size={15} />
-              </Link>
-            </div>
-          </div>
-
-          {/* Bottom Global Performance Strip */}
-          <div className={styles.performanceStrip}>
-            <div className={styles.stripItem}>
-              <span className={`${styles.stripStat} ${styles.stripStatAccent}`}>$18.4M+</span>
-              <span className={styles.stripLabel}>
-                Profitable media spend deployed across Meta, Google, TikTok, and YouTube.
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={styles.stripStat}>4.4X</span>
-              <span className={styles.stripLabel}>
-                Average blended Return on Ad Spend (ROAS) across all active brand portfolios.
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={`${styles.stripStat} ${styles.stripStatAccent}`}>-38%</span>
-              <span className={styles.stripLabel}>
-                Average reduction in blended Customer Acquisition Cost within 60 days.
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={styles.stripStat}>99.4%</span>
-              <span className={styles.stripLabel}>
-                Conversion tracking accuracy verified via custom server-side CAPI infrastructure.
-              </span>
             </div>
           </div>
         </div>

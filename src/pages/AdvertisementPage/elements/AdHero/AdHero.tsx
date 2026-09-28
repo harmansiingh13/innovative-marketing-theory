@@ -51,7 +51,6 @@ export const AdHero = forwardRef<HTMLElement, AdHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography & Actions */}
             <div className={styles.leftColumn}>
-
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>WE DON&apos;T BUY CLICKS.</span>
                 <span className={styles.headlineLine}>WE ENGINEER</span>

@@ -4,6 +4,7 @@ import { useState, useRef, forwardRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./SocialSystems.module.css";
+import MobileEmulator from "@/shared/components/MobileEmulator";
 import {
   TrendingUp,
   Heart,
@@ -23,6 +24,9 @@ import {
   Plus,
   Menu,
   X,
+  Layers,
+  Search,
+  MoreHorizontal,
 } from "lucide-react";
 
 export type PlatformKey = "INSTAGRAM" | "REELS" | "LINKEDIN" | "TWITTER";
@@ -258,27 +262,6 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
                   psychology, consumption formats, and algorithmic incentives of each ecosystem.
                 </p>
               </div>
-
-              {/* Platform Selector Tabs */}
-              <div className={styles.platformTabs} role="tablist" aria-label="Platform selection">
-                {(Object.keys(platforms) as PlatformKey[]).map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    role="tab"
-                    aria-selected={activePlatform === key}
-                    className={`${styles.tabBtn} ${
-                      activePlatform === key ? styles.tabBtnActive : ""
-                    }`}
-                    onClick={() => {
-                      setActivePlatform(key);
-                      setSelectedPost(null);
-                    }}
-                  >
-                    {platforms[key].tabLabel}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -317,19 +300,7 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
 
                   {/* A: PHONE APP VIEW */}
                   {viewMode === "phone" ? (
-                    <div className={styles.phoneFrame}>
-                      {/* Dynamic Island */}
-                      <div className={styles.phoneDynamicIsland}>
-                        <span className={styles.islandDot} />
-                        <span className={styles.islandPill} />
-                      </div>
-
-                      {/* Phone Status Bar */}
-                      <div className={styles.phoneStatusBar}>
-                        <span>9:41</span>
-                        <span>5G 100%</span>
-                      </div>
-
+                    <MobileEmulator>
                       {/* Instagram App Header */}
                       <div className={styles.igAppHeader}>
                         <div className={styles.igAppHandleGroup}>
@@ -528,7 +499,7 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
                           </>
                         )}
                       </div>
-                    </div>
+                    </MobileEmulator>
                   ) : (
                     /* B: EXPANDED DESKTOP GRID VIEW (Clean 3x3 Aesthetic Grid) */
                     <div className={styles.expandedGridWrapper}>
@@ -645,244 +616,448 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
 
               {/* 2. TIKTOK & REELS PREVIEW */}
               {activePlatform === "REELS" && (
-                <div className={styles.reelsContainer}>
-                  <video
-                    ref={videoRef}
-                    src="/videos/cinema_production_graded.mp4"
-                    poster="/images/cinematic_reel_portrait.jpg"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className={styles.reelsVideo}
-                  />
+                <MobileEmulator statusBarVariant="overlay">
+                  <div className={styles.reelsContainer}>
+                    <video
+                      ref={videoRef}
+                      src="/videos/cinema_production_graded.mp4"
+                      poster="/images/cinematic_reel_portrait.jpg"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className={styles.reelsVideo}
+                    />
 
-                  <div className={styles.reelsOverlay} />
+                    <div className={styles.reelsOverlay} />
 
-                  <div className={styles.reelsTopTag}>
-                    <TrendingUp size={11} />
-                    <span>HOOK RETENTION: 88% AT 3s</span>
-                  </div>
-
-                  <div className={styles.reelsSideActions}>
-                    <button
-                      type="button"
-                      className={styles.reelsActionBtn}
-                      onClick={() => setReelsLiked((prev) => !prev)}
-                      aria-label="Like reel"
-                    >
-                      <div
-                        className={styles.reelsActionIcon}
-                        style={{
-                          background: reelsLiked ? "rgba(255, 65, 54, 0.25)" : undefined,
-                          borderColor: reelsLiked ? "#ff4136" : undefined,
-                        }}
-                      >
-                        <Heart
-                          size={17}
-                          fill={reelsLiked ? "#ff4136" : "none"}
-                          color={reelsLiked ? "#ff4136" : "#fff"}
-                        />
-                      </div>
-                      <span className={styles.reelsActionCount}>
-                        {reelsLiked ? "142.5K" : "142.4K"}
-                      </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className={styles.reelsActionBtn}
-                      aria-label="View comments"
-                    >
-                      <div className={styles.reelsActionIcon}>
-                        <MessageCircle size={17} />
-                      </div>
-                      <span className={styles.reelsActionCount}>1,290</span>
-                    </button>
-
-                    <button type="button" className={styles.reelsActionBtn} aria-label="Save reel">
-                      <div className={styles.reelsActionIcon}>
-                        <Bookmark size={17} />
-                      </div>
-                      <span className={styles.reelsActionCount}>34.8K</span>
-                    </button>
-
-                    <button type="button" className={styles.reelsActionBtn} aria-label="Share reel">
-                      <div className={styles.reelsActionIcon}>
-                        <Share2 size={17} />
-                      </div>
-                      <span className={styles.reelsActionCount}>18.1K</span>
-                    </button>
-                  </div>
-
-                  <div className={styles.reelsBottomMeta}>
-                    <div className={styles.reelsAuthor}>
-                      <span>@hyperion.athletics</span>
-                      <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>✓</span>
+                    <div className={styles.reelsTopTag}>
+                      <TrendingUp size={11} />
+                      <span>HOOK RETENTION: 88% AT 3s</span>
                     </div>
-                    <p className={styles.reelsCaption}>
-                      Most athletes train what looks good in photos. The 1% train what compounds
-                      under pressure. #PerformanceArchitecture #HighGrowth
-                    </p>
+
+                    <div className={styles.reelsSideActions}>
+                      <button
+                        type="button"
+                        className={styles.reelsActionBtn}
+                        onClick={() => setReelsLiked((prev) => !prev)}
+                        aria-label="Like reel"
+                      >
+                        <div
+                          className={styles.reelsActionIcon}
+                          style={{
+                            background: reelsLiked ? "rgba(255, 65, 54, 0.25)" : undefined,
+                            borderColor: reelsLiked ? "#ff4136" : undefined,
+                          }}
+                        >
+                          <Heart
+                            size={17}
+                            fill={reelsLiked ? "#ff4136" : "none"}
+                            color={reelsLiked ? "#ff4136" : "#fff"}
+                          />
+                        </div>
+                        <span className={styles.reelsActionCount}>
+                          {reelsLiked ? "142.5K" : "142.4K"}
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={styles.reelsActionBtn}
+                        aria-label="View comments"
+                      >
+                        <div className={styles.reelsActionIcon}>
+                          <MessageCircle size={17} />
+                        </div>
+                        <span className={styles.reelsActionCount}>1,290</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={styles.reelsActionBtn}
+                        aria-label="Save reel"
+                      >
+                        <div className={styles.reelsActionIcon}>
+                          <Bookmark size={17} />
+                        </div>
+                        <span className={styles.reelsActionCount}>34.8K</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className={styles.reelsActionBtn}
+                        aria-label="Share reel"
+                      >
+                        <div className={styles.reelsActionIcon}>
+                          <Share2 size={17} />
+                        </div>
+                        <span className={styles.reelsActionCount}>18.1K</span>
+                      </button>
+                    </div>
+
+                    <div className={styles.reelsBottomMeta}>
+                      <div className={styles.reelsAuthor}>
+                        <span>@hyperion.athletics</span>
+                        <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>✓</span>
+                      </div>
+                      <p className={styles.reelsCaption}>
+                        Most athletes train what looks good in photos. The 1% train what compounds
+                        under pressure. #PerformanceArchitecture #HighGrowth
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </MobileEmulator>
               )}
 
               {/* 3. LINKEDIN AUTHORITY POST */}
               {activePlatform === "LINKEDIN" && (
-                <div className={styles.linkedInCard}>
-                  <div className={styles.linkedInHeader}>
-                    <div className={styles.linkedInAvatar}>
+                <MobileEmulator>
+                  {/* LinkedIn Mobile App Header */}
+                  <div className={styles.linkedInAppHeader}>
+                    <div className={styles.linkedInHeaderAvatar}>
                       <Image
                         src="/images/director_monitor_bts.jpg"
-                        alt="Founder Avatar"
+                        alt="Julian Vance"
                         fill
-                        sizes="52px"
+                        sizes="26px"
                         className={styles.igSquareImg}
                       />
                     </div>
-                    <div className={styles.linkedInAuthorInfo}>
-                      <span className={styles.linkedInName}>
-                        Julian Vance <span style={{ color: "#0077b5" }}>• 1st</span>
-                      </span>
-                      <span className={styles.linkedInHeadline}>
-                        Managing Partner @ Valence Capital | Climate Tech & Category Leaders
-                      </span>
-                      <span className={styles.linkedInTime}>1d • 🌐 Edited</span>
+                    <div className={styles.linkedInSearchBar}>
+                      <Search size={12} className={styles.linkedInSearchIcon} />
+                      <span>Search</span>
+                    </div>
+                    <div className={styles.linkedInHeaderRight}>
+                      <MessageCircle size={18} />
                     </div>
                   </div>
 
-                  <div className={styles.linkedInBody}>
-                    <p className={styles.linkedInHook}>
-                      Most venture firms spend millions on PR firms that produce zero qualified
-                      inbound dealflow.
-                    </p>
-                    <p>
-                      Here is the 3-step intellectual property framework we used to generate $1.4M
-                      in qualified deals without spending a single dollar on paid advertising:
-                    </p>
-                    <p>
-                      1. Never post corporate announcements. Post polarizing conviction.
-                      <br />
-                      2. Break down complex market mechanics into digestible visual schematics.
-                      <br />
-                      3. Answer the unspoken questions your tier-one prospects debate in private.
-                    </p>
-
-                    <div className={styles.linkedInAssetCard}>
-                      <div className={styles.assetCardLeft}>
-                        <span className={styles.assetCardTitle}>
-                          THE CATEGORY DESIGN MATRIX [PDF DECK]
-                        </span>
-                        <span className={styles.assetCardSub}>
-                          14 Slides • Curated by IMT Growth Systems
-                        </span>
+                  {/* Scrollable Feed Post */}
+                  <div className={styles.linkedInScrollFeed}>
+                    <div className={styles.linkedInCard}>
+                      <div className={styles.linkedInHeader}>
+                        <div className={styles.linkedInAvatar}>
+                          <Image
+                            src="/images/director_monitor_bts.jpg"
+                            alt="Julian Vance"
+                            fill
+                            sizes="42px"
+                            className={styles.igSquareImg}
+                          />
+                        </div>
+                        <div className={styles.linkedInAuthorInfo}>
+                          <span className={styles.linkedInName}>
+                            Julian Vance <span className={styles.linkedInDegree}>• 1st</span>
+                          </span>
+                          <span className={styles.linkedInHeadline}>
+                            Managing Partner @ Valence Capital | Climate Tech & Category Leaders
+                          </span>
+                          <span className={styles.linkedInTime}>1d • 🌐 Edited</span>
+                        </div>
+                        <button
+                          type="button"
+                          className={styles.feedOptionsBtn}
+                          aria-label="Post options"
+                        >
+                          <MoreHorizontal size={16} />
+                        </button>
                       </div>
-                      <Sparkles size={18} color="var(--color-brand-primary, #e8a91a)" />
+
+                      <div className={styles.linkedInBody}>
+                        <p className={styles.linkedInHook}>
+                          Most venture firms spend millions on PR firms that produce zero qualified
+                          inbound dealflow.
+                        </p>
+                        <p>
+                          Here is the 3-step intellectual property framework we used to generate
+                          $1.4M in qualified deals without spending a single dollar on paid
+                          advertising:
+                        </p>
+                        <p>
+                          1. Never post corporate announcements. Post polarizing conviction.
+                          <br />
+                          2. Break down complex market mechanics into digestible visual schematics.
+                          <br />
+                          3. Answer the unspoken questions your tier-one prospects debate in
+                          private.
+                        </p>
+
+                        <div className={styles.linkedInAssetCard}>
+                          <div className={styles.assetCardLeft}>
+                            <span className={styles.assetCardTitle}>
+                              THE CATEGORY DESIGN MATRIX [PDF DECK]
+                            </span>
+                            <span className={styles.assetCardSub}>
+                              14 Slides • Curated by IMT Growth Systems
+                            </span>
+                          </div>
+                          <Sparkles size={16} color="var(--color-brand-primary, #e8a91a)" />
+                        </div>
+                      </div>
+
+                      <div className={styles.linkedInStats}>
+                        <div className={styles.reactionIcons}>
+                          <ThumbsUp size={13} color="#0077b5" />
+                          <Lightbulb size={13} color="var(--color-brand-primary, #e8a91a)" />
+                          <span>1,842 reactions</span>
+                        </div>
+                        <span>214 comments • 86 reposts</span>
+                      </div>
+
+                      <div className={styles.linkedInActions}>
+                        <button type="button" className={styles.linkedInActionBtn}>
+                          <ThumbsUp size={14} />
+                          <span>Like</span>
+                        </button>
+                        <button type="button" className={styles.linkedInActionBtn}>
+                          <MessageCircle size={14} />
+                          <span>Comment</span>
+                        </button>
+                        <button type="button" className={styles.linkedInActionBtn}>
+                          <Repeat2 size={14} />
+                          <span>Repost</span>
+                        </button>
+                        <button type="button" className={styles.linkedInActionBtn}>
+                          <Send size={14} />
+                          <span>Send</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  <div className={styles.linkedInStats}>
-                    <div className={styles.reactionIcons}>
-                      <ThumbsUp size={14} color="#0077b5" />
-                      <Lightbulb size={14} color="var(--color-brand-primary, #e8a91a)" />
-                      <span>1,842 reactions</span>
-                    </div>
-                    <span>214 comments • 86 reposts</span>
-                  </div>
-
-                  <div className={styles.linkedInActions}>
-                    <button type="button" className={styles.linkedInActionBtn}>
-                      <ThumbsUp size={15} />
-                      <span>Like</span>
-                    </button>
-                    <button type="button" className={styles.linkedInActionBtn}>
-                      <MessageCircle size={15} />
-                      <span>Comment</span>
-                    </button>
-                    <button type="button" className={styles.linkedInActionBtn}>
-                      <Repeat2 size={15} />
-                      <span>Repost</span>
-                    </button>
-                    <button type="button" className={styles.linkedInActionBtn}>
-                      <Send size={15} />
-                      <span>Send</span>
-                    </button>
-                  </div>
-                </div>
+                </MobileEmulator>
               )}
 
               {/* 4. X / TWITTER THREAD */}
               {activePlatform === "TWITTER" && (
-                <div className={styles.xThreadCard}>
-                  <div className={styles.xPostHeader}>
-                    <div className={styles.xAvatar}>
+                <MobileEmulator>
+                  {/* X Mobile App Header */}
+                  <div className={styles.xAppHeader}>
+                    <div className={styles.xHeaderAvatar}>
                       <Image
                         src="/images/director_monitor_bts.jpg"
                         alt="Syndicate Labs"
                         fill
-                        sizes="42px"
+                        sizes="26px"
                         className={styles.igSquareImg}
                       />
                     </div>
-                    <div className={styles.xPostMeta}>
-                      <div className={styles.xPostNameRow}>
-                        <span className={styles.xPostName}>Syndicate Labs</span>
-                        <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>✓</span>
+                    <div className={styles.xAppLogo}>
+                      <span>𝕏</span>
+                    </div>
+                    <button type="button" className={styles.xHeaderOptions} aria-label="Settings">
+                      <Sparkles size={15} />
+                    </button>
+                  </div>
+
+                  {/* Scrollable Thread Content */}
+                  <div className={styles.xScrollFeed}>
+                    <div className={styles.xThreadCard}>
+                      {/* Tweet 1 */}
+                      <div className={styles.xPostContainer}>
+                        <div className={styles.xAvatarCol}>
+                          <div className={styles.xAvatar}>
+                            <Image
+                              src="/images/director_monitor_bts.jpg"
+                              alt="Syndicate Labs"
+                              fill
+                              sizes="38px"
+                              className={styles.igSquareImg}
+                            />
+                          </div>
+                          <div className={styles.xThreadConnector} />
+                        </div>
+                        <div className={styles.xContentCol}>
+                          <div className={styles.xPostHeader}>
+                            <div className={styles.xPostNameRow}>
+                              <span className={styles.xPostName}>Syndicate Labs</span>
+                              <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>
+                                ✓
+                              </span>
+                              <span className={styles.xPostHandle}>@syndicatelabs · 2h</span>
+                            </div>
+                            <MoreHorizontal size={14} className={styles.xOptionsIcon} />
+                          </div>
+                          <p className={styles.xPostText}>
+                            The companies winning in 2025 aren&apos;t spending more on ad inventory.
+                            <br />
+                            <br />
+                            They are turning their executive founders into cultural media
+                            properties. Here is the exact algorithmic blueprint: 🧵👇
+                          </p>
+                          <div className={styles.xTweetActions}>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Reply"
+                            >
+                              <MessageCircle size={13} />
+                              <span>42</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Repost"
+                            >
+                              <Repeat2 size={13} />
+                              <span>1.2K</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Like"
+                            >
+                              <Heart size={13} />
+                              <span>8.4K</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Bookmark"
+                            >
+                              <Bookmark size={13} />
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Share"
+                            >
+                              <Share2 size={13} />
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <span className={styles.xPostHandle}>@syndicatelabs</span>
-                    </div>
-                  </div>
 
-                  <p className={styles.xPostText}>
-                    The companies winning in 2025 aren&apos;t spending more on ad inventory.
-                    <br />
-                    <br />
-                    They are turning their executive founders into cultural media properties. Here
-                    is the exact algorithmic blueprint: 🧵👇
-                  </p>
-
-                  <div className={styles.xThreadConnector} />
-
-                  <div className={styles.xPostHeader}>
-                    <div className={styles.xAvatar}>
-                      <Image
-                        src="/images/director_monitor_bts.jpg"
-                        alt="Syndicate Labs"
-                        fill
-                        sizes="42px"
-                        className={styles.igSquareImg}
-                      />
-                    </div>
-                    <div className={styles.xPostMeta}>
-                      <div className={styles.xPostNameRow}>
-                        <span className={styles.xPostName}>Syndicate Labs</span>
-                        <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>✓</span>
+                      {/* Tweet 2 */}
+                      <div className={styles.xPostContainer}>
+                        <div className={styles.xAvatarCol}>
+                          <div className={styles.xAvatar}>
+                            <Image
+                              src="/images/director_monitor_bts.jpg"
+                              alt="Syndicate Labs"
+                              fill
+                              sizes="38px"
+                              className={styles.igSquareImg}
+                            />
+                          </div>
+                        </div>
+                        <div className={styles.xContentCol}>
+                          <div className={styles.xPostHeader}>
+                            <div className={styles.xPostNameRow}>
+                              <span className={styles.xPostName}>Syndicate Labs</span>
+                              <span style={{ color: "var(--color-brand-primary, #e8a91a)" }}>
+                                ✓
+                              </span>
+                              <span className={styles.xPostHandle}>@syndicatelabs · 2h</span>
+                            </div>
+                            <MoreHorizontal size={14} className={styles.xOptionsIcon} />
+                          </div>
+                          <p className={styles.xPostText}>
+                            1/ Algorithmic retention is a solved game.
+                            <br />
+                            <br />
+                            If your opening statement doesn&apos;t create high cognitive dissonance
+                            in under 140 characters, 94% of readers abandon before the second
+                            sentence.
+                          </p>
+                          <div className={styles.xTweetActions}>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Reply"
+                            >
+                              <MessageCircle size={13} />
+                              <span>89</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Repost"
+                            >
+                              <Repeat2 size={13} />
+                              <span>2.4K</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Like"
+                            >
+                              <Heart size={13} />
+                              <span>18.6K</span>
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Bookmark"
+                            >
+                              <Bookmark size={13} />
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.xActionIconBtn}
+                              aria-label="Share"
+                            >
+                              <Share2 size={13} />
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <span className={styles.xPostHandle}>@syndicatelabs</span>
+
+                      {/* Thread Final Metrics Pill */}
+                      <div className={styles.xMetricsRow}>
+                        <span>2.4K Reposts</span>
+                        <span>412 Quotes</span>
+                        <span>18.6K Likes</span>
+                        <span>4.9K Bookmarks</span>
+                      </div>
                     </div>
                   </div>
-
-                  <p className={styles.xPostText}>
-                    1/ Algorithmic retention is a solved game.
-                    <br />
-                    <br />
-                    If your opening statement doesn&apos;t create high cognitive dissonance in under
-                    140 characters, 94% of readers abandon before the second sentence.
-                  </p>
-
-                  <div className={styles.xMetricsRow}>
-                    <span>2.4K Reposts</span>
-                    <span>412 Quotes</span>
-                    <span>18.6K Likes</span>
-                    <span>4.9K Bookmarks</span>
-                  </div>
-                </div>
+                </MobileEmulator>
               )}
             </div>
 
             {/* Right Column: Strategy & Deliverables */}
             <div className={styles.strategyColumn}>
+              {/* Platform Selector Header Area (Matching Vault Tabs UI) */}
+              <div className={styles.campaignSelectorHeader}>
+                <div className={styles.vaultTitleRow}>
+                  <div className={styles.vaultTitleGroup}>
+                    <span className={styles.vaultKickerBullet} />
+                    <h3 className={styles.vaultTitleKicker}>
+                      SELECT SOCIAL ARCHITECTURE TO PREVIEW
+                    </h3>
+                  </div>
+                  <span className={styles.vaultFormatBadge}>
+                    <Layers size={11} />
+                    <span>{Object.keys(platforms).length} CHANNELS // OMNICHANNEL</span>
+                  </span>
+                </div>
+
+                {/* Platform Selector Tabs */}
+                <div
+                  className={styles.cardPlatformTabs}
+                  role="tablist"
+                  aria-label="Platform selection"
+                >
+                  {(Object.keys(platforms) as PlatformKey[]).map((key) => (
+                    <button
+                      key={key}
+                      type="button"
+                      role="tab"
+                      aria-selected={activePlatform === key}
+                      className={`${styles.cardTabBtn} ${
+                        activePlatform === key ? styles.cardTabBtnActive : ""
+                      }`}
+                      onClick={() => {
+                        setActivePlatform(key);
+                        setSelectedPost(null);
+                      }}
+                    >
+                      {platforms[key].tabLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div className={styles.strategyHeader}>
                 <span className={styles.clientKicker}>
                   {current.client} {" // "} STRATEGY SPEC
@@ -914,37 +1089,6 @@ export const SocialSystems = forwardRef<HTMLElement, SocialSystemsProps>(
                 <span>DEPLOY THIS ENGINE FOR YOUR BRAND</span>
                 <ArrowUpRight size={15} />
               </Link>
-            </div>
-          </div>
-
-          {/* Bottom Global Performance Strip */}
-          <div className={styles.performanceStrip}>
-            <div className={styles.stripItem}>
-              <span className={`${styles.stripStat} ${styles.stripStatAccent}`}>140M+</span>
-              <span className={styles.stripLabel}>
-                Total organic video impressions engineered across client channels.
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={styles.stripStat}>18.4%</span>
-              <span className={styles.stripLabel}>
-                Average hook retention benchmark (comfortably in top 1% algorithmic tier).
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={`${styles.stripStat} ${styles.stripStatAccent}`}>4.2x</span>
-              <span className={styles.stripLabel}>
-                Average increase in qualified inbound leads within 90 days of onboarding.
-              </span>
-            </div>
-
-            <div className={styles.stripItem}>
-              <span className={styles.stripStat}>99.2%</span>
-              <span className={styles.stripLabel}>
-                Founder voice alignment rating across all ghostwritten content and video scripts.
-              </span>
             </div>
           </div>
         </div>

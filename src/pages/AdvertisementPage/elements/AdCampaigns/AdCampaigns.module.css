@@ -103,79 +103,145 @@
   font-weight: 400;
 }
 
-/* ---------------- Channel Tabs ---------------- */
+/* ---------------- Campaign Selector Header & Tabs (Top of Right Card) ---------------- */
 
-.platformTabs {
+.campaignSelectorHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vaultTitleRow {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 6px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: space-between;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-.tabBtn {
-  background: transparent;
-  border: none;
-  color: var(--color-text-secondary, #9b9b96);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  padding: 10px 20px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
+.vaultTitleGroup {
+  display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.vaultKickerBullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-primary, #e8a91a);
+  box-shadow: 0 0 8px rgba(232, 169, 26, 0.9);
+}
+
+.vaultTitleKicker {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(11px, 0.95vw, 12.5px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-white, #f5f2eb);
+  line-height: 1.3;
+}
+
+.vaultFormatBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-brand-primary-light, #f4c44d);
+  background: rgba(232, 169, 26, 0.08);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(232, 169, 26, 0.25);
   white-space: nowrap;
 }
 
-.tabBtn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.06);
+/* Category Filter Tabs Bar on Right Card Top */
+.cardPlatformTabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.tabBtnActive {
-  background: var(--color-brand-primary, #e8a91a) !important;
-  color: #080808 !important;
-  box-shadow: 0 4px 18px rgba(232, 169, 26, 0.3);
+.cardTabBtn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: var(--color-text-secondary, #9b9b96);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTabBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white, #f5f2eb);
+}
+
+.cardTabBtnActive {
+  background: linear-gradient(
+    135deg,
+    rgba(232, 169, 26, 0.18),
+    rgba(232, 169, 26, 0.06)
+  ) !important;
+  border-color: var(--color-brand-primary, #e8a91a) !important;
+  color: var(--color-brand-primary-light, #f4c44d) !important;
+  box-shadow: 0 0 16px rgba(232, 169, 26, 0.2);
+  font-weight: 700;
+}
+
+.platformTabs {
+  display: none;
 }
 
 /* ---------------- Simulator Grid ---------------- */
 
 .simulatorGrid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 40px;
-  align-items: stretch;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
 }
 
 @media (max-width: 1024px) {
   .simulatorGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 40px;
   }
 }
 
-/* Left Column: Simulated Ad Experience */
+/* Left Column: Clean Simulated Ad Presentation (No Background Card) */
 
 .adCanvas {
-  background: rgba(14, 14, 14, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 24px;
-  padding: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 620px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
+  box-shadow: none;
+  overflow: visible;
+  width: 100%;
 }
 
 .canvasAmbientGlow {
@@ -183,86 +249,201 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(232, 169, 26, 0.08) 0%, transparent 70%);
-  filter: blur(90px);
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(
+    circle,
+    rgba(232, 169, 26, 0.09) 0%,
+    rgba(232, 169, 26, 0.02) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
   pointer-events: none;
+  z-index: 1;
 }
 
-/* 1. Meta Ad Card */
+/* ---------------- CONTEXTUAL APP HEADERS & SCREEN ---------------- */
 
-.metaAdCard {
-  width: 100%;
-  max-width: 420px;
-  background: #111;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-  position: relative;
-  z-index: 2;
-}
-
-.metaHeader {
-  padding: 12px 16px;
+/* Contextual App Headers */
+.igAppHeader {
+  padding: 8px 14px 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000;
+  z-index: 10;
 }
 
-.metaAuthorGroup {
+.igLogoText {
+  font-family: var(--font-playfair), "Georgia", serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.igHeaderIcons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  color: #fff;
 }
 
-.metaAvatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  position: relative;
+.browserHeader {
+  padding: 8px 14px;
+  background: #141414;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+
+.browserUrlPill {
+  background: #000;
+  border-radius: 8px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--color-text-secondary, #9b9b96);
+  font-family: var(--font-inter), sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.browserLockIcon {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+.browserUrlText {
+  white-space: nowrap;
   overflow: hidden;
-  border: 1.5px solid var(--color-brand-primary, #e8a91a);
+  text-overflow: ellipsis;
 }
 
-.metaAuthorMeta {
+/* Phone Screen Content Containers */
+.phoneScreenContent {
+  flex: 1;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phoneScreenNoScroll {
+  overflow: hidden !important;
+  padding-bottom: 12px;
+}
+
+.phoneScreenScrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  padding-bottom: 24px;
+}
+
+.phoneScreenScrollable::-webkit-scrollbar {
+  width: 3px;
+}
+
+.phoneScreenScrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+}
+
+/* 1. Meta (Instagram) Ad Card inside Phone */
+
+.metaAdCard {
+  width: 100%;
+  background: #000;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
 
-.metaBrandName {
-  font-size: 13px;
+.metaPostHeader {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+}
+
+.metaUserGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metaAvatarRing {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 1.5px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metaAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+  border: 1.5px solid #000;
+}
+
+.metaUserMeta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.metaHandleRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metaHandle {
+  font-size: 11.5px;
   font-weight: 700;
   color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-.metaSponsoredTag {
-  font-size: 10.5px;
+.metaVerifiedBadge {
+  font-size: 9px;
+  font-weight: 900;
+  color: #3897f0;
+}
+
+.metaSponsoredLabel {
+  font-size: 9px;
   color: var(--color-text-secondary, #9b9b96);
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-.metaPrimaryText {
-  padding: 12px 16px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #e5e5e5;
-  margin: 0;
+.metaOptionsBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary, #9b9b96);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .metaMediaWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 255px;
   background: #000;
   overflow: hidden;
 }
@@ -274,158 +455,263 @@
   display: block;
 }
 
-.metaCtaBar {
-  padding: 12px 16px;
-  background: #181818;
+.igCtaBar {
+  padding: 8px 12px;
+  background: #1a1a1a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.metaCtaMeta {
+.igCtaBar:hover {
+  background: #242424;
+}
+
+.igCtaText {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.igCtaChevron {
+  color: #888;
+}
+
+.igActionRow {
+  padding: 6px 12px 4px;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.metaDomain {
-  font-size: 10px;
-  font-family: var(--font-inter), sans-serif;
-  color: var(--color-text-secondary, #9b9b96);
-  text-transform: uppercase;
-}
-
-.metaHeadline {
-  font-size: 13px;
-  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
   color: #fff;
 }
 
-.metaActionBtn {
-  background: var(--color-brand-primary, #e8a91a);
-  color: #080808;
+.igActionLeft {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.igCaptionBlock {
+  padding: 0 12px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   font-size: 11px;
+  line-height: 1.35;
+}
+
+.igLikesCount {
   font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-transform: uppercase;
-  border: none;
+  color: #fff;
+  font-size: 11.5px;
+}
+
+.igCaptionText {
+  margin: 0;
+  color: #f1f1f1;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.igCaptionHandle {
+  font-weight: 700;
+  color: #fff;
+  margin-right: 4px;
+}
+
+.igCommentsLink {
+  color: #737373;
+  font-size: 10.5px;
   cursor: pointer;
 }
 
-.metaMetricsRibbon {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 16px;
-  background: rgba(232, 169, 26, 0.08);
-  border-top: 1px solid rgba(232, 169, 26, 0.2);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--color-brand-primary, #e8a91a);
+.igTimestamp {
+  color: #737373;
+  font-size: 8.5px;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
 }
 
-/* 2. Google Search Ad Card */
+/* 2. Google Mobile Search Styles */
 
-.googleAdCard {
-  width: 100%;
-  max-width: 460px;
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  padding: 24px;
+.googleSearchContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-  z-index: 2;
+  background: #171717;
+  min-height: 100%;
 }
 
-.googleAdHeader {
+.googleSearchHeader {
+  padding: 10px 12px 0;
+  background: #1f1f1f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.googleFavicon {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #222;
+.googleBrandRow {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
-  color: var(--color-brand-primary, #e8a91a);
 }
 
-.googleUrlMeta {
-  display: flex;
-  flex-direction: column;
-}
-
-.googleSponsoredTag {
-  font-size: 10.5px;
+.googleLogo {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 17px;
   font-weight: 700;
-  color: #fff;
+  letter-spacing: -0.03em;
+}
+
+.googleSearchInputBar {
+  background: #303134;
+  border-radius: 20px;
+  padding: 7px 12px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.googleBreadcrumb {
+.googleSearchIcon {
+  color: #9aa0a6;
+}
+
+.googleSearchQueryText {
+  font-size: 11.5px;
+  color: #e8eaed;
+  font-family: var(--font-inter), sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.googleNavTabs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 4px;
+}
+
+.googleNavTabActive {
   font-size: 11px;
-  color: var(--color-text-secondary, #9b9b96);
+  font-weight: 600;
+  color: #8ab4f8;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #8ab4f8;
+}
+
+.googleNavTab {
+  font-size: 11px;
+  color: #9aa0a6;
+  padding-bottom: 7px;
+}
+
+/* The Sponsored Search Ad Result */
+.googleResultCard {
+  padding: 14px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #171717;
+}
+
+.googleAdMetaLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.googleFavicon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #303134;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8ab4f8;
+}
+
+.googleAdSource {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.googleAdSiteName {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #e8eaed;
+}
+
+.googleAdUrl {
+  font-size: 9.5px;
+  color: #9aa0a6;
   font-family: var(--font-inter), sans-serif;
 }
 
-.googleHeadline {
-  font-size: 17px;
+.googleSponsoredPill {
+  margin-left: auto;
+  font-size: 9.5px;
   font-weight: 700;
+  color: #e8eaed;
+  background: #303134;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.googleAdHeadline {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
   color: #8ab4f8;
   line-height: 1.35;
-  margin: 0;
   cursor: pointer;
 }
 
-.googleSnippet {
-  font-size: 13px;
-  line-height: 1.55;
-  color: #bdc1c6;
+.googleAdSnippet {
   margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #bdc1c6;
 }
 
-.googleSitelinks {
+.googleSitelinksGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
+  padding-top: 4px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 14px;
 }
 
 .sitelinkItem {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 6px;
-  padding: 10px 12px;
+  padding: 8px 10px;
 }
 
 .sitelinkTitle {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   color: #8ab4f8;
 }
 
 .sitelinkDesc {
-  font-size: 10.5px;
-  color: var(--color-text-secondary, #9b9b96);
+  font-size: 9.5px;
+  color: #9aa0a6;
+  line-height: 1.35;
 }
 
 /* 3. TikTok Ad Card */

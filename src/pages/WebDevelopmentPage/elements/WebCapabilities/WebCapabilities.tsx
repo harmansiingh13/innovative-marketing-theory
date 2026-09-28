@@ -229,17 +229,12 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
             imgEl,
             { scale: 1.03, opacity: 0 },
             { scale: 1, opacity: 1, duration: 0.5 },
-            0.3
+            0.3,
           );
-          tl.fromTo(
-            contentEl,
-            { opacity: 0, x: -20 },
-            { opacity: 1, x: 0, duration: 0.5 },
-            0.35
-          );
+          tl.fromTo(contentEl, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, 0.35);
         }
       },
-      [activeIndex]
+      [activeIndex],
     );
 
     // ----------------------------------------------------
@@ -338,7 +333,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
             headerRef.current,
             { opacity: 0, y: 30 },
             { opacity: 1, y: 0, duration: 0.8 },
-            0
+            0,
           );
         }
 
@@ -347,7 +342,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
             navRef.current.children,
             { opacity: 0, y: 15 },
             { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
-            0.2
+            0.2,
           );
         }
 
@@ -356,7 +351,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
             activePanelRef.current,
             { opacity: 0, y: 35, scale: 0.98 },
             { opacity: 1, y: 0, scale: 1, duration: 0.85 },
-            0.3
+            0.3,
           );
         }
       }, sectionRef);
@@ -381,8 +376,8 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                 VISUAL DEMONSTRATION OF <span className={styles.goldText}>OUR SERVICES.</span>
               </h2>
               <p className={styles.subtitle}>
-                See the direct impact before reading the terminology. Every service delivers a clear,
-                measurable transformation for your digital presence.
+                See the direct impact before reading the terminology. Every service delivers a
+                clear, measurable transformation for your digital presence.
               </p>
             </div>
           </div>
@@ -420,9 +415,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
 
               {/* Progress Indicator */}
               <div className={styles.progressWrapper}>
-                <span className={styles.progressText}>
-                  {activeService.num} / 06
-                </span>
+                <span className={styles.progressText}>{activeService.num} / 06</span>
                 <div className={styles.progressTrack}>
                   <div ref={progressLineRef} className={styles.progressFill} />
                 </div>
@@ -447,7 +440,10 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                     </div>
                     <div className={styles.graphicUrlPill}>
                       <Lock size={10} className={styles.urlLock} />
-                      <span>https://your-brand-flagship.com/{activeService.name.toLowerCase().replace(/\s+/g, "-")}</span>
+                      <span>
+                        https://your-brand-flagship.com/
+                        {activeService.name.toLowerCase().replace(/\s+/g, "-")}
+                      </span>
                     </div>
                     <span className={styles.liveTag}>LIVE SYSTEM PREVIEW</span>
                   </div>
@@ -481,10 +477,12 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                         <div className={styles.designHeadlineGroup}>
                           <div className={styles.designTaglineBadge}>CREATIVE DIRECTED UI / UX</div>
                           <h4 className={styles.designBigTitle}>
-                            WE DESIGN HOW YOUR <span className={styles.goldTextInline}>WEBSITE LOOKS.</span>
+                            WE DESIGN HOW YOUR{" "}
+                            <span className={styles.goldTextInline}>WEBSITE LOOKS.</span>
                           </h4>
                           <p className={styles.designSubtext}>
-                            Custom typography grids, brand color palettes, high-converting layouts, and interactive visual design systems.
+                            Custom typography grids, brand color palettes, high-converting layouts,
+                            and interactive visual design systems.
                           </p>
                         </div>
 
@@ -760,7 +758,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 WebCapabilities.displayName = "WebCapabilities";

@@ -48,7 +48,6 @@ export const VideoHero = forwardRef<HTMLElement, VideoHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography, Conviction & Actions */}
             <div className={styles.leftColumn}>
-
               {/* Monumental 4-Line Headline */}
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>WE DON&apos;T JUST</span>

@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 
 const serviceComponents = {
   "video-shoots": VideoShootPage,
-  "video-editing": VideoEditingPage,
+  "video-editing": VideoShootPage,
   "social-media": SocialMediaPage,
   advertisement: AdvertisementPage,
   "web-development": WebDevelopmentPage,

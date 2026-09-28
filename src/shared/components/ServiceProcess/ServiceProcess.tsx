@@ -186,7 +186,6 @@ export const ServiceProcess = forwardRef<HTMLElement, ServiceProcessProps>(
                   ⌟
                 </span>
 
-
                 {/* Full-Bleed Media Layers with Seamless Crossfade */}
                 <div className={styles.mediaViewport}>
                   {steps.map((step, idx) => {

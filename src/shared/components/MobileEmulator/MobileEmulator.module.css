@@ -1,0 +1,211 @@
+/* -------------------------------------------------------------------------
+   MOBILE EMULATOR - SHARED LUXURY IPHONE EMULATOR COMPONENT
+   Precision engineered for high-fidelity dark mode mobile previews
+------------------------------------------------------------------------- */
+
+.phoneFrame {
+  position: relative;
+  width: 330px;
+  height: 640px;
+  max-width: 100%;
+  background: #000;
+  border-radius: 46px;
+  border: 4px solid #222222;
+  box-shadow:
+    0 25px 65px -10px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 40px rgba(232, 169, 26, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 auto;
+  z-index: 2;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.interactiveHover:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 30px 75px -10px rgba(0, 0, 0, 0.98),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 50px rgba(232, 169, 26, 0.18);
+}
+
+/* ---------------- Dynamic Island ---------------- */
+
+.dynamicIsland {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 23px;
+  background: #000;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.islandDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0d0d0d;
+  border: 1px solid #1c1c1c;
+  flex-shrink: 0;
+}
+
+.islandPill {
+  width: 9px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-brand-primary, #e8a91a);
+  box-shadow: 0 0 6px rgba(232, 169, 26, 0.8);
+  flex-shrink: 0;
+}
+
+.islandWave {
+  width: 12px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--color-brand-primary, #e8a91a);
+  animation: pulseRecording 1.5s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes pulseRecording {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ---------------- Status Bar ---------------- */
+
+.statusBar {
+  height: 42px;
+  padding: 10px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family:
+    var(--font-inter),
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 30;
+  background: #000;
+  letter-spacing: -0.01em;
+  user-select: none;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.statusBarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.statusTime {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.statusNetworkBattery {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.02em;
+}
+
+/* Battery Icon Preset */
+.batteryIcon {
+  width: 18px;
+  height: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 2.5px;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.batteryIcon::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 2px;
+  width: 1.5px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0 1px 1px 0;
+}
+
+.batteryLevel {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* ---------------- Screen Viewport Container ---------------- */
+
+.screenContainer {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.screenContainerOverlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+/* ---------------- Home Indicator Bar ---------------- */
+
+.phoneHomeBar {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  z-index: 40;
+  pointer-events: none;
+}

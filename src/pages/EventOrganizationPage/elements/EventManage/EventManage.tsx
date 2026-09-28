@@ -24,7 +24,8 @@ const SERVICES: ServiceItem[] = [
     number: "01",
     title: "CONCEPT & STRATEGY",
     description: "Event concept, creative direction and spatial experience planning.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop",
     tag: "CREATIVE DIRECTION",
   },
   {
@@ -32,7 +33,8 @@ const SERVICES: ServiceItem[] = [
     number: "02",
     title: "VENUE & LOGISTICS",
     description: "Venue planning, schedules, vendors and micro-second event logistics.",
-    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1000&auto=format&fit=crop",
     tag: "SPATIAL PLANNING",
   },
   {
@@ -40,7 +42,8 @@ const SERVICES: ServiceItem[] = [
     number: "03",
     title: "STAGE & SET",
     description: "Stage design, set design, custom branding and spatial engineering.",
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop",
     tag: "STAGE ARCHITECTURE",
   },
   {
@@ -48,7 +51,8 @@ const SERVICES: ServiceItem[] = [
     number: "04",
     title: "LIGHTING / SOUND / AV",
     description: "DMX lighting, tuned sound systems, LED screens and technical production.",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop",
     tag: "TECHNICAL RIGGING",
   },
   {
@@ -56,7 +60,8 @@ const SERVICES: ServiceItem[] = [
     number: "05",
     title: "PHOTOGRAPHY",
     description: "Professional cinema-grade event photography and key moments.",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop",
     tag: "STILLS & PORTRAITS",
   },
   {
@@ -64,7 +69,8 @@ const SERVICES: ServiceItem[] = [
     number: "06",
     title: "VIDEOGRAPHY",
     description: "Event films, highlight sizzles, interviews and 4K cinematic content.",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop",
     tag: "4K CINEMA FILM",
   },
   {
@@ -72,7 +78,8 @@ const SERVICES: ServiceItem[] = [
     number: "07",
     title: "LIVE CONTENT",
     description: "Behind-the-scenes, social content and real-time live event coverage.",
-    image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1000&auto=format&fit=crop",
     tag: "REAL-TIME MEDIA",
   },
   {
@@ -80,7 +87,8 @@ const SERVICES: ServiceItem[] = [
     number: "08",
     title: "EVENT-DAY MANAGEMENT",
     description: "On-ground command coordination and complete production execution.",
-    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1000&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1000&auto=format&fit=crop",
     tag: "COMMAND EXECUTION",
   },
 ];
@@ -113,13 +121,17 @@ export const EventManage = forwardRef<HTMLElement, EventManageProps>(
                 <div className={styles.statementHeaderGroup}>
                   <div className={styles.yellowVerticalBar} />
                   <h3 className={styles.leftStatement}>
-                    FROM THE FIRST IDEA<br />
+                    FROM THE FIRST IDEA
+                    <br />
                     TO THE FINAL APPLAUSE.
                   </h3>
                 </div>
 
                 <p className={styles.leftParagraph}>
-                  Eliminate the stress of juggling multiple disparate vendors. Our unified creative &amp; production team takes total end-to-end ownership of your event — designing the spatial concept, engineering the stage, managing technical sound/AV, and capturing cinema-grade photography and live video.
+                  Eliminate the stress of juggling multiple disparate vendors. Our unified creative
+                  &amp; production team takes total end-to-end ownership of your event — designing
+                  the spatial concept, engineering the stage, managing technical sound/AV, and
+                  capturing cinema-grade photography and live video.
                 </p>
 
                 {/* High-Tech Viewfinder Active Image Preview Frame */}
@@ -173,9 +185,7 @@ export const EventManage = forwardRef<HTMLElement, EventManageProps>(
 
                       <div className={styles.accentLine} />
 
-                      <p className={styles.serviceDescription}>
-                        {service.description}
-                      </p>
+                      <p className={styles.serviceDescription}>{service.description}</p>
                     </div>
                   );
                 })}
@@ -185,7 +195,7 @@ export const EventManage = forwardRef<HTMLElement, EventManageProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 EventManage.displayName = "EventManage";

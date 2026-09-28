@@ -77,7 +77,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               imageRef.current,
               { opacity: 0.7, scale: 1.05 },
               { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
-              0
+              0,
             );
           }
 
@@ -86,7 +86,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               eyebrowRef.current,
               { opacity: 0, y: -10 },
               { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
-              0.05
+              0.05,
             );
           }
 
@@ -95,7 +95,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               titleRef.current,
               { opacity: 0, y: -20 },
               { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-              0.1
+              0.1,
             );
           }
 
@@ -104,7 +104,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               descriptionRef.current,
               { opacity: 0, y: 15 },
               { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
-              0.2
+              0.2,
             );
           }
 
@@ -113,7 +113,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               Array.from(tagsRef.current.children),
               { opacity: 0, y: 10 },
               { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: "power3.out" },
-              0.25
+              0.25,
             );
           }
 
@@ -122,7 +122,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
               ctaRef.current,
               { opacity: 0, y: 10 },
               { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" },
-              0.3
+              0.3,
             );
           }
         },
@@ -130,14 +130,22 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
 
       // Exit current slide
       if (imageRef.current) {
-        tl.to(imageRef.current, { opacity: 0.3, scale: 0.98, duration: 0.25, ease: "power2.in" }, 0);
+        tl.to(
+          imageRef.current,
+          { opacity: 0.3, scale: 0.98, duration: 0.25, ease: "power2.in" },
+          0,
+        );
       }
 
       if (contentRef.current) {
-        tl.to(contentRef.current, { opacity: 0, x: -xOffset, duration: 0.25, ease: "power2.in" }, 0);
+        tl.to(
+          contentRef.current,
+          { opacity: 0, x: -xOffset, duration: 0.25, ease: "power2.in" },
+          0,
+        );
       }
     },
-    [currentIndex, totalItems, items, onSlideChange]
+    [currentIndex, totalItems, items, onSlideChange],
   );
 
   const handleNext = useCallback(() => {
@@ -195,7 +203,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
             start: "top 80%",
             once: true,
           },
-        }
+        },
       );
     }, containerRef);
 
@@ -335,11 +343,7 @@ export const ReusableCarousel: React.FC<ReusableCarouselProps> = ({
           )}
 
           {currentItem.link && (
-            <a
-              ref={ctaRef}
-              href={currentItem.link}
-              className="ctaButton"
-            >
+            <a ref={ctaRef} href={currentItem.link} className="ctaButton">
               <span>{currentItem.linkText || "VIEW PROJECT"}</span>
               <ArrowUpRight style={{ width: 16, height: 16 }} />
             </a>

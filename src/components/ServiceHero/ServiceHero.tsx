@@ -46,7 +46,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
         tl.fromTo(
           watermarkRef.current,
           { opacity: 0, scale: 1.08 },
-          { opacity: 0.04, scale: 1, duration: 1.4 }
+          { opacity: 0.04, scale: 1, duration: 1.4 },
         );
       }
 
@@ -56,7 +56,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
           lines,
           { yPercent: 110, opacity: 0 },
           { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.15 },
-          "-=1.1"
+          "-=1.1",
         );
       }
 
@@ -65,7 +65,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
           subtitleRef.current,
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 1 },
-          "-=0.7"
+          "-=0.7",
         );
       }
 
@@ -74,7 +74,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
           ctaRef.current,
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.7"
+          "-=0.7",
         );
       }
 
@@ -84,7 +84,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
           frames,
           { opacity: 0, y: 60, scale: 0.9 },
           { opacity: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.15 },
-          "-=1.0"
+          "-=1.0",
         );
 
         gsap.to(compositionRef.current, {
@@ -160,20 +160,12 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
           </p>
 
           <div ref={ctaRef} className={styles.buttonGroup}>
-            <button
-              type="button"
-              className={styles.btnPrimary}
-              onClick={handlePrimaryClick}
-            >
+            <button type="button" className={styles.btnPrimary} onClick={handlePrimaryClick}>
               <span>{primaryCtaText}</span>
               <ArrowUpRight className={styles.btnIcon} />
             </button>
 
-            <button
-              type="button"
-              className={styles.btnOutline}
-              onClick={handleSecondaryClick}
-            >
+            <button type="button" className={styles.btnOutline} onClick={handleSecondaryClick}>
               <span>{secondaryCtaText}</span>
               <ArrowDown className={styles.btnIcon} />
             </button>
@@ -193,11 +185,7 @@ export const ReusableServiceHero: React.FC<ReusableServiceHeroProps> = ({
 
             return (
               <div key={idx} className={`${styles.artFrame} ${currentClass}`}>
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className={styles.frameImage}
-                />
+                <img src={img.src} alt={img.alt} className={styles.frameImage} />
                 <div className={styles.frameOverlay} />
               </div>
             );

@@ -2,9 +2,8 @@
 
 import { useState, useRef, useEffect, forwardRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./FeaturedReelVault.module.css";
-import { Play, Pause, Volume2, VolumeX, ArrowUpRight, Sparkles } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Layers } from "lucide-react";
 
 export interface ProjectReel {
   id: string;
@@ -17,6 +16,7 @@ export interface ProjectReel {
   runtime: string;
   timecode: string;
   optics: string;
+  aspectRatio: string;
   metric: string;
   metricLabel: string;
   videoSrc: string;
@@ -25,24 +25,66 @@ export interface ProjectReel {
 }
 
 export const featuredProjects: ProjectReel[] = [
+  // --- BRAND ANTHEMS ---
   {
     id: "proj-01",
     category: "BRAND ANTHEMS",
     client: "AETHER DYNAMICS",
     title: "The Velocity Anthem",
-    tagline: "A monumental cinematic launch film for hypersonic private aerospace.",
+    tagline: "A monumental cinematic launch film engineered for 9:16 mobile immersion.",
     synopsis:
-      "Capturing raw propulsion and quiet precision across 3 days of soundstage and desert runway shoots, engineered to establish immediate category supremacy.",
-    deliverable: "4K Master Anthem // 60s TVC // 30s Cutdowns",
-    runtime: "01:45",
-    timecode: "TC 00:01:45:12",
-    optics: "ARRI ALEXA MINI LF // COOKE ANAMORPHIC /I",
+      "Capturing raw propulsion and quiet precision across 3 days of soundstage and desert runway shoots, engineered to command immediate category supremacy on mobile screens.",
+    deliverable: "9:16 4K Master // Reels // Stories",
+    runtime: "00:45",
+    timecode: "TC 00:00:45:12",
+    optics: "ARRI ALEXA 35 // VERTICAL CAGE // COOKE 25MM",
+    aspectRatio: "9:16 Native Vertical",
     metric: "+340%",
-    metricLabel: "Executive Engagement vs. Baseline",
+    metricLabel: "Vertical Reel Completion Rate",
     videoSrc: "/videos/cinema_production_graded.mp4",
-    posterSrc: "/images/cinema_production_graded.jpg",
+    posterSrc: "/images/cinematic_reel_portrait.jpg",
     year: "2024",
   },
+  {
+    id: "proj-05",
+    category: "BRAND ANTHEMS",
+    client: "VALIANT HYPERDRIVE",
+    title: "Apex Ignition",
+    tagline: "High-adrenaline hypercar launch film built for full-screen vertical impact.",
+    synopsis:
+      "Night soundstage lighting and gyro-stabilized high-speed tracking rigs capturing automotive engineering at the absolute limit of speed.",
+    deliverable: "9:16 Hero Launch Film // Social Master",
+    runtime: "00:42",
+    timecode: "TC 00:00:42:04",
+    optics: "RED V-RAPTOR XL // ZEISS SUPREME PRIMES",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "3.8M",
+    metricLabel: "First-Week Organic Reach",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/welcome_consultation.jpg",
+    year: "2024",
+  },
+  {
+    id: "proj-09",
+    category: "BRAND ANTHEMS",
+    client: "CHRONOS PROTOCOL",
+    title: "The Monument Frame",
+    tagline: "Futuristic brand anthem illuminating next-generation distributed systems.",
+    synopsis:
+      "Architectural soundstage builds and volumetric lighting choreography shaping a monumental brand identity for a frontier technology firm.",
+    deliverable: "9:16 Global Brand Anthem // Keynote Cut",
+    runtime: "00:50",
+    timecode: "TC 00:00:50:18",
+    optics: "ARRI ALEXA MINI LF // ANAMORPHIC RIG",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "+280%",
+    metricLabel: "Executive Audience Retention",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/client_welcome_lounge.jpg",
+    year: "2023",
+  },
+
+  // --- PRODUCT CINEMA ---
   {
     id: "proj-02",
     category: "PRODUCT CINEMA",
@@ -50,17 +92,58 @@ export const featuredProjects: ProjectReel[] = [
     title: "Sculpted in Shadow",
     tagline: "Ultra-high-definition tactile macro cinematography for haute horlogerie.",
     synopsis:
-      "Precision probe lenses and controlled rim-lighting revealing hand-finished tourbillon escapements with museum-grade visual drama.",
-    deliverable: "Global Product Campaign // Macro 4K Digital Master",
-    runtime: "00:50",
-    timecode: "TC 00:00:50:00",
-    optics: "RED V-RAPTOR 8K // LAOWA 24MM PROBE // KEY LIGHT RIG",
+      "Precision probe lenses and controlled rim-lighting revealing hand-finished tourbillon escapements with museum-grade visual drama in 9:16 vertical detail.",
+    deliverable: "9:16 Macro Cinema // Global Campaign",
+    runtime: "00:30",
+    timecode: "TC 00:00:30:00",
+    optics: "RED V-RAPTOR 8K // 9:16 RIG // LAOWA PROBE",
+    aspectRatio: "9:16 Native Vertical",
     metric: "4.2M",
-    metricLabel: "Organic Views in Launch Week",
+    metricLabel: "Organic Views on Mobile Feeds",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/cinema_production_graded.jpg",
+    year: "2024",
+  },
+  {
+    id: "proj-06",
+    category: "PRODUCT CINEMA",
+    client: "NOCTURNE TIMEPIECES",
+    title: "Obsidian Tourbillon",
+    tagline: "Extreme close-up cinema capturing hand-crafted horological mechanics.",
+    synopsis:
+      "Micro-lighting and robotic camera motion passing through sapphire crystal chambers, unveiling microscopic luxury finishings.",
+    deliverable: "9:16 Tactile Product Reel // Digital Master",
+    runtime: "00:28",
+    timecode: "TC 00:00:28:10",
+    optics: "SONY FX9 // LAOWA 24MM PERIPROBE",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "98.2%",
+    metricLabel: "Positive Sentiment Score",
     videoSrc: "/videos/cinema_production_graded.mp4",
     posterSrc: "/images/cinematic_reel_portrait.jpg",
     year: "2024",
   },
+  {
+    id: "proj-10",
+    category: "PRODUCT CINEMA",
+    client: "LUMEN OPTRONICS",
+    title: "Prism of Pure Light",
+    tagline: "Optical physics and glass manufacturing rendered with tactile realism.",
+    synopsis:
+      "Laser-illuminated soundstage environments revealing microscopic optical coatings, crafted to convert luxury design enthusiasts.",
+    deliverable: "9:16 Product Feature // Macro Suite",
+    runtime: "00:32",
+    timecode: "TC 00:00:32:15",
+    optics: "ARRI ALEXA 35 // COOKE MACRO 60MM",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "+215%",
+    metricLabel: "Direct Conversion Lift",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/welcome_consultation.jpg",
+    year: "2024",
+  },
+
+  // --- COMMERCIALS ---
   {
     id: "proj-03",
     category: "COMMERCIALS",
@@ -68,17 +151,58 @@ export const featuredProjects: ProjectReel[] = [
     title: "Sonic Architecture",
     tagline: "A high-cadence commercial capturing acoustic physics and pure resonance.",
     synopsis:
-      "Synchronized high-speed optical capture paired with spatial lighting choreography, crafting visceral desire for luxury acoustic monitoring systems.",
-    deliverable: "Broadcast TVC // 30s & 15s Performance Assets",
-    runtime: "01:10",
-    timecode: "TC 00:01:10:08",
-    optics: "SONY VENICE 2 // ZEISS MASTER PRIMES T1.3",
+      "Synchronized high-speed optical capture paired with spatial lighting choreography, crafting visceral desire for luxury acoustic monitoring systems in full-screen vertical format.",
+    deliverable: "9:16 Paid Performance // 30s & 15s Cutdowns",
+    runtime: "00:35",
+    timecode: "TC 00:00:35:08",
+    optics: "SONY VENICE 2 // VERTICAL RIG // ZEISS PRIMES",
+    aspectRatio: "9:16 Native Vertical",
     metric: "+185%",
-    metricLabel: "Direct ROAS on Paid Digital Broadcast",
+    metricLabel: "Direct ROAS on Vertical Ad Formats",
     videoSrc: "/videos/cinema_production_graded.mp4",
     posterSrc: "/images/director_monitor_bts.jpg",
     year: "2023",
   },
+  {
+    id: "proj-07",
+    category: "COMMERCIALS",
+    client: "AURA ACOUSTICS",
+    title: "Pure Harmonic Wave",
+    tagline: "Fluid dynamics and acoustic frequencies manifested in physical form.",
+    synopsis:
+      "High-speed Phantom Flex capture at 1000 FPS mapping liquid soundwave reactions across black obsidian glass surfaces.",
+    deliverable: "9:16 Broadcast Spot // Performance Assets",
+    runtime: "00:30",
+    timecode: "TC 00:00:30:12",
+    optics: "PHANTOM FLEX 4K // MASTER PRIMES T1.3",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "2.4M",
+    metricLabel: "Viral Ad Impressions",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/cinema_production_graded.jpg",
+    year: "2024",
+  },
+  {
+    id: "proj-11",
+    category: "COMMERCIALS",
+    client: "STRATA ENERGY",
+    title: "Kinetic Velocity",
+    tagline: "A raw, rhythmic brand commercial driving athletic propulsion.",
+    synopsis:
+      "Explosive lighting shifts and anamorphic flares capturing high-intensity movement, cut to an unrelenting 140 BPM sound design cadence.",
+    deliverable: "9:16 Social Campaign // Cutdown Suite",
+    runtime: "00:25",
+    timecode: "TC 00:00:25:20",
+    optics: "RED KOMODO-X // ATLAS ANAMORPHIC GLASS",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "91%",
+    metricLabel: "Video Hook Rate (First 3s)",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/cinematic_reel_portrait.jpg",
+    year: "2024",
+  },
+
+  // --- FOUNDER STORIES ---
   {
     id: "proj-04",
     category: "FOUNDER STORIES",
@@ -86,13 +210,52 @@ export const featuredProjects: ProjectReel[] = [
     title: "The Architect's Monologue",
     tagline: "An intimate, docu-style founder portrait illuminating visionary engineering.",
     synopsis:
-      "Nuanced lighting, vintage cinema glass, and unscripted conviction crafting unquestioned authority for a disruptive Silicon Valley technology founder.",
-    deliverable: "Series Keynote // Long-Form Brand Documentary",
-    runtime: "02:15",
-    timecode: "TC 00:02:15:18",
+      "Nuanced lighting, vintage cinema glass, and unscripted conviction crafting unquestioned authority for a disruptive Silicon Valley founder, framed vertically for intimate connection.",
+    deliverable: "9:16 Series Keynote // Vertical Doc",
+    runtime: "00:58",
+    timecode: "TC 00:00:58:18",
     optics: "ARRI AMIRA // CANON K35 VINTAGE PRIMES",
+    aspectRatio: "9:16 Native Vertical",
     metric: "94%",
-    metricLabel: "Average Audience Completion Rate",
+    metricLabel: "Average Vertical Retention Rate",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/client_welcome_lounge.jpg",
+    year: "2024",
+  },
+  {
+    id: "proj-08",
+    category: "FOUNDER STORIES",
+    client: "SOLIS AEROSPACE",
+    title: "Orbit Beyond Horizon",
+    tagline: "An inspiring aerospace visionary chronicle on orbital robotics.",
+    synopsis:
+      "Intimate interview setups blended with high-tech cleanroom imagery, building unquestioned founder gravitas and deep investor trust.",
+    deliverable: "9:16 Investor Keynote // Episodic Doc",
+    runtime: "00:55",
+    timecode: "TC 00:00:55:06",
+    optics: "ARRI ALEXA MINI // KOWA PROMINAR ANAMORPHIC",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "+410%",
+    metricLabel: "Investor Inbound Lift",
+    videoSrc: "/videos/cinema_production_graded.mp4",
+    posterSrc: "/images/director_monitor_bts.jpg",
+    year: "2023",
+  },
+  {
+    id: "proj-12",
+    category: "FOUNDER STORIES",
+    client: "NEXUS QUANTUM",
+    title: "The Sovereign Code",
+    tagline: "A raw documentary portrait of deep-tech founders building quantum hardware.",
+    synopsis:
+      "Naturalistic low-key lighting and vintage Cooke glass bringing human soul and raw conviction to deep-tech frontier science.",
+    deliverable: "9:16 Founder Feature // Brand Film",
+    runtime: "00:52",
+    timecode: "TC 00:00:52:14",
+    optics: "SONY VENICE // COOKE PANCHRO CLASSIC",
+    aspectRatio: "9:16 Native Vertical",
+    metric: "88%",
+    metricLabel: "Completion Rate on LinkedIn",
     videoSrc: "/videos/cinema_production_graded.mp4",
     posterSrc: "/images/cinema_production_graded.jpg",
     year: "2024",
@@ -121,6 +284,7 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
     const [selectedProject, setSelectedProject] = useState<ProjectReel>(featuredProjects[0]);
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
+    const [progress, setProgress] = useState(0);
 
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -130,8 +294,17 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
         videoRef.current.load();
         videoRef.current.play().catch(() => {});
         setIsPlaying(true);
+        setProgress(0);
       }
     }, [selectedProject]);
+
+    // Track video playback progress
+    const handleTimeUpdate = () => {
+      if (videoRef.current && videoRef.current.duration) {
+        const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+        setProgress(pct);
+      }
+    };
 
     const togglePlay = () => {
       if (!videoRef.current) return;
@@ -151,10 +324,26 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
       setIsMuted(nextMuted);
     };
 
+    // Filter projects based on the active tab
     const filteredProjects =
       activeFilter === "ALL"
         ? featuredProjects
         : featuredProjects.filter((p) => p.category === activeFilter);
+
+    // Category filter click handler: filters videos and selects first match if current is filtered out
+    const handleFilterChange = (cat: CategoryFilter) => {
+      setActiveFilter(cat);
+      const matching =
+        cat === "ALL" ? featuredProjects : featuredProjects.filter((p) => p.category === cat);
+      if (matching.length > 0 && !matching.some((p) => p.id === selectedProject.id)) {
+        setSelectedProject(matching[0]);
+      }
+    };
+
+    // Project card click handler: selects project directly
+    const handleSelectProject = (project: ProjectReel) => {
+      setSelectedProject(project);
+    };
 
     return (
       <section ref={ref} id="showreel" className={styles.section}>
@@ -175,215 +364,272 @@ export const FeaturedReelVault = forwardRef<HTMLElement, FeaturedReelVaultProps>
                   <span className={styles.titleHighlight}>Built for High-Stakes Brands.</span>
                 </h2>
                 <p className={styles.manifestoSubtitle}>
-                  From commercial broadcasts to intimate founder portraits. Every frame is
-                  engineered with precision lighting, cinema glass, and narrative authority that
-                  converts.
+                  Engineered for high-retention 9:16 portrait feeds and mobile-first authority.
+                  Every vertical frame is crafted with custom lighting rigs, cinema glass, and
+                  narrative pacing that commands undivided focus.
                 </p>
-              </div>
-
-              {/* Category Filter Tabs */}
-              <div className={styles.filterTabs} role="tablist" aria-label="Reel categories">
-                {filterOptions.map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeFilter === cat}
-                    className={`${styles.filterBtn} ${
-                      activeFilter === cat ? styles.filterBtnActive : ""
-                    }`}
-                    onClick={() => setActiveFilter(cat)}
-                  >
-                    {cat}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
 
-          {/* Active Cinema Theater */}
+          {/* Main Cinema Suite: Left Portrait Video Monitor & Right Feature Card */}
           <div ref={canvasRef} className={styles.theaterWrapper}>
-            <div className={styles.theaterFrame}>
-              <video
-                ref={videoRef}
-                src={selectedProject.videoSrc}
-                poster={selectedProject.posterSrc}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className={styles.theaterVideo}
-              />
+            <div className={styles.cinemaStage}>
+              {/* Left Column: Portrait Cinema Monitor (9:16) */}
+              <div className={styles.monitorOuter}>
+                <div className={styles.portraitScreen}>
+                  <video
+                    ref={videoRef}
+                    src={selectedProject.videoSrc}
+                    poster={selectedProject.posterSrc}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onTimeUpdate={handleTimeUpdate}
+                    className={styles.portraitVideo}
+                  />
 
-              {/* Cinematic Vignette */}
-              <div className={styles.theaterVignette} />
+                  {/* Cinematic Vignette */}
+                  <div className={styles.screenVignette} />
 
-              {/* Corner Crop Marks */}
-              <span className={styles.cropMarkTopLeft}>⌜</span>
-              <span className={styles.cropMarkTopRight}>⌝</span>
-              <span className={styles.cropMarkBottomLeft}>⌞</span>
-              <span className={styles.cropMarkBottomRight}>⌟</span>
+                  {/* Optical Crop Crosshairs (9:16 Viewfinder) */}
+                  <span className={styles.cropMarkTopLeft}>⌜</span>
+                  <span className={styles.cropMarkTopRight}>⌝</span>
+                  <span className={styles.cropMarkBottomLeft}>⌞</span>
+                  <span className={styles.cropMarkBottomRight}>⌟</span>
 
-              {/* Center Play Button Overlay (when paused) */}
-              {!isPlaying && (
-                <div className={styles.theaterCenterControls}>
-                  <button
-                    type="button"
-                    onClick={togglePlay}
-                    className={styles.centerPlayBtn}
-                    aria-label="Play video"
-                  >
-                    <Play size={28} />
-                  </button>
-                </div>
-              )}
+                  {/* Top Monitor Status HUD */}
+                  <div className={styles.screenHudTop}>
+                    <div className={styles.recBadge}>
+                      <span className={styles.recDot} />
+                      <span className={styles.recText}>REC</span>
+                      <span className={styles.hudFormatBadge}>9:16 CINEMA</span>
+                    </div>
 
-              {/* Bottom HUD Overlay */}
-              <div className={styles.theaterHudBottom}>
-                <div className={styles.hudActiveDetails}>
-                  <span className={styles.hudCategoryTag}>
-                    {selectedProject.category} {"//"} {selectedProject.year}
-                  </span>
-                  <h3 className={styles.hudProjectTitle}>{selectedProject.title}</h3>
-                </div>
-
-                <div className={styles.hudControlsRow}>
-                  <button
-                    type="button"
-                    onClick={togglePlay}
-                    className={styles.hudControlBtn}
-                    aria-label={isPlaying ? "Pause reel" : "Play reel"}
-                  >
-                    {isPlaying ? <Pause size={13} /> : <Play size={13} />}
-                    <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={toggleMute}
-                    className={styles.hudControlBtn}
-                    aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-                  >
-                    {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
-                    <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Theater Information Ledger */}
-            <div className={styles.theaterMetaRow}>
-              <div className={styles.metaColLead}>
-                <span className={styles.metaColLabel}>DIRECTOR&apos;S TREATMENT & SYNOPSIS</span>
-                <p className={styles.metaColValue}>{selectedProject.synopsis}</p>
-              </div>
-
-              <div className={styles.metaColStat}>
-                <span className={styles.statHighlight}>{selectedProject.metric}</span>
-                <span className={styles.statLabel}>{selectedProject.metricLabel}</span>
-              </div>
-
-              <div className={styles.metaColStat}>
-                <span className={styles.statHighlight}>{selectedProject.runtime}</span>
-                <span className={styles.statLabel}>{selectedProject.deliverable}</span>
-              </div>
-            </div>
-
-            {/* Project Cards Vault Grid */}
-            <div className={styles.vaultSection}>
-              <div className={styles.vaultHeader}>
-                <span className={styles.vaultTitle}>
-                  SELECT FILM TO PREVIEW IN THEATER ({filteredProjects.length} REELS)
-                </span>
-              </div>
-
-              <div className={styles.vaultGrid}>
-                {filteredProjects.map((project) => {
-                  const isActive = project.id === selectedProject.id;
-                  return (
                     <button
-                      key={project.id}
                       type="button"
-                      onClick={() => setSelectedProject(project)}
-                      className={`${styles.projectCard} ${
-                        isActive ? styles.projectCardActive : ""
-                      }`}
-                      aria-pressed={isActive}
-                      aria-label={`Select ${project.title}`}
+                      onClick={toggleMute}
+                      className={styles.screenAudioBtn}
+                      aria-label={isMuted ? "Unmute audio" : "Mute audio"}
                     >
-                      <div className={styles.cardThumbnailWrapper}>
-                        <Image
-                          src={project.posterSrc}
-                          alt={project.title}
-                          width={480}
-                          height={270}
-                          className={styles.cardThumbnail}
-                        />
-                        {isActive && <div className={styles.cardActiveOverlay} />}
-                        <span className={styles.cardRuntimeBadge}>{project.runtime}</span>
-                        {isActive && (
-                          <div className={styles.cardPlayingIndicator}>
-                            <Sparkles size={9} />
-                            <span>ON SCREEN</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className={styles.cardContent}>
-                        <span className={styles.cardCategory}>{project.category}</span>
-                        <h4 className={styles.cardTitle}>{project.title}</h4>
-                        <div className={styles.cardMetaRow}>
-                          <span className={styles.cardClient}>{project.client}</span>
-                          <span className={styles.cardResultHighlight}>{project.metric}</span>
-                        </div>
-                      </div>
+                      {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+                      <span>{isMuted ? "UNMUTE" : "MUTED"}</span>
                     </button>
-                  );
-                })}
-              </div>
-            </div>
+                  </div>
 
-            {/* Bottom Studio Impact Metrics Bar */}
-            <div className={styles.studioImpactBar}>
-              <div className={styles.impactItem}>
-                <span className={styles.impactValue}>
-                  100<span>%</span>
-                </span>
-                <span className={styles.impactTitle}>Bespoke Cinematography</span>
-                <p className={styles.impactDesc}>
-                  Zero stock footage. Every shot is custom lighted, blocked, and filmed on location.
-                </p>
+                  {/* Center Play Button Overlay (when paused) */}
+                  {!isPlaying && (
+                    <div className={styles.screenCenterControls}>
+                      <button
+                        type="button"
+                        onClick={togglePlay}
+                        className={styles.centerPlayBtn}
+                        aria-label="Play reel"
+                      >
+                        <Play size={28} />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Progress Line */}
+                  <div className={styles.progressContainer}>
+                    <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+                  </div>
+
+                  {/* Bottom HUD Inside Screen */}
+                  <div className={styles.screenHudBottom}>
+                    <div className={styles.screenActiveDetails}>
+                      <span className={styles.screenCategoryTag}>
+                        {selectedProject.category} {"//"} {selectedProject.year}
+                      </span>
+                      <h3 className={styles.screenProjectTitle}>{selectedProject.title}</h3>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={togglePlay}
+                      className={styles.screenPlayBtn}
+                      aria-label={isPlaying ? "Pause reel" : "Play reel"}
+                    >
+                      {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+                      <span>{isPlaying ? "PAUSE" : "PLAY"}</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <div className={styles.impactItem}>
-                <span className={styles.impactValue}>
-                  4K <span>DCI</span>
-                </span>
-                <span className={styles.impactTitle}>Cinema HDR Mastering</span>
-                <p className={styles.impactDesc}>
-                  DaVinci Wide Gamut color science formatted for broadcast, web, and ultra-large
-                  displays.
-                </p>
-              </div>
+              {/* Right Column: Feature Card (Top Tab Bar, 4-Col 2-Row Scrollable Grid & Impact Standards) */}
+              <div className={styles.dossierPanel}>
+                {/* 1. Top Bar: Header & Category Filter Tabs */}
+                <div className={styles.reelSelectorHeader}>
+                  <div className={styles.vaultTitleRow}>
+                    <div className={styles.vaultTitleGroup}>
+                      <span className={styles.vaultKickerBullet} />
+                      <h3 className={styles.vaultTitleKicker}>
+                        SELECT PORTRAIT FILM TO PREVIEW IN THEATER
+                      </h3>
+                    </div>
+                    <span className={styles.vaultFormatBadge}>
+                      <Layers size={11} />
+                      <span>{filteredProjects.length} REELS // 9:16 MASTER</span>
+                    </span>
+                  </div>
 
-              <div className={styles.impactItem}>
-                <span className={styles.impactValue}>
-                  8.4<span>M+</span>
-                </span>
-                <span className={styles.impactTitle}>Client Impressions</span>
-                <p className={styles.impactDesc}>
-                  Collective organic reach and high-retention engagement generated across our films.
-                </p>
-              </div>
+                  {/* Category Filter Tabs Bar */}
+                  <div
+                    className={styles.categoryFilterTabs}
+                    role="tablist"
+                    aria-label="Reel categories"
+                  >
+                    {filterOptions.map((cat) => (
+                      <button
+                        key={cat}
+                        type="button"
+                        role="tab"
+                        aria-selected={activeFilter === cat}
+                        className={`${styles.categoryTabBtn} ${
+                          activeFilter === cat ? styles.categoryTabBtnActive : ""
+                        }`}
+                        onClick={() => handleFilterChange(cat)}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-              <div className={styles.impactItem}>
-                <span className={styles.impactValue}>
-                  24 <span>FPS</span>
-                </span>
-                <span className={styles.impactTitle}>Film Cadence & Rhythm</span>
-                <p className={styles.impactDesc}>
-                  Authentic motion blur and pacing calibrated to command undivided viewer focus.
-                </p>
+                {/* 2. 4-Column 2-Row Grid with Smooth Vertical Scroll if items exceed */}
+                <div className={styles.reelGridScrollArea}>
+                  <div
+                    className={styles.reelImageGrid}
+                    role="tablist"
+                    aria-label="Portrait Reel Selection"
+                  >
+                    {filteredProjects.map((project, idx) => {
+                      const isActive = project.id === selectedProject.id;
+
+                      return (
+                        <button
+                          key={project.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={isActive}
+                          className={`${styles.reelImageCard} ${
+                            isActive ? styles.reelImageCardActive : ""
+                          }`}
+                          onClick={() => handleSelectProject(project)}
+                          aria-label={`Preview Reel 0${idx + 1}: ${project.title}`}
+                        >
+                          <div className={styles.reelImageWrapper}>
+                            <Image
+                              src={project.posterSrc}
+                              alt={project.title}
+                              width={280}
+                              height={420}
+                              className={styles.reelImage}
+                            />
+
+                            {/* Cinematic Gradient Overlays */}
+                            <div className={styles.reelImageGradient} />
+
+                            {/* Top Badges */}
+                            <div className={styles.reelImageTopBadges}>
+                              <span className={styles.reelNumberBadge}>
+                                {idx < 9 ? `0${idx + 1}` : idx + 1}
+                              </span>
+                              <span className={styles.reelRuntimeBadge}>{project.runtime}</span>
+                            </div>
+
+                            {/* Active Indicator Badge with Equalizer */}
+                            {isActive && (
+                              <div className={styles.reelActiveBadge}>
+                                <div className={styles.equalizerWrap}>
+                                  <span className={styles.eqBar} />
+                                  <span className={styles.eqBar} />
+                                  <span className={styles.eqBar} />
+                                </div>
+                                <span>ON AIR</span>
+                              </div>
+                            )}
+
+                            {/* Hover Play Icon Overlay */}
+                            <div className={styles.reelHoverOverlay}>
+                              <div className={styles.reelHoverPlayCircle}>
+                                <Play size={20} />
+                              </div>
+                            </div>
+
+                            {/* Bottom Info Details */}
+                            <div className={styles.reelImageBottomDetails}>
+                              <span className={styles.reelCategoryTag}>{project.category}</span>
+                              <h4 className={styles.reelTitleText}>{project.title}</h4>
+                              <div className={styles.reelClientRow}>
+                                <span className={styles.reelClientDot} />
+                                <span className={styles.reelClientText}>{project.client}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. Studio Impact & Cinema Standards Bar */}
+                <div className={styles.impactCardContainer}>
+                  <div className={styles.impactCardHeader}>
+                    <span className={styles.impactLedgerTitle}>
+                      STUDIO PRODUCTION STANDARDS // HIGH-RETENTION 9:16
+                    </span>
+                    <span className={styles.impactLiveIndicator}>
+                      <span className={styles.impactLiveDot} />
+                      ACTIVE CINEMA PROFILE
+                    </span>
+                  </div>
+
+                  <div className={styles.cardImpactGrid}>
+                    <div className={styles.cardImpactItem}>
+                      <span className={styles.cardImpactValue}>
+                        9:16 <span>NATIVE</span>
+                      </span>
+                      <span className={styles.cardImpactTitle}>Vertical Framing</span>
+                      <p className={styles.cardImpactDesc}>
+                        Custom blocked for mobile feeds with zero awkward cropping.
+                      </p>
+                    </div>
+
+                    <div className={styles.cardImpactItem}>
+                      <span className={styles.cardImpactValue}>
+                        4K <span>DCI</span>
+                      </span>
+                      <span className={styles.cardImpactTitle}>Cinema HDR</span>
+                      <p className={styles.cardImpactDesc}>
+                        Shot on full-frame sensors mounted vertically in DaVinci Gamut.
+                      </p>
+                    </div>
+
+                    <div className={styles.cardImpactItem}>
+                      <span className={styles.cardImpactValue}>
+                        8.4<span>M+</span>
+                      </span>
+                      <span className={styles.cardImpactTitle}>Mobile Reach</span>
+                      <p className={styles.cardImpactDesc}>
+                        High-retention narrative pacing driving peak completion rates.
+                      </p>
+                    </div>
+
+                    <div className={styles.cardImpactItem}>
+                      <span className={styles.cardImpactValue}>
+                        24 <span>FPS</span>
+                      </span>
+                      <span className={styles.cardImpactTitle}>Film Cadence</span>
+                      <p className={styles.cardImpactDesc}>
+                        True optical motion blur calibrated to stop the scroll instantly.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

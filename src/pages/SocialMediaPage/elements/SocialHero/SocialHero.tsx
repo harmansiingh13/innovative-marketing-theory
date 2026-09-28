@@ -3,6 +3,7 @@
 import { forwardRef, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SocialHero.module.css";
+import MobileEmulator from "@/shared/components/MobileEmulator";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -81,7 +82,6 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
           <div className={styles.heroMainRow}>
             {/* Left Column: Typography & Actions */}
             <div className={styles.leftColumn}>
-
               <h1 ref={headingTitleRef} className={styles.headline}>
                 <span className={styles.headlineLine}>WE DON&apos;T POST.</span>
                 <span className={styles.headlineLine}>WE BUILD</span>
@@ -132,19 +132,8 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
             <div ref={commandCenterRef} className={styles.phoneWrapper}>
               <div className={styles.phoneFloatingGlow} />
 
-              <div className={styles.phoneFrame}>
-                {/* Dynamic Island */}
-                <div className={styles.dynamicIsland}>
-                  <span className={styles.islandDot} />
-                  <span className={styles.islandWave} />
-                </div>
-
-                {/* Status Bar */}
-                <div className={styles.phoneStatusBar}>
-                  <span>9:41</span>
-                  <span>5G 100%</span>
-                </div>
-
+              {/* Reusable Mobile Emulator Component */}
+              <MobileEmulator statusBarVariant="overlay" islandIndicator="wave">
                 {/* Interactive Phone Screen */}
                 <div
                   className={styles.phoneScreen}
@@ -241,7 +230,7 @@ export const SocialHero = forwardRef<HTMLElement, SocialHeroProps>(
                     </div>
                   </div>
                 </div>
-              </div>
+              </MobileEmulator>
             </div>
           </div>
 

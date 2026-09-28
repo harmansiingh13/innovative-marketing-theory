@@ -129,7 +129,11 @@
 }
 
 .topNavBtnActive {
-  background: linear-gradient(135deg, rgba(232, 169, 26, 0.15) 0%, rgba(232, 169, 26, 0.05) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 169, 26, 0.15) 0%,
+    rgba(232, 169, 26, 0.05) 100%
+  ) !important;
   border-color: var(--color-brand-primary, #e8a91a) !important;
   color: var(--color-brand-primary, #e8a91a) !important;
   box-shadow: 0 4px 20px -4px rgba(232, 169, 26, 0.2);
@@ -283,14 +287,22 @@
   gap: 7px;
 }
 
-.macRed, .macYellow, .macGreen {
+.macRed,
+.macYellow,
+.macGreen {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
-.macRed { background: #ff5f56; }
-.macYellow { background: #ffbd2e; }
-.macGreen { background: #27c93f; }
+.macRed {
+  background: #ff5f56;
+}
+.macYellow {
+  background: #ffbd2e;
+}
+.macGreen {
+  background: #27c93f;
+}
 
 .graphicUrlPill {
   display: flex;
@@ -695,16 +707,24 @@
   gap: 6px;
 }
 
-.stateLabel, .stateLabelGold, .stateLabelActive {
+.stateLabel,
+.stateLabelGold,
+.stateLabelActive {
   font-family: inherit;
   font-size: 8.5px;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
 
-.stateLabel { color: rgba(245, 243, 238, 0.5); }
-.stateLabelGold { color: var(--color-brand-primary, #e8a91a); }
-.stateLabelActive { color: #10b981; }
+.stateLabel {
+  color: rgba(245, 243, 238, 0.5);
+}
+.stateLabelGold {
+  color: var(--color-brand-primary, #e8a91a);
+}
+.stateLabelActive {
+  color: #10b981;
+}
 
 .stateCardBox {
   height: 75px;
@@ -878,9 +898,15 @@
   gap: 10px;
 }
 
-.maintGreenIcon { color: #10b981; }
-.maintGoldIcon { color: var(--color-brand-primary, #e8a91a); }
-.maintBlueIcon { color: #3b82f6; }
+.maintGreenIcon {
+  color: #10b981;
+}
+.maintGoldIcon {
+  color: var(--color-brand-primary, #e8a91a);
+}
+.maintBlueIcon {
+  color: #3b82f6;
+}
 
 .maintInfo {
   display: flex;
