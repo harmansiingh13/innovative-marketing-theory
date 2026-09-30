@@ -5,7 +5,7 @@ import gsap from "gsap";
 import styles from "./HeroSection.module.css";
 import { Navbar } from "./elements/Navbar";
 import { Button } from "@/shared/components/Button";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, MoveDown } from "lucide-react";
 import { Divider } from "@/shared/components/Divider";
 import { getDirectionalVars } from "@/shared/animations";
 
@@ -204,20 +204,19 @@ export const HeroSection = () => {
         <div className={styles.footerContent}>
           <span className={styles.footerLeft}>STRATEGY / CREATIVE / EXECUTION</span>
 
-          <button
-            type="button"
-            className={styles.footerRight}
+          <Button
+            variant="text"
+            size="sm"
+            rightIcon={<MoveDown size={14} />}
             onClick={() => {
               document.getElementById("services")?.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
               });
             }}
-            aria-label="Scroll to services"
           >
-            <span>SCROLL TO EXPLORE</span>
-            <span className={styles.scrollArrow}>↓</span>
-          </button>
+            SCROLL TO EXPLORE
+          </Button>
         </div>
       </div>
     </section>

@@ -76,7 +76,14 @@
     /* Bottom fade to integrate cleanly into footer divider & scroll prompt */
     linear-gradient(0deg, rgba(8, 8, 8, 0.96) 0%, rgba(8, 8, 8, 0.45) 16%, transparent 35%),
     /* Horizontal gradient: deeper on left for text legibility, transparent on right for camera/operator clarity */
-    linear-gradient(90deg, rgba(8, 8, 8, 0.72) 0%, rgba(8, 8, 8, 0.46) 38%, rgba(8, 8, 8, 0.15) 68%, rgba(8, 8, 8, 0.12) 85%, rgba(8, 8, 8, 0.35) 100%),
+    linear-gradient(
+        90deg,
+        rgba(8, 8, 8, 0.72) 0%,
+        rgba(8, 8, 8, 0.46) 38%,
+        rgba(8, 8, 8, 0.15) 68%,
+        rgba(8, 8, 8, 0.12) 85%,
+        rgba(8, 8, 8, 0.35) 100%
+      ),
     /* Warm golden ambience to harmonize footage with IMT brand colors */
     radial-gradient(ellipse at 80% 35%, rgba(232, 169, 26, 0.14) 0%, transparent 60%),
     /* Gentle peripheral vignette */
@@ -497,12 +504,8 @@ button:hover .secondaryArrow {
 }
 
 .footerLeft {
-  transition: color 0.3s ease;
   user-select: none;
-}
-
-.footerLeft:hover {
-  color: rgba(245, 242, 235, 0.75);
+  font-size: 12px;
 }
 
 .footerRight {
