@@ -180,7 +180,6 @@ export const FounderSection = ({
             <div ref={portraitFrameRef} className={styles.imageFrame}>
               <div className={styles.imageTopBar}>
                 <div className={styles.imageTag}>
-                  <span className={styles.tagPulseDot} />
                   <span>FOUNDER</span>
                 </div>
               </div>
