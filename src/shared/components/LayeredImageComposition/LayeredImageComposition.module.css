@@ -1,0 +1,303 @@
+/* ---------------- Root Composition Container ---------------- */
+.compositionWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Optional Background Blueprint Grid */
+.gridOverlay {
+  position: absolute;
+  inset: -30px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Optional Large Watermark Text */
+.backgroundWatermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-inter, sans-serif);
+  font-size: clamp(60px, 9vw, 130px);
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.038);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Optional Warm Ambient Glow */
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(circle at center, rgba(232, 169, 26, 0.08) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Relative Stage for Floating Cards */
+.framesContainer {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  z-index: 1;
+}
+
+/* ---------------- Card Frame Base Styles ---------------- */
+.artFrame {
+  position: absolute;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #0e1017;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.artFrame:hover {
+  z-index: 20 !important;
+  opacity: 1 !important;
+}
+
+.cardMediaWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.frameImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(106%);
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease;
+  display: block;
+}
+
+.artFrame:hover .frameImage {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(110%);
+}
+
+.frameOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.frameBadge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+
+/* ---------------- 4 Frame Geometric Layout ---------------- */
+
+/* Card 1: Center Main Hero Frame (Primary Focus) */
+.frameMain {
+  width: 70%;
+  height: 380px;
+  top: 40px;
+  left: 15%;
+  z-index: 3;
+}
+
+.frameMain:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Card 2: Bottom-Left Foreground Reel Frame (High Overlap) */
+.frameReel {
+  width: 45%;
+  height: 240px;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.frameReel:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* Card 3: Top-Right Secondary Frame */
+.frameTop {
+  width: 42%;
+  height: 220px;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.frameTop:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* Card 4: Bottom-Right Ambient Background Frame */
+.frameBackground {
+  width: 50%;
+  height: 260px;
+  bottom: 30px;
+  right: 5%;
+  z-index: 1;
+  opacity: 0.72;
+}
+
+.frameBackground:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* ---------------- Responsive Layouts ---------------- */
+
+/* Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+  .compositionWrapper {
+    min-height: 440px;
+  }
+
+  .framesContainer {
+    height: 440px;
+  }
+
+  .frameMain {
+    width: 74%;
+    height: 320px;
+    top: 30px;
+    left: 13%;
+  }
+
+  .frameReel {
+    width: 46%;
+    height: 200px;
+  }
+
+  .frameTop {
+    width: 42%;
+    height: 190px;
+  }
+
+  .frameBackground {
+    width: 48%;
+    height: 220px;
+    bottom: 20px;
+    right: 3%;
+  }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .compositionWrapper {
+    min-height: 360px;
+  }
+
+  .framesContainer {
+    height: 360px;
+  }
+
+  .frameMain {
+    width: 82%;
+    height: 260px;
+    top: 25px;
+    left: 9%;
+  }
+
+  .frameReel {
+    width: 50%;
+    height: 165px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .frameTop {
+    width: 44%;
+    height: 155px;
+    top: 0;
+    right: 0;
+  }
+
+  .frameBackground {
+    width: 48%;
+    height: 175px;
+    bottom: 15px;
+    right: 2%;
+  }
+
+  .backgroundWatermark {
+    font-size: clamp(38px, 12vw, 65px);
+    letter-spacing: 0.18em;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .compositionWrapper {
+    min-height: 310px;
+  }
+
+  .framesContainer {
+    height: 310px;
+  }
+
+  .frameMain {
+    width: 86%;
+    height: 220px;
+    top: 20px;
+    left: 7%;
+  }
+
+  .frameReel {
+    width: 52%;
+    height: 140px;
+  }
+
+  .frameTop {
+    width: 46%;
+    height: 130px;
+  }
+
+  .frameBackground {
+    width: 48%;
+    height: 150px;
+    bottom: 10px;
+    right: 0;
+  }
+}

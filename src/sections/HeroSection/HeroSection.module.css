@@ -43,6 +43,56 @@
   display: none;
 }
 
+/* ---------------- Video Background ---------------- */
+
+.videoBackgroundContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+  opacity: 0.88;
+  filter: contrast(114%) brightness(1.05) saturate(112%);
+  transform: scale(1.08);
+  transform-origin: center center;
+  transition: opacity 0.8s ease;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Top fade for clean navbar legibility */
+    linear-gradient(180deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.35) 15%, transparent 30%),
+    /* Bottom fade to integrate cleanly into footer divider & scroll prompt */
+    linear-gradient(0deg, rgba(8, 8, 8, 0.96) 0%, rgba(8, 8, 8, 0.45) 16%, transparent 35%),
+    /* Horizontal gradient: deeper on left for text legibility, transparent on right for camera/operator clarity */
+    linear-gradient(90deg, rgba(8, 8, 8, 0.72) 0%, rgba(8, 8, 8, 0.46) 38%, rgba(8, 8, 8, 0.15) 68%, rgba(8, 8, 8, 0.12) 85%, rgba(8, 8, 8, 0.35) 100%),
+    /* Warm golden ambience to harmonize footage with IMT brand colors */
+    radial-gradient(ellipse at 80% 35%, rgba(232, 169, 26, 0.14) 0%, transparent 60%),
+    /* Gentle peripheral vignette */
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(8, 8, 8, 0.5) 100%);
+  pointer-events: none;
+}
+
+.videoTexture {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(245, 242, 235, 0.04) 1px, transparent 0);
+  background-size: 28px 28px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
 /* ---------------- Navbar ---------------- */
 
 .navbar {
@@ -208,6 +258,7 @@
   font-size: 23px;
   font-weight: 700;
   letter-spacing: 0.22em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
 }
 
 .labelLine {
@@ -234,6 +285,9 @@
   font-weight: 800;
   line-height: 0.88;
   letter-spacing: -0.075em;
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.85),
+    0 1px 6px rgba(0, 0, 0, 0.95);
 }
 
 .headingLine {
@@ -279,10 +333,12 @@
   max-width: 430px;
   margin: 0;
 
-  color: var(--text-muted);
+  color: var(--white);
+  opacity: 0.88;
 
   font-size: clamp(15px, 1.3vw, 18px);
   line-height: 1.65;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
 }
 
 .ctaBlock {

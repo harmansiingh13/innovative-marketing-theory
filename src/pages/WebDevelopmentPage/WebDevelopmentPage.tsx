@@ -22,10 +22,9 @@ export const WebDevelopmentPage = () => {
 
   // Section 1: Hero Refs
   const heroSectionRef = useRef<HTMLElement>(null);
-  const heroKickerRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const heroAsideRef = useRef<HTMLDivElement>(null);
-  const heroCommandCenterRef = useRef<HTMLDivElement>(null);
+  const heroShowcaseRef = useRef<HTMLDivElement>(null);
   const heroValueLedgerRef = useRef<HTMLDivElement>(null);
 
   // Section 2: Capabilities Refs
@@ -49,34 +48,40 @@ export const WebDevelopmentPage = () => {
     if (typeof window === "undefined" || !mainRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Entrance Timeline
-      const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      if (heroKickerRef.current) {
-        const kickerVars = getDirectionalVars("left", { distance: 50, duration: 0.85 });
-        heroTl.fromTo(heroKickerRef.current, kickerVars.from, kickerVars.to, 0.1);
-      }
+      // 1. About / Hero Entrance Timeline
+      const heroTl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+      });
 
       if (heroTitleRef.current) {
-        const titleVars = getDirectionalVars("topLeft", { distance: 70, duration: 1.0 });
-        heroTl.fromTo(heroTitleRef.current, titleVars.from, titleVars.to, 0.2);
+        const titleVars = getDirectionalVars("topLeft", {
+          distance: 70,
+          duration: 1.0,
+        });
+        heroTl.fromTo(heroTitleRef.current, titleVars.from, titleVars.to, 0.15);
       }
 
       if (heroAsideRef.current) {
-        const asideVars = getDirectionalVars("right", { subtle: true, duration: 0.85 });
-        heroTl.fromTo(heroAsideRef.current, asideVars.from, asideVars.to, 0.35);
+        const asideVars = getDirectionalVars("right", {
+          subtle: true,
+          duration: 0.85,
+        });
+        heroTl.fromTo(heroAsideRef.current, asideVars.from, asideVars.to, 0.3);
       }
 
-      if (heroCommandCenterRef.current) {
-        const cardVars = getDirectionalVars("bottom", { distance: 45, duration: 1.0 });
-        heroTl.fromTo(heroCommandCenterRef.current, cardVars.from, cardVars.to, 0.45);
+      if (heroShowcaseRef.current) {
+        const showcaseVars = getDirectionalVars("bottom", { distance: 50, duration: 1.0 });
+        heroTl.fromTo(heroShowcaseRef.current, showcaseVars.from, showcaseVars.to, 0.38);
       }
 
       if (heroValueLedgerRef.current && heroValueLedgerRef.current.children.length > 0) {
         const cards = Array.from(heroValueLedgerRef.current.children);
         cards.forEach((card, idx) => {
-          const cardVars = getDirectionalVars("bottom", { distance: 35, duration: 0.85 });
-          heroTl.fromTo(card, cardVars.from, cardVars.to, 0.55 + idx * 0.1);
+          const cardVars = getDirectionalVars("bottom", {
+            distance: 35,
+            duration: 0.85,
+          });
+          heroTl.fromTo(card, cardVars.from, cardVars.to, 0.5 + idx * 0.1);
         });
       }
 
@@ -172,13 +177,12 @@ export const WebDevelopmentPage = () => {
       {/* Studio Navigation */}
       <Navbar links={webNavLinks} backLink={{ name: "Back", href: "/#services" }} fixed />
 
-      {/* 1. Main Section 1: ABOUT (Hero, Manifesto & Lighthouse 100 Command Center HUD) */}
+      {/* 1. Main Section 1: ABOUT (Redesigned Web Development Hero Section) */}
       <WebHero
         ref={heroSectionRef}
-        headingKickerRef={heroKickerRef}
         headingTitleRef={heroTitleRef}
         headingAsideRef={heroAsideRef}
-        commandCenterRef={heroCommandCenterRef}
+        showcaseRef={heroShowcaseRef}
         valueLedgerRef={heroValueLedgerRef}
       />
 

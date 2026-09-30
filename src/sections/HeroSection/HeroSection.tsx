@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import styles from "./HeroSection.module.css";
 import { Navbar } from "./elements/Navbar";
-import { GridPulseBackground } from "./elements/GridPulseBackground";
 import { Button } from "@/shared/components/Button";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Divider } from "@/shared/components/Divider";
@@ -115,9 +114,21 @@ export const HeroSection = () => {
 
   return (
     <section ref={sectionRef} id="about" className={styles.section}>
+      <div className={styles.videoBackgroundContainer} aria-hidden="true">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/images/hero_video_poster.jpg"
+          className={styles.backgroundVideo}
+        >
+          <source src="/videos/hero_background.mp4" type="video/mp4" />
+        </video>
+        <div className={styles.videoOverlay} />
+        <div className={styles.videoTexture} />
+      </div>
       <div className={styles.backgroundGlow} />
-      <div className={styles.gridPattern} />
-      <GridPulseBackground />
 
       <Navbar links={navbarLinks} />
 
