@@ -2,59 +2,125 @@
   position: relative;
   width: 100%;
   background: var(--color-background-primary, #080808);
-  border-top: 1px solid var(--color-border-default, rgba(245, 242, 235, 0.12));
+  background: linear-gradient(180deg, rgba(14, 14, 14, 0.95) 0%, rgba(8, 8, 8, 1) 100%);
+  overflow: hidden;
 }
 
+/* ---------------- Ambient Effects ---------------- */
+
+.topHairline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 242, 235, 0.08) 18%,
+    rgba(232, 169, 26, 0.4) 50%,
+    rgba(245, 242, 235, 0.08) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(800px, 90vw);
+  height: 60px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(232, 169, 26, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ---------------- Main Container ---------------- */
+
 .container {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 18px 7vw;
+  padding: 22px 6vw;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
 }
 
-.brandRow {
+/* ---------------- Brand Column (Left) ---------------- */
+
+.brandCol {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
-.brandName {
-  color: var(--color-text-secondary);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* ---------------- Social Links List ---------------- */
-
-.socialLinksList {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.socialLink,
-.instagramLink {
-  position: relative;
+.brandLink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
 
+.brandLogoImg {
+  display: block;
+  width: auto;
+  height: 18px;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brandLink:hover .brandLogoImg {
+  transform: scale(1.08);
+}
+
+.brandMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brandTitle {
+  color: var(--color-text-primary, #f5f2eb);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.brandLink:hover .brandTitle {
+  color: var(--color-brand-primary, #e8a91a);
+}
+
+.brandSub {
+  color: var(--color-text-muted, #686862);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* ---------------- Status Beacon (Center) ---------------- */
+
+.statusBeacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 4px 0;
   background: transparent;
   border: none;
 
   color: var(--color-text-secondary, #9b9b96);
   text-decoration: none;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 10.5px;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 
@@ -63,53 +129,225 @@
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.socialLink:hover,
-.instagramLink:hover {
+.statusBeacon:hover {
+  color: var(--color-text-primary, #f5f2eb);
+  transform: translateY(-1px);
+}
+
+.beaconDot {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.beaconPulse {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.5);
+  animation: pulseBeacon 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseBeacon {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.beaconText {
+  white-space: nowrap;
+}
+
+/* ---------------- Actions Column (Right - Minimal Links) ---------------- */
+
+.actionsCol {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Phone Group (Clean inline link + bare copy icon) */
+.phoneGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phoneBtn,
+.footerLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  height: auto;
+
+  color: var(--color-text-secondary, #9b9b96);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.phoneBtn:hover,
+.footerLink:hover {
   color: var(--color-brand-primary, #e8a91a);
   transform: translateY(-1px);
 }
 
-.socialIcon,
-.instagramIcon {
+.linkIcon {
   width: 14px;
   height: 14px;
+  color: var(--color-brand-primary, #e8a91a);
   flex-shrink: 0;
-  color: inherit;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s ease;
+}
+
+
+/* Bare copy button next to phone link */
+.copyInlineBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 3px;
+  margin-left: 1px;
+  color: var(--color-text-muted, #686862);
+  cursor: pointer;
+  border-radius: 4px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.copyInlineBtn:hover {
+  color: var(--color-brand-primary, #e8a91a);
+  transform: scale(1.15);
+}
+
+.copyIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.checkIcon {
+  width: 12px;
+  height: 12px;
+  color: #10b981;
+}
+
+.copiedText {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #10b981;
+  margin-left: 2px;
+}
+
+/* Back to Top Link */
+.backToTopLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+
+  color: var(--color-text-secondary, #9b9b96);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+
   transition:
     color 0.25s ease,
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.socialLink:hover .socialIcon,
-.instagramLink:hover .instagramIcon {
+.backToTopLink:hover {
   color: var(--color-brand-primary, #e8a91a);
-  transform: scale(1.08);
+  transform: translateY(-1px);
+}
+
+.topArrowIcon {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.backToTopLink:hover .topArrowIcon {
+  transform: translateY(-2px);
 }
 
 /* ---------------- Responsive ---------------- */
 
-@media (max-width: 700px) {
+@media (max-width: 980px) {
   .container {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 16px 20px;
-    gap: 12px;
-  }
-
-  .brandRow {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .socialLinksList {
-    justify-content: center;
+    padding: 22px 20px;
     gap: 16px;
   }
 
-  .socialLink,
-  .instagramLink {
-    padding: 4px 0;
-    font-size: 11px;
+  .brandCol {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brandLink {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brandMeta {
+    align-items: center;
+  }
+
+  .actionsCol {
+    justify-content: center;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .actionsCol {
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .footerLink,
+  .backToTopLink {
+    font-size: 10.5px;
   }
 }

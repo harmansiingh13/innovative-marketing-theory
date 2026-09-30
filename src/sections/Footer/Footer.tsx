@@ -1,12 +1,33 @@
 "use client";
 
 import React from "react";
-import { createLucideIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Phone, ArrowUp, createLucideIcon } from "lucide-react";
+import logo from "@/app/designSystem/images/imt-logooo.png";
 import styles from "./Footer.module.css";
+import { Button } from "@/shared/components/Button";
 
 export const InstagramIcon = createLucideIcon("Instagram", [
-  ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5", key: "rect" }],
-  ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", key: "path" }],
+  [
+    "rect",
+    {
+      width: "20",
+      height: "20",
+      x: "2",
+      y: "2",
+      rx: "5",
+      ry: "5",
+      key: "rect",
+    },
+  ],
+  [
+    "path",
+    {
+      d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",
+      key: "path",
+    },
+  ],
   ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5", key: "line" }],
 ]);
 
@@ -33,56 +54,105 @@ export const YoutubeIcon = createLucideIcon("Youtube", [
   ["path", { d: "m10 15 5-3-5-3z", key: "path2" }],
 ]);
 
-export interface SocialLink {
+interface SocialLink {
   label: string;
   url: string;
-  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: React.ComponentType<{
+    size?: number;
+    className?: string;
+  }>;
 }
 
-export const SOCIAL_LINKS: SocialLink[] = [
+const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "Instagram",
     url: "https://www.instagram.com/innovativemarketingtheory?stkn=MWFscWhkZGUyY2Rjbg%3D%3D",
     icon: InstagramIcon,
   },
-  // To add more links in the future, simply add them here, e.g.:
-  // { label: "LinkedIn", url: "https://linkedin.com/company/...", icon: LinkedinIcon },
-  // { label: "YouTube", url: "https://youtube.com/...", icon: YoutubeIcon },
 ];
 
-export interface FooterProps {
-  links?: SocialLink[];
-}
+const CONTACT_PHONE = "+91 86996 60333";
 
-export const Footer = ({ links = SOCIAL_LINKS }: FooterProps = {}) => {
+export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const phoneHref = `tel:${CONTACT_PHONE.replace(/[\s()-]/g, "")}`;
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} role="contentinfo">
+      <div className={styles.topHairline} aria-hidden="true" />
+      <div className={styles.ambientGlow} aria-hidden="true" />
+
       <div className={styles.container}>
-        <div className={styles.brandRow}>
-          <span className={styles.brandName}>
-            Innovative Marketing Theory | &copy; {currentYear} All Rights Reserved.
-          </span>
+        {/* Left: Brand Identity & Copyright */}
+        <div className={styles.brandCol}>
+          <Link
+            href="/"
+            className={styles.brandLogoLink}
+            aria-label="Innovative Marketing Theory home"
+          >
+            <Image src={logo} alt="IMT Logo" width={22} height={22} className={styles.logoImg} />
+          </Link>
+
+          <div className={styles.brandMeta}>
+            <span className={styles.brandTitle}>Innovative Marketing Theory</span>
+
+            <span className={styles.brandSub}>
+              &copy; {currentYear} &bull; All Rights Reserved.
+            </span>
+          </div>
         </div>
 
-        <div className={styles.socialLinksList}>
-          {links.map((link) => {
+        {/* Right: Interactive Minimal Links */}
+        <div className={styles.actionsCol}>
+          {/* Phone */}
+          <Button
+            variant="text"
+            leftIcon={<Phone size={13} className={styles.linkIcon} />}
+            onClick={() => {
+              window.location.href = phoneHref;
+            }}
+            className={styles.phoneBtn}
+            aria-label={`Call us at ${CONTACT_PHONE}`}
+          >
+            {CONTACT_PHONE}
+          </Button>
+
+          {/* Social Links */}
+          {SOCIAL_LINKS.map((link) => {
             const Icon = link.icon;
+
             return (
               <a
                 key={link.label}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.socialLink}
+                className={styles.footerLink}
                 aria-label={`Visit our ${link.label}`}
               >
-                {Icon && <Icon size={14} className={styles.socialIcon} aria-hidden="true" />}
+                {Icon && <Icon size={13} className={styles.linkIcon} aria-hidden="true" />}
+
                 <span>{link.label}</span>
               </a>
             );
           })}
+
+          <Button
+            variant="text"
+            onClick={handleScrollToTop}
+            rightIcon={<ArrowUp size={13} />}
+            className={styles.phoneBtn}
+          >
+            Back to top
+          </Button>
         </div>
       </div>
     </footer>
