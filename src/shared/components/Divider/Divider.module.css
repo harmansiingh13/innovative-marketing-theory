@@ -3,5 +3,5 @@
   margin: 0;
   border: none;
   border-top-style: solid;
-  border-top-color: rgba(232, 169, 26, 0.25);
+  border-top-color: var(--color-border-brand);
 }

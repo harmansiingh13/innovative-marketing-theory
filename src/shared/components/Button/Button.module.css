@@ -110,7 +110,7 @@
 .text {
   background: transparent;
   border-color: transparent;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   padding-left: 0;
   padding-right: 0;
 }

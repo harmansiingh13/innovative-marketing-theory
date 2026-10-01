@@ -147,26 +147,19 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Only show the yellow bottom border when at the very top (scroll position = 0)
       setIsAtTop(Math.round(currentScrollY) <= 0);
 
-      // 1. Dynamic Hide on Scroll Down / Show on Scroll Up
       if (currentScrollY <= 20) {
-        // At the very top: always visible, not scrolled
         setIsVisible(true);
         setIsScrolled(false);
       } else {
         setIsScrolled(true);
 
         const diff = currentScrollY - lastScrollY.current;
-
-        // Ignore micro-jitters to prevent flickering
         if (Math.abs(diff) >= 8) {
           if (diff > 0 && currentScrollY > 70) {
-            // Scrolling down and past hero threshold -> hide
             setIsVisible(false);
           } else if (diff < 0) {
-            // Scrolling up -> show
             setIsVisible(true);
           }
         }
@@ -174,7 +167,6 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
 
       lastScrollY.current = currentScrollY;
 
-      // 2. Active Section Spy
       const scrollPos = currentScrollY + 250;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(sectionIds[i]);
@@ -206,7 +198,6 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
 
         {backLink && (
           <div ref={backBtnRef} className={styles.backGroup}>
-            <span className={styles.backDivider} />
             <Button
               type="button"
               variant="text"
@@ -260,7 +251,7 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
       </div>
 
       <div ref={dividerRef} className={clsx(styles.divider, !isAtTop && styles.dividerHidden)}>
-        <Divider size={2} />
+        <Divider size={3} />
       </div>
     </nav>
   );
@@ -282,5 +273,3 @@ export const Navbar = ({ links, backLink, fixed = true }: NavbarProps) => {
 
   return navContent;
 };
-
-export default Navbar;
