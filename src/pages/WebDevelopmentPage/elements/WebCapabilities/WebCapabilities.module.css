@@ -227,8 +227,15 @@
 }
 
 @keyframes pulseGreen {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
 }
 
 .systemStatusText {
@@ -303,9 +310,15 @@
   height: 9px;
   border-radius: 50%;
 }
-.macRed { background: #ff5f56; }
-.macYellow { background: #ffbd2e; }
-.macGreen { background: #27c93f; }
+.macRed {
+  background: #ff5f56;
+}
+.macYellow {
+  background: #ffbd2e;
+}
+.macGreen {
+  background: #27c93f;
+}
 
 .graphicUrlPill {
   display: flex;
@@ -417,8 +430,12 @@
   letter-spacing: 0.08em;
 }
 
-.siteLink { color: rgba(245, 243, 238, 0.45); }
-.siteLinkActive { color: var(--color-brand-primary, #e8a91a); }
+.siteLink {
+  color: rgba(245, 243, 238, 0.45);
+}
+.siteLinkActive {
+  color: var(--color-brand-primary, #e8a91a);
+}
 
 .siteCtaBtn {
   font-family: inherit;
@@ -801,8 +818,13 @@
   letter-spacing: 0.08em;
 }
 
-.ecomCat { color: rgba(245, 243, 238, 0.4); }
-.ecomCatActive { color: var(--color-brand-primary, #e8a91a); font-weight: 700; }
+.ecomCat {
+  color: rgba(245, 243, 238, 0.4);
+}
+.ecomCatActive {
+  color: var(--color-brand-primary, #e8a91a);
+  font-weight: 700;
+}
 
 .ecomCartBadge {
   display: flex;
@@ -856,7 +878,12 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232, 169, 26, 0.35) 0%, rgba(232, 169, 26, 0.05) 70%, transparent 100%);
+  background: radial-gradient(
+    circle,
+    rgba(232, 169, 26, 0.35) 0%,
+    rgba(232, 169, 26, 0.05) 70%,
+    transparent 100%
+  );
   border: 2px solid rgba(232, 169, 26, 0.45);
   box-shadow: 0 0 20px rgba(232, 169, 26, 0.2);
 }

@@ -3,11 +3,7 @@
 import React, { forwardRef, useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./LayeredImageComposition.module.css";
-import {
-  LayeredImageCompositionProps,
-  CompositionImage,
-  CompositionImageInput,
-} from "./types";
+import { LayeredImageCompositionProps, CompositionImage, CompositionImageInput } from "./types";
 
 /**
  * High-quality curated default images matching the 4-frame showcase:
@@ -37,7 +33,7 @@ export const DEFAULT_COMPOSITION_IMAGES: CompositionImage[] = [
 
 function normalizeImage(
   input: CompositionImageInput | undefined,
-  fallback: CompositionImage
+  fallback: CompositionImage,
 ): CompositionImage {
   if (!input) return fallback;
   if (typeof input === "string") {
@@ -57,10 +53,7 @@ function normalizeImage(
  * interactive hover elevation, optional blueprint grid, ambient glow,
  * faint watermark text, and mouse parallax.
  */
-export const LayeredImageComposition = forwardRef<
-  HTMLDivElement,
-  LayeredImageCompositionProps
->(
+export const LayeredImageComposition = forwardRef<HTMLDivElement, LayeredImageCompositionProps>(
   (
     {
       images,
@@ -76,7 +69,7 @@ export const LayeredImageComposition = forwardRef<
       id,
       style,
     },
-    ref
+    ref,
   ) => {
     const internalRef = useRef<HTMLDivElement>(null);
     const containerRef = (ref as React.RefObject<HTMLDivElement | null>) || internalRef;
@@ -85,19 +78,19 @@ export const LayeredImageComposition = forwardRef<
     // Resolve the 4 frames using direct overrides, array items, or fallbacks
     const frame0 = normalizeImage(
       mainImage || (images && images[0]),
-      DEFAULT_COMPOSITION_IMAGES[0]
+      DEFAULT_COMPOSITION_IMAGES[0],
     );
     const frame1 = normalizeImage(
       bottomLeftImage || (images && images[1]),
-      DEFAULT_COMPOSITION_IMAGES[1]
+      DEFAULT_COMPOSITION_IMAGES[1],
     );
     const frame2 = normalizeImage(
       topRightImage || (images && images[2]),
-      DEFAULT_COMPOSITION_IMAGES[2]
+      DEFAULT_COMPOSITION_IMAGES[2],
     );
     const frame3 = normalizeImage(
       bottomRightImage || (images && images[3]),
-      DEFAULT_COMPOSITION_IMAGES[3]
+      DEFAULT_COMPOSITION_IMAGES[3],
     );
 
     const resolvedFrames = [
@@ -171,14 +164,15 @@ export const LayeredImageComposition = forwardRef<
                   className={styles.frameImage}
                   loading="lazy"
                 />
-                <div className={styles.frameOverlay} />public/videos/hero_background_1.mp4
+                <div className={styles.frameOverlay} />
+                public/videos/hero_background_1.mp4
               </div>
             </div>
           ))}
         </div>
       </div>
     );
-  }
+  },
 );
 
 LayeredImageComposition.displayName = "LayeredImageComposition";

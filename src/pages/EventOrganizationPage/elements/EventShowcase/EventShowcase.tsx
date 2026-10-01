@@ -3,15 +3,7 @@
 import React, { useState, useRef, useCallback, useEffect, forwardRef } from "react";
 import gsap from "gsap";
 import styles from "./EventShowcase.module.css";
-import {
-  CheckCircle2,
-  Sparkles,
-  Camera,
-  Film,
-  Share2,
-  TrendingUp,
-  Activity,
-} from "lucide-react";
+import { CheckCircle2, Sparkles, Camera, Film, Share2, TrendingUp, Activity } from "lucide-react";
 
 export interface CapabilityData {
   id: string;
@@ -71,13 +63,7 @@ const CAPABILITIES: CapabilityData[] = [
       "Motion Graphics",
       "Short-form Adaptation",
     ],
-    deliverables: [
-      "Reels",
-      "Shorts",
-      "Promotional Videos",
-      "Brand Films",
-      "Ad Creatives",
-    ],
+    deliverables: ["Reels", "Shorts", "Promotional Videos", "Brand Films", "Ad Creatives"],
     clientBenefit:
       "One production can become multiple pieces of content built for different platforms and audiences.",
     stageHighlight: "ATTENTION-TUNED POST-PRODUCTION",
@@ -99,13 +85,7 @@ const CAPABILITIES: CapabilityData[] = [
       "Community Engagement",
       "Performance Monitoring",
     ],
-    deliverables: [
-      "Posts",
-      "Reels",
-      "Stories",
-      "Campaign Content",
-      "Content Calendars",
-    ],
+    deliverables: ["Posts", "Reels", "Stories", "Campaign Content", "Content Calendars"],
     clientBenefit:
       "A consistent social presence that keeps your brand active, recognizable, and connected to its audience.",
     stageHighlight: "OMNICHANNEL AUDIENCE ENGAGEMENT",
@@ -193,11 +173,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
             [visualEl, contentEl],
             { opacity: 0, y: -8 },
             { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" },
-            "+=0.03"
+            "+=0.03",
           );
         }
       },
-      [activeIndex]
+      [activeIndex],
     );
 
     // ----------------------------------------------------
@@ -247,12 +227,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
 
             <div className={styles.headerContent}>
               <h2 className={styles.title}>
-                FROM CAMERA{" "}
-                <span className={styles.goldText}>TO CAMPAIGN.</span>
+                FROM CAMERA <span className={styles.goldText}>TO CAMPAIGN.</span>
               </h2>
               <p className={styles.subtitle}>
-                One team to create the content, shape the story, build your social presence,
-                and put your brand in front of the right audience.
+                One team to create the content, shape the story, build your social presence, and put
+                your brand in front of the right audience.
               </p>
             </div>
           </div>
@@ -280,9 +259,7 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                       <span className={styles.flowStageName}>{cap.stage}</span>
                       {isCurrent && <span className={styles.flowStageDot} />}
                     </button>
-                    {idx < CAPABILITIES.length - 1 && (
-                      <span className={styles.flowArrow}>→</span>
-                    )}
+                    {idx < CAPABILITIES.length - 1 && <span className={styles.flowArrow}>→</span>}
                   </React.Fragment>
                 );
               })}
@@ -290,11 +267,7 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
           </div>
 
           {/* Four Interactive Service Selector Tabs */}
-          <div
-            className={styles.topNavPillRow}
-            role="tablist"
-            aria-label="Capabilities Selector"
-          >
+          <div className={styles.topNavPillRow} role="tablist" aria-label="Capabilities Selector">
             {CAPABILITIES.map((cap, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -305,9 +278,7 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                   id={`tab-${cap.id}`}
                   aria-controls={`panel-${cap.id}`}
                   aria-selected={isActive}
-                  className={`${styles.topNavBtn} ${
-                    isActive ? styles.topNavBtnActive : ""
-                  }`}
+                  className={`${styles.topNavBtn} ${isActive ? styles.topNavBtnActive : ""}`}
                   onClick={() => handleSelectTab(idx)}
                 >
                   <span className={styles.topNavNum}>{cap.number}</span>
@@ -336,9 +307,7 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
               </div>
               <div className={styles.systemStatusTag}>
                 <span className={styles.statusPulse} />
-                <span className={styles.systemStatusText}>
-                  {activeService.stageHighlight}
-                </span>
+                <span className={styles.systemStatusText}>{activeService.stageHighlight}</span>
               </div>
             </div>
 
@@ -473,10 +442,16 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             <div className={styles.timelineTrack}>
                               <span className={styles.trackLabel}>V1 A-CAM</span>
                               <div className={styles.trackClips}>
-                                <div className={`${styles.clipBlock} ${styles.clipGold}`} style={{ width: "42%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipGold}`}
+                                  style={{ width: "42%" }}
+                                >
                                   SC04_HERO_TAK02
                                 </div>
-                                <div className={`${styles.clipBlock} ${styles.clipGold}`} style={{ width: "32%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipGold}`}
+                                  style={{ width: "32%" }}
+                                >
                                   SC04_TAK03
                                 </div>
                               </div>
@@ -486,10 +461,16 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             <div className={styles.timelineTrack}>
                               <span className={styles.trackLabel}>V2 B-CAM</span>
                               <div className={styles.trackClips}>
-                                <div className={`${styles.clipBlock} ${styles.clipCyan}`} style={{ width: "24%", marginLeft: "28%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipCyan}`}
+                                  style={{ width: "24%", marginLeft: "28%" }}
+                                >
                                   BROLL_PRODUCT_4K
                                 </div>
-                                <div className={`${styles.clipBlock} ${styles.clipCyan}`} style={{ width: "20%", marginLeft: "4%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipCyan}`}
+                                  style={{ width: "20%", marginLeft: "4%" }}
+                                >
                                   MACRO_LENS
                                 </div>
                               </div>
@@ -499,7 +480,10 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             <div className={styles.timelineTrack}>
                               <span className={styles.trackLabel}>A1 AUDIO</span>
                               <div className={styles.trackClips}>
-                                <div className={`${styles.clipBlock} ${styles.clipGreen}`} style={{ width: "78%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipGreen}`}
+                                  style={{ width: "78%" }}
+                                >
                                   DIALOGUE_BOOM_DENOISED_48KHZ
                                 </div>
                               </div>
@@ -509,7 +493,10 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             <div className={styles.timelineTrack}>
                               <span className={styles.trackLabel}>A2 MUSIC</span>
                               <div className={styles.trackClips}>
-                                <div className={`${styles.clipBlock} ${styles.clipPurple}`} style={{ width: "88%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipPurple}`}
+                                  style={{ width: "88%" }}
+                                >
                                   CINEMATIC_NARRATIVE_SCORE_FINAL
                                 </div>
                               </div>
@@ -519,7 +506,10 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             <div className={styles.timelineTrack}>
                               <span className={styles.trackLabel}>FX GRADE</span>
                               <div className={styles.trackClips}>
-                                <div className={`${styles.clipBlock} ${styles.clipYellow}`} style={{ width: "95%" }}>
+                                <div
+                                  className={`${styles.clipBlock} ${styles.clipYellow}`}
+                                  style={{ width: "95%" }}
+                                >
                                   LUT // DAVINCI WIDE GAMUT FILM EMULATION
                                 </div>
                               </div>
@@ -551,7 +541,9 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
 
                         {/* Platform Filters */}
                         <div className={styles.platformTabs}>
-                          <span className={`${styles.pTab} ${styles.pTabActive}`}>ALL PLATFORMS</span>
+                          <span className={`${styles.pTab} ${styles.pTabActive}`}>
+                            ALL PLATFORMS
+                          </span>
                           <span className={styles.pTab}>INSTAGRAM</span>
                           <span className={styles.pTab}>YOUTUBE</span>
                           <span className={styles.pTab}>LINKEDIN</span>
@@ -568,7 +560,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             </div>
                             <div className={styles.cardThumbBox}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/images/instagram/post-1.png" alt="Reel visual" className={styles.thumbImg} />
+                              <img
+                                src="/images/instagram/post-1.png"
+                                alt="Reel visual"
+                                className={styles.thumbImg}
+                              />
                               <span className={styles.formatTag}>REEL</span>
                             </div>
                             <span className={styles.cardContentTitle}>Brand Manifesto Hook</span>
@@ -583,7 +579,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             </div>
                             <div className={styles.cardThumbBox}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/images/instagram/post-2.png" alt="Carousel visual" className={styles.thumbImg} />
+                              <img
+                                src="/images/instagram/post-2.png"
+                                alt="Carousel visual"
+                                className={styles.thumbImg}
+                              />
                               <span className={styles.formatTag}>POST</span>
                             </div>
                             <span className={styles.cardContentTitle}>Product Story Insight</span>
@@ -598,7 +598,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             </div>
                             <div className={styles.cardThumbBox}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/images/instagram/post-3.png" alt="BTS visual" className={styles.thumbImg} />
+                              <img
+                                src="/images/instagram/post-3.png"
+                                alt="BTS visual"
+                                className={styles.thumbImg}
+                              />
                               <span className={styles.formatTagGold}>REEL</span>
                             </div>
                             <span className={styles.cardContentTitle}>Behind The Camera BTS</span>
@@ -613,7 +617,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             </div>
                             <div className={styles.cardThumbBox}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/images/instagram/post-4.png" alt="Short visual" className={styles.thumbImg} />
+                              <img
+                                src="/images/instagram/post-4.png"
+                                alt="Short visual"
+                                className={styles.thumbImg}
+                              />
                               <span className={styles.formatTag}>SHORT</span>
                             </div>
                             <span className={styles.cardContentTitle}>High-Retention Cut</span>
@@ -628,7 +636,11 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                             </div>
                             <div className={styles.cardThumbBox}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/images/instagram/post-5.png" alt="Campaign visual" className={styles.thumbImg} />
+                              <img
+                                src="/images/instagram/post-5.png"
+                                alt="Campaign visual"
+                                className={styles.thumbImg}
+                              />
                               <span className={styles.formatTag}>STORY</span>
                             </div>
                             <span className={styles.cardContentTitle}>Weekend Campaign Reveal</span>
@@ -672,13 +684,17 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                               <span className={styles.matrixKicker}>01 / CREATIVE ASSETS</span>
                               <span className={styles.matrixStatusGreen}>APPROVED</span>
                             </div>
-                            <span className={styles.matrixTitle}>Dynamic Multivariate Creatives</span>
+                            <span className={styles.matrixTitle}>
+                              Dynamic Multivariate Creatives
+                            </span>
                             <div className={styles.matrixDetails}>
                               <span className={styles.matrixTag}>9:16 Vertical Reel</span>
                               <span className={styles.matrixTag}>1:1 Feed Asset</span>
                               <span className={styles.matrixTag}>16:9 In-Stream</span>
                             </div>
-                            <span className={styles.matrixSub}>Creative fatigue immunity rotation</span>
+                            <span className={styles.matrixSub}>
+                              Creative fatigue immunity rotation
+                            </span>
                           </div>
 
                           {/* Module 2: Audience Architecture */}
@@ -731,7 +747,9 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
                         {/* Ads Optimization Strip */}
                         <div className={styles.adsFooterStrip}>
                           <Sparkles size={11} className={styles.goldIcon} />
-                          <span>CONTINUOUS AUDIENCE REFINEMENT &amp; CREATIVE ASSET OPTIMIZATION</span>
+                          <span>
+                            CONTINUOUS AUDIENCE REFINEMENT &amp; CREATIVE ASSET OPTIMIZATION
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -799,7 +817,7 @@ export const EventShowcase = forwardRef<HTMLElement, EventShowcaseProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 EventShowcase.displayName = "EventShowcase";

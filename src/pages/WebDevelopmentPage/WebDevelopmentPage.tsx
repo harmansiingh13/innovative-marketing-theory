@@ -7,7 +7,7 @@ import styles from "./WebDevelopmentPage.module.css";
 import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
-import { Navbar } from "@/sections/HeroSection/elements/Navbar";
+import { Navbar } from "@/shared/components/Navbar";
 import { WebHero } from "./elements/WebHero/WebHero";
 import { WebCapabilities } from "./elements/WebCapabilities/WebCapabilities";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";

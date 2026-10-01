@@ -49,13 +49,12 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
       commandCenterRef,
       letterboxRef,
     },
-    ref
+    ref,
   ) => {
     const router = useRouter();
 
     const handleConnectClick = () => {
-      const contactEl =
-        document.getElementById("inquire") || document.getElementById("contact");
+      const contactEl = document.getElementById("inquire") || document.getElementById("contact");
       if (contactEl) {
         contactEl.scrollIntoView({
           behavior: "smooth",
@@ -110,8 +109,8 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
               {/* Aside Paragraph & Pill Buttons */}
               <div ref={headingAsideRef} className={styles.asideBlock}>
                 <p className={styles.description}>
-                  Fast, high-performance web applications and digital platforms engineered
-                  to look exceptional, perform smoothly, and turn visitors into customers.
+                  Fast, high-performance web applications and digital platforms engineered to look
+                  exceptional, perform smoothly, and turn visitors into customers.
                 </p>
 
                 <div className={styles.actionsRow}>
@@ -182,15 +181,15 @@ export const WebHero = forwardRef<HTMLElement, WebHeroProps>(
               </div>
               <h2 className={styles.valueTitle}>Platforms That Drive Real Conversions</h2>
               <p className={styles.valueText}>
-                Moving beyond generic templates into custom digital architecture elevates your
-                brand perception and turns your website into a revenue engine.
+                Moving beyond generic templates into custom digital architecture elevates your brand
+                perception and turns your website into a revenue engine.
               </p>
             </div>
           </div>
         </div>
       </section>
     );
-  }
+  },
 );
 
 WebHero.displayName = "WebHero";

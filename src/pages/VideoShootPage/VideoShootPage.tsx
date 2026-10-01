@@ -7,7 +7,7 @@ import styles from "./VideoShootPage.module.css";
 import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
-import { Navbar } from "@/sections/HeroSection/elements/Navbar";
+import { Navbar } from "@/shared/components/Navbar";
 import { VideoHero } from "./elements/VideoHero/VideoHero";
 import { FeaturedReelVault } from "./elements/FeaturedReelVault/FeaturedReelVault";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";

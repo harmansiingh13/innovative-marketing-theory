@@ -53,9 +53,10 @@
 }
 
 .kickerLine {
-  width: 28px;
-  height: 1px;
-  background: var(--gold, var(--color-brand-primary, #e8a91a));
+  width: 40px;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--color-brand-primary);
 }
 
 .headerRow {

@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import styles from "./HeroSection.module.css";
-import { Navbar } from "./elements/Navbar";
+import { Navbar } from "../../shared/components/Navbar";
 import { Button } from "@/shared/components/Button";
 import { ArrowDown, ArrowUpRight, MoveDown } from "lucide-react";
 import { Divider } from "@/shared/components/Divider";
@@ -30,7 +30,6 @@ export const HeroSection = () => {
         },
       });
 
-      // 1. YOUR GROWTH PARTNER: LEFT -> RIGHT (horizontal only, noticeable travel)
       if (topLabelRef.current) {
         const topLabelVars = getDirectionalVars("left", {
           distance: 70,
@@ -39,7 +38,6 @@ export const HeroSection = () => {
         tl.fromTo(topLabelRef.current, topLabelVars.from, topLabelVars.to, 0.1);
       }
 
-      // 2. INNOVATIVE: TOP-LEFT -> FINAL (diagonal down-right)
       if (headingLine1Ref.current) {
         const h1Vars = getDirectionalVars("topLeft", {
           distance: 80,
@@ -48,7 +46,6 @@ export const HeroSection = () => {
         tl.fromTo(headingLine1Ref.current, h1Vars.from, h1Vars.to, 0.22);
       }
 
-      // 3. MARKETING: TOP-RIGHT -> FINAL (diagonal down-left)
       if (headingLine2Ref.current) {
         const h2Vars = getDirectionalVars("topRight", {
           distance: 80,
@@ -57,7 +54,6 @@ export const HeroSection = () => {
         tl.fromTo(headingLine2Ref.current, h2Vars.from, h2Vars.to, 0.36);
       }
 
-      // 4. THEORY.: TOP-LEFT -> FINAL (diagonal down-right)
       if (headingLine3Ref.current) {
         const h3Vars = getDirectionalVars("topLeft", {
           distance: 80,
@@ -66,7 +62,6 @@ export const HeroSection = () => {
         tl.fromTo(headingLine3Ref.current, h3Vars.from, h3Vars.to, 0.5);
       }
 
-      // 5. Paragraph: subtle LEFT -> FINAL
       if (paragraphRef.current) {
         const pVars = getDirectionalVars("left", {
           subtle: true,
@@ -75,7 +70,6 @@ export const HeroSection = () => {
         tl.fromTo(paragraphRef.current, pVars.from, pVars.to, 0.64);
       }
 
-      // 6. CTA buttons: subtle RIGHT -> FINAL (staggered)
       if (connectBtnRef.current) {
         const btn1Vars = getDirectionalVars("right", {
           subtle: true,
@@ -92,7 +86,6 @@ export const HeroSection = () => {
         tl.fromTo(exploreBtnRef.current, btn2Vars.from, btn2Vars.to, 0.88);
       }
 
-      // 7. Footer: subtle bottom settling
       if (footerRef.current) {
         const footerVars = getDirectionalVars("bottom", {
           subtle: true,
@@ -128,7 +121,6 @@ export const HeroSection = () => {
         <div className={styles.videoOverlay} />
         <div className={styles.videoTexture} />
       </div>
-      <div className={styles.backgroundGlow} />
 
       <Navbar links={navbarLinks} />
 
@@ -202,7 +194,7 @@ export const HeroSection = () => {
         <Divider size={2} />
 
         <div className={styles.footerContent}>
-          <span className={styles.footerLeft}>STRATEGY / CREATIVE / EXECUTION</span>
+          <span className={styles.footerLeft}>STRATEGY | CREATIVE | EXECUTION</span>
 
           <Button
             variant="text"

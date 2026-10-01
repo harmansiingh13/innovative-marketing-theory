@@ -7,7 +7,7 @@ import styles from "./AdvertisementPage.module.css";
 import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
-import { Navbar } from "@/sections/HeroSection/elements/Navbar";
+import { Navbar } from "@/shared/components/Navbar";
 import { AdHero } from "./elements/AdHero/AdHero";
 import { AdCampaigns } from "./elements/AdCampaigns/AdCampaigns";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";

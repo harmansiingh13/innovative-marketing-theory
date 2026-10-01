@@ -95,12 +95,7 @@ const PROJECT_TYPES: ProjectType[] = [
     categoryTag: "03 / DIGITAL COMMERCE & RETAIL",
     description:
       "Online stores designed around product discovery, trust, frictionless checkout, and scalable commerce operations.",
-    idealFor: [
-      "DTC Brands",
-      "Retail Businesses",
-      "Product Companies",
-      "Multi-product Stores",
-    ],
+    idealFor: ["DTC Brands", "Retail Businesses", "Product Companies", "Multi-product Stores"],
     capabilities: [
       "Product Catalog",
       "Shopping Cart",
@@ -138,8 +133,7 @@ const PROJECT_TYPES: ProjectType[] = [
       "Real-time Data",
     ],
     technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "Prisma", "APIs"],
-    clientBenefit:
-      "A custom digital tool designed around the way your business actually works.",
+    clientBenefit: "A custom digital tool designed around the way your business actually works.",
   },
   {
     id: "saas-platforms",
@@ -164,14 +158,7 @@ const PROJECT_TYPES: ProjectType[] = [
       "Role-based Access",
       "Analytics",
     ],
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Prisma",
-      "Stripe",
-      "Authentication",
-    ],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Stripe", "Authentication"],
     clientBenefit:
       "A product foundation designed to launch quickly and evolve as your users and business grow.",
   },
@@ -259,11 +246,11 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
             [visualEl, contentEl],
             { opacity: 0, y: -8 },
             { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" },
-            "+=0.03"
+            "+=0.03",
           );
         }
       },
-      [activeIndex]
+      [activeIndex],
     );
 
     // ----------------------------------------------------
@@ -442,17 +429,23 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                           <div className={styles.siteCard}>
                             <span className={styles.siteCardKicker}>01 / DIRECTION</span>
                             <span className={styles.siteCardTitle}>BRAND ARCHITECTURE</span>
-                            <span className={styles.siteCardDesc}>Bespoke visual identity and positioning systems.</span>
+                            <span className={styles.siteCardDesc}>
+                              Bespoke visual identity and positioning systems.
+                            </span>
                           </div>
                           <div className={`${styles.siteCard} ${styles.siteCardFeatured}`}>
                             <span className={styles.siteCardKickerGold}>02 / ENGINEERING</span>
                             <span className={styles.siteCardTitle}>CUSTOM PLATFORMS</span>
-                            <span className={styles.siteCardDesc}>High-speed Next.js code tailored to convert visitors.</span>
+                            <span className={styles.siteCardDesc}>
+                              High-speed Next.js code tailored to convert visitors.
+                            </span>
                           </div>
                           <div className={styles.siteCard}>
                             <span className={styles.siteCardKicker}>03 / EXPANSION</span>
                             <span className={styles.siteCardTitle}>SEO &amp; ANALYTICS</span>
-                            <span className={styles.siteCardDesc}>Sub-second loading times that rank top on Google.</span>
+                            <span className={styles.siteCardDesc}>
+                              Sub-second loading times that rank top on Google.
+                            </span>
                           </div>
                         </div>
 
@@ -496,7 +489,9 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                         {/* Prominent Conversion Action Box */}
                         <div className={styles.conversionBox}>
                           <div className={styles.inputMockRow}>
-                            <div className={styles.mockInput}>enter-your-work-email@company.com</div>
+                            <div className={styles.mockInput}>
+                              enter-your-work-email@company.com
+                            </div>
                             <button type="button" className={styles.conversionBtn}>
                               CLAIM ACCESS NOW →
                             </button>
@@ -518,7 +513,9 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                               <Star size={11} className={styles.starIcon} />
                               <Star size={11} className={styles.starIcon} />
                             </div>
-                            <span className={styles.proofText}>4.9/5 RATING FROM 850+ FOUNDERS</span>
+                            <span className={styles.proofText}>
+                              4.9/5 RATING FROM 850+ FOUNDERS
+                            </span>
                           </div>
                           <div className={styles.metricCallout}>
                             <span className={styles.metricVal}>+64%</span>
@@ -559,7 +556,9 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
 
                           {/* Product Info & Actions */}
                           <div className={styles.ecomProductDetails}>
-                            <span className={styles.productStatusBadge}>IN STOCK // SHIPS TODAY</span>
+                            <span className={styles.productStatusBadge}>
+                              IN STOCK // SHIPS TODAY
+                            </span>
                             <h5 className={styles.productTitle}>CHRONO TITANIUM ED.</h5>
                             <div className={styles.productPriceRow}>
                               <span className={styles.currentPrice}>$280.00</span>
@@ -570,7 +569,10 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                             <div className={styles.colorSelectorRow}>
                               <span className={styles.colorLabel}>COLORWAY:</span>
                               <div className={styles.colorDots}>
-                                <span className={`${styles.cDot} ${styles.cDotActive}`} style={{ background: "#e8a91a" }} />
+                                <span
+                                  className={`${styles.cDot} ${styles.cDotActive}`}
+                                  style={{ background: "#e8a91a" }}
+                                />
                                 <span className={styles.cDot} style={{ background: "#222" }} />
                                 <span className={styles.cDot} style={{ background: "#f5f5f5" }} />
                               </div>
@@ -794,7 +796,9 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                           </div>
 
                           {/* Specialist Card 2 */}
-                          <div className={`${styles.specialistCard} ${styles.specialistCardFeatured}`}>
+                          <div
+                            className={`${styles.specialistCard} ${styles.specialistCardFeatured}`}
+                          >
                             <div className={styles.specHeader}>
                               <div className={styles.specAvatarGold}>N</div>
                               <div className={styles.specMeta}>
@@ -829,7 +833,9 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
                         {/* Marketplace Escrow Protection Strip */}
                         <div className={styles.escrowBar}>
                           <ShieldCheck size={13} className={styles.goldIcon} />
-                          <span>STRIPE CONNECT ESCROW PROTECTION // MILESTONE-BASED DISBURSEMENT</span>
+                          <span>
+                            STRIPE CONNECT ESCROW PROTECTION // MILESTONE-BASED DISBURSEMENT
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -907,7 +913,7 @@ export const WebCapabilities = forwardRef<HTMLElement, WebCapabilitiesProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 WebCapabilities.displayName = "WebCapabilities";

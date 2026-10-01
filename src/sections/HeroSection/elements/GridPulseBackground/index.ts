@@ -1,1 +1,0 @@
-export { GridPulseBackground } from "./GridPulseBackground";

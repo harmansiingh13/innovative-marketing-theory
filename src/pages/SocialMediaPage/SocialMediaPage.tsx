@@ -7,7 +7,7 @@ import styles from "./SocialMediaPage.module.css";
 import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
-import { Navbar } from "@/sections/HeroSection/elements/Navbar";
+import { Navbar } from "@/shared/components/Navbar";
 import { SocialHero } from "./elements/SocialHero/SocialHero";
 import { SocialSystems } from "./elements/SocialSystems/SocialSystems";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";

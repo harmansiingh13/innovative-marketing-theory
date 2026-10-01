@@ -7,7 +7,7 @@ import styles from "./EventOrganizationPage.module.css";
 import { getDirectionalVars } from "@/shared/animations";
 
 // Navigation & Page Sub-Elements
-import { Navbar } from "@/sections/HeroSection/elements/Navbar";
+import { Navbar } from "@/shared/components/Navbar";
 import { EventHero } from "./elements/EventHero/EventHero";
 import { EventShowcase } from "./elements/EventShowcase/EventShowcase";
 import { ServiceProcess } from "@/shared/components/ServiceProcess";
